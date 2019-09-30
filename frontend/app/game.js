@@ -42,11 +42,11 @@ function gamePlay() {
   text(score, scoreX, scoreY)
 
   // Lives draw
-  const lifeSize = objSize
+  const lifeSize = objSize * 1.5
   for (let i = 0; i < lives; i += 1) {
     image(
       imgLife,
-      lifeSize / 2 + lifeSize * i,
+      lifeSize / 2 + lifeSize * i * 1.2,
       lifeSize / 2,
       lifeSize,
       lifeSize
