@@ -3,6 +3,14 @@
 
 // This function runs when the Game Screen is OFF, i.e. game is over or not yet started
 function gameBeginningOver() {
+  // Draw background
+  if (imgBackground) {
+    background(Koji.config.colors.backgroundColor)
+    background(imgBackground)
+  } else {
+    background(Koji.config.colors.backgroundColor)
+  }
+
   // Draw title
   const titleText = Koji.config.strings.title
   let titleSize = floor(objSize * 2)

@@ -3,6 +3,14 @@
 
 // This function runs when the Game Screen is ON
 function gamePlay() {
+  // Draw background
+  if (imgBackgroundInGame) {
+    background(Koji.config.colors.backgroundColor) // To overlay the Starting Screen
+    background(imgBackgroundInGame)
+  } else {
+    background(Koji.config.colors.backgroundColor)
+  }
+
   // Floating Text effects
   for (let i = 0; i < floatingTexts.length; i += 1) {
     floatingTexts[i].update()

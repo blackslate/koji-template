@@ -40,6 +40,7 @@ let comboTexts = []
 // Images
 let imgLife
 let imgBackground
+let imgBackgroundInGame
 
 // Audio
 let sndMusic
@@ -90,9 +91,13 @@ function preload() {
   const newStr = myFont.replace('+', ' ')
   myFont = newStr
 
-  // Load background if there's any
+  // Load backgrounds if there's any
   if (Koji.config.images.background !== '') {
     imgBackground = loadImage(Koji.config.images.background)
+  }
+
+  if (Koji.config.images.backgroundInGame !== '') {
+    imgBackgroundInGame = loadImage(Koji.config.images.backgroundInGame)
   }
 
   // Load images
@@ -186,13 +191,6 @@ function draw() {
     }
   } else {
     cursor(ARROW)
-  }
-
-  // Draw background or a solid color
-  if (imgBackground) {
-    background(imgBackground)
-  } else {
-    background(Koji.config.colors.backgroundColor)
   }
 
   // Draw UI
