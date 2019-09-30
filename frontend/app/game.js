@@ -37,6 +37,22 @@ function gamePlay() {
   })
 
   fallingPerson.show()
+  fallingPerson.body.position.x += Smooth(0, 10, 0.75) * fallingPerson.moveDir
+
+  // move by keys on desktop
+  if (keyIsPressed) {
+    if (keyCode === LEFT_ARROW || key === 'a') {
+      if (fallingPerson.wentOutOfFrame()) {
+        fallingPerson.body.position.x = width
+      }
+    }
+
+    if (keyCode === RIGHT_ARROW || key === 'd') {
+      if (fallingPerson.wentOutOfFrame()) {
+        fallingPerson.body.position.x = 0
+      }
+    }
+  }
 
   if (gameStart) {
     // start spawing coins, obstacles and clouds

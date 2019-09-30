@@ -161,6 +161,7 @@ function instantiate() {
     { width: fallingPersonSize, height: fallingPersonSize },
     { image: imgFallingPerson, shape: 'rectangle' }
   )
+  fallingPerson.moveDir = 0
 }
 
 // Setup your props
@@ -330,11 +331,32 @@ function keyPressed() {
         )
       }
     }
+
+    if (keyCode === LEFT_ARROW || key === 'a') {
+      fallingPerson.moveDir = -1
+    }
+
+    if (keyCode === RIGHT_ARROW || key === 'd') {
+      fallingPerson.moveDir = 1
+    }
   }
 }
 
 function keyReleased() {
   if (!gameOver && !gameBeginning) {
+    if (
+      (keyCode === LEFT_ARROW || key === 'a') &&
+      fallingPerson.moveDir === -1
+    ) {
+      fallingPerson.moveDir = 0
+    }
+
+    if (
+      (keyCode === RIGHT_ARROW || key === 'd') &&
+      fallingPerson.moveDir === 1
+    ) {
+      fallingPerson.moveDir = 0
+    }
   }
 }
 
