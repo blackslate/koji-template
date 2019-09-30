@@ -32,6 +32,15 @@ function gamePlay() {
   }
 
   // InGame UI
+  clouds.forEach(cloud => {
+    cloud.show()
+  })
+
+  fallingPerson.show()
+
+  if (gameStart) {
+    // start spawing coins, obstacles and clouds
+  }
 
   // Score draw
   const scoreX = width - objSize / 2

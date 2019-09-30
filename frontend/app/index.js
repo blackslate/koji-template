@@ -18,8 +18,22 @@ let floatingTexts = []
 let particles = []
 
 // Game Objects (READ-ONLY)
+let fallingPerson
+let clouds = []
+let coinsAndObstacles = [] // For coins -> this.body.type = 'coin' and similarly for Obstacle.
+
+// Size stuff
+let objSize // Base size modifier of all objects, calculated based on screen size
+
+/**
+ * @description Game size in tiles
+ * using bigger numbers will decrease individual object sizes but allow more objects to fit the screen
+ * Keep in mind that if you change this, you might need to change text sizes as well
+ */
+const gameSize = 18
 
 // Game Stuffs (READ-N-WRITE)
+let cameraMovementSpeed = objSize * 1.5 // the speed at which the father falls
 
 // Buttons
 let playButton
@@ -38,6 +52,11 @@ let score = 0
 let comboTexts = []
 
 // Images
+let imgFallingPerson
+let imgObstacle
+let imgCoin
+let imgCloud
+
 let imgLife
 let imgBackground
 let imgBackgroundInGame
@@ -65,16 +84,6 @@ let gameOverRectangleHeight = 0 // for game over animation
 
 let canScore = false
 
-// Size stuff
-let objSize // Base size modifier of all objects, calculated based on screen size
-
-/**
- * @description Game size in tiles
- * using bigger numbers will decrease individual object sizes but allow more objects to fit the screen
- * Keep in mind that if you change this, you might need to change text sizes as well
- */
-const gameSize = 18
-
 // Mobile
 let isMobile = false // check if it really is mobile
 let isMobileSize = false // check if the browser is mobile size
@@ -101,6 +110,11 @@ function preload() {
   }
 
   // Load images
+  imgFallingPerson = loadImage(Koji.config.images.fallingPersonImage)
+  imgObstacle = loadImage(Koji.config.images.obstacleImage)
+  imgCoin = loadImage(Koji.config.images.coinImage)
+  imgCloud = loadImage(Koji.config.images.backgroundCloudImage)
+
   imgLife = loadImage(Koji.config.images.lifeIcon)
   soundImage = loadImage(Koji.config.images.soundImage)
   muteImage = loadImage(Koji.config.images.muteImage)
@@ -137,7 +151,17 @@ function preload() {
 }
 
 // Instantiate objects here
-function instantiate() {}
+function instantiate() {
+  const fallingPersonSize = objSize * 5
+  fallingPerson = new GameObject(
+    {
+      x: random(fallingPersonSize / 2, width - fallingPersonSize / 2),
+      y: height * 0.25,
+    },
+    { width: fallingPersonSize, height: fallingPersonSize },
+    { image: imgFallingPerson, shape: 'rectangle' }
+  )
+}
 
 // Setup your props
 function setup() {
@@ -203,31 +227,6 @@ function draw() {
   soundButton.render()
 }
 
-// Handle Canvas Resize
-function windowResized() {
-  resizeCanvas(windowWidth, windowHeight)
-
-  width = window.innerWidth
-  height = window.innerHeight
-
-  // How much of the screen should the game take, this should usually be left as it is
-  let sizeModifier = 0.75
-  if (height > width) {
-    sizeModifier = 1
-  }
-
-  // Magically determine basic object size depending on size of the screen
-  objSize = floor(
-    min(floor(width / gameSize), floor(height / gameSize)) * sizeModifier
-  )
-
-  soundButton.size = createVector(objSize, objSize)
-
-  isMobileSize = detectMobileSize()
-
-  // handleResize() // 👈 create this function for advanced resize handling
-}
-
 /**
  * Go through objects and see which ones need to be removed
  * A good practive would be for objects to have a boolean like removable, and here you would go through all objects and remove them if they have removable = true;
@@ -239,6 +238,13 @@ function cleanup() {
       floatingTexts.splice(i, 1)
     }
   }
+
+  // Remove gone clouds
+  clouds.forEach((cloud, index) => {
+    if (cloud.removable) {
+      clouds.splice(index, 1)
+    }
+  })
 }
 
 // Call this when a lose life event should trigger
