@@ -1,8 +1,8 @@
 {
   "sounds": {
-    "backgroundMusic": "https://objects.koji-cdn.com/d2442438-5d59-4b2a-b875-75a589ffc6d4/ArcadeSpaceAdventures.mp3",
+    "backgroundMusic": "https://objects.koji-cdn.com/08344106-44ba-432e-9c2c-f24876dcad0d/08rbm-lordofdestruction.mp3",
     "gameStartSound": "",
-    "pickCoin": "https://objects.koji-cdn.com/d2442438-5d59-4b2a-b875-75a589ffc6d4/enemyhit.mp3",
+    "pickCoin": "https://objects.koji-cdn.com/08344106-44ba-432e-9c2c-f24876dcad0d/z9ddb-PickedCoinEcho.wav",
     "life": "https://objects.koji-cdn.com/52fec6a8-e0dc-45d0-a326-cb1bf8e40b9d/life.wav",
     "lose": "https://objects.koji-cdn.com/52fec6a8-e0dc-45d0-a326-cb1bf8e40b9d/lose.wav",
     "enemyHit": "https://objects.koji-cdn.com/d2442438-5d59-4b2a-b875-75a589ffc6d4/enemyhit.mp3",
@@ -11,41 +11,44 @@
     "shootSound": "https://objects.koji-cdn.com/d2442438-5d59-4b2a-b875-75a589ffc6d4/shoot.mp3",
     "enemyDestroy": "https://objects.koji-cdn.com/d2442438-5d59-4b2a-b875-75a589ffc6d4/enemyDie.mp3"
   },
-  "@@editor": [{
-    "key": "sounds",
-    "name": "Sounds",
-    "icon": "🎵",
-    "source": "sounds.json",
-    "fields": [{
-        "key": "backgroundMusic",
-        "name": "Background Music",
-        "description": "Music to loop in background",
-        "type": "sound"
-      },
-      {
-        "key": "gameStartSound",
-        "name": "Game Start Sound",
-        "description": "Game start Sound",
-        "type": "sound"
-      },
-      {
-        "key": "pickCoin",
-        "name": "Pick Coin",
-        "description": "When you pick the coin",
-        "type": "sound"
-      },
-      {
-        "key": "life",
-        "name": "Life Sound",
-        "description": "When you collect a life",
-        "type": "sound"
-      },
-      {
-        "key": "lose",
-        "name": "Lose Sound",
-        "description": "When you lose the game",
-        "type": "sound"
-      }
-    ]
-  }]
+  "@@editor": [
+    {
+      "key": "sounds",
+      "name": "Sounds",
+      "icon": "🎵",
+      "source": "sounds.json",
+      "fields": [
+        {
+          "key": "backgroundMusic",
+          "name": "Background Music",
+          "description": "Music to loop in background",
+          "type": "sound"
+        },
+        {
+          "key": "gameStartSound",
+          "name": "Game Start Sound",
+          "description": "Game start Sound",
+          "type": "sound"
+        },
+        {
+          "key": "pickCoin",
+          "name": "Pick Coin",
+          "description": "When you pick the coin",
+          "type": "sound"
+        },
+        {
+          "key": "life",
+          "name": "Life Sound",
+          "description": "When you collect a life",
+          "type": "sound"
+        },
+        {
+          "key": "lose",
+          "name": "Lose Sound",
+          "description": "When you lose the game",
+          "type": "sound"
+        }
+      ]
+    }
+  ]
 }
