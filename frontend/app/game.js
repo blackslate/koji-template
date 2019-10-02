@@ -104,7 +104,7 @@ function gamePlay() {
   }
 
   if (gameStart && !personBusted) {
-    cameraMovementSpeed += 0.0005
+    if (!isMobile) cameraMovementSpeed += 0.0005
 
     if (!isMobile) {
       fallingPerson.body.position.x += isMobileSize
@@ -121,7 +121,8 @@ function gamePlay() {
 
     // start spawing coins, obstacles and clouds
     spawnTimer += 1 / frameRate()
-    if (spawnTimer >= 0.4) {
+    const spawnAfter = isMobile ? 0.6 : 0.4
+    if (spawnTimer >= spawnAfter) {
       clouds.push(
         new MovingEntity(
           {
@@ -187,7 +188,7 @@ function gamePlay() {
           x: entity.body.position.x,
           y: entity.body.position.y - entity.sizing.radius / 2,
         },
-        10,
+        isMobile ? 5 : 10,
         { floatingText: true }
       )
     }
