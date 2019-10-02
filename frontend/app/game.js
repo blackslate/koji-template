@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 
@@ -20,7 +21,7 @@ function gamePlay() {
   // InGame UI
   clouds.forEach(cloud => {
     cloud.show()
-    cloud.update()
+    !personBusted && cloud.update()
 
     if (cloud.wentOutOfFrame()) {
       cloud.removable = true
@@ -43,7 +44,8 @@ function gamePlay() {
 
   coinsAndObstacles.forEach(entity => {
     entity.show()
-    entity.update()
+    !personBusted && entity.update()
+
     if (entity.settings.type === 'obstacle') entity.rotate(undefined)
 
     if (entity.wentOutOfFrame()) {
@@ -52,11 +54,13 @@ function gamePlay() {
   })
 
   fallingPerson.show()
-  fallingPerson.body.position.x += isMobileSize
-    ? Smooth(0, 10, 1) * fallingPerson.moveDir
-    : Smooth(0, 10, 0.75) * fallingPerson.moveDir
 
-  if (fallingPerson.body.position.y <= height * 0.25) {
+  if (!personBusted)
+    fallingPerson.body.position.x += isMobileSize
+      ? Smooth(0, 10, 1) * fallingPerson.moveDir
+      : Smooth(0, 10, 0.75) * fallingPerson.moveDir
+
+  if (!personBusted && fallingPerson.body.position.y <= height * 0.25) {
     fallingPerson.body.position.y = Ease(
       EasingFunctions.easeInCubic,
       1,
@@ -81,7 +85,7 @@ function gamePlay() {
     }
   }
 
-  if (gameStart) {
+  if (gameStart && !personBusted) {
     // cameraMovementSpeed += 0.0007
 
     // start spawing coins, obstacles and clouds
@@ -168,13 +172,19 @@ function gamePlay() {
       particlesEffect(
         imgFallingPerson,
         { x: fallingPerson.body.position.x, y: fallingPerson.body.position.y },
-        10
+        isMobile ? 10 : 20
       )
 
       fallingPerson.body.position.y = 0 - height * 0.2
       fallingPerson.body.position.x = random(0, width)
 
-      loseLife()
+      if (lives === 1) {
+        setTimeout(loseLife, 1000)
+      } else {
+        loseLife()
+      }
+
+      personBusted = true
     }
   })
 

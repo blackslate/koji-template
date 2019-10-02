@@ -10,6 +10,7 @@ let gameOver = false // If it's true the game will render the main menu
 let gameBeginning = true // Should be true only before the user starts the game for the first time
 
 let gameStart = false // Becomes true after a moment when game initializes
+let personBusted = false
 
 let canEnd = false
 
@@ -400,6 +401,7 @@ function keyReleased() {
 function init() {
   gameOver = false
   gameStart = false
+  personBusted = false
 
   lives = startingLives
   highscoreGained = false
