@@ -159,7 +159,7 @@ function preload() {
 // Instantiate objects here
 function instantiate() {
   // Falling Person
-  fallingPersonSize = isMobileSize ? objSize * 3.8 : objSize * 5
+  fallingPersonSize = isMobileSize ? objSize * 3.5 : objSize * 5
   fallingPerson = new GameObject(
     {
       x: width / 2,
