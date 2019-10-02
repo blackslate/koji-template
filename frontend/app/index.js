@@ -160,7 +160,7 @@ function preload() {
 // Instantiate objects here
 function instantiate() {
   // Falling Person
-  fallingPersonSize = isMobileSize ? objSize * 3.5 : objSize * 5
+  fallingPersonSize = isMobileSize ? objSize * 3.5 : objSize * 4.5
   fallingPerson = new GameObject(
     {
       x: width / 2,
@@ -419,6 +419,8 @@ function init() {
 
   bustedTimer = 0
   spawnTimer = 0
+
+  cameraMovementSpeed = 5.5
 
   floatingTexts = []
   particles = []

@@ -104,7 +104,7 @@ function gamePlay() {
   }
 
   if (gameStart && !personBusted) {
-    // cameraMovementSpeed += 0.0007
+    cameraMovementSpeed += 0.0005
 
     if (!isMobile) {
       fallingPerson.body.position.x += isMobileSize
