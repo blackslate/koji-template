@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 /* eslint-disable no-empty */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
@@ -73,6 +74,9 @@ let sndEnd
 let sndEnemyHit
 let sndExplosion
 let sndLostLife
+let sndLost
+let sndPickCoin
+let sndGameStart
 
 let soundEnabled = true
 let canMute = true
@@ -139,6 +143,11 @@ function preload() {
   if (Koji.config.sounds.explosion)
     sndExplosion = loadSound(Koji.config.sounds.explosion)
   if (Koji.config.sounds.life) sndLostLife = loadSound(Koji.config.sounds.life)
+  if (Koji.config.sounds.lose) sndLost = loadSound(Koji.config.sounds.lose)
+  if (Koji.config.sounds.pickCoin)
+    sndPickCoin = loadSound(Koji.config.sounds.pickCoin)
+  if (Koji.config.sounds.gameStartSound)
+    sndGameStart = loadSound(Koji.config.sounds.gameStartSound)
 
   // Load settings from Game Settings
   scoreGain = parseInt(Koji.config.strings.scoreGain)
@@ -432,6 +441,8 @@ function init() {
 
   // Keep everyone at their original place
   instantiate()
+
+  sndGameStart && sndGameStart.play(0, 1, 100)
 
   floatingTexts.push(
     new OldFloatingText(

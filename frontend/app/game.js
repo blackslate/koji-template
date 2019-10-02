@@ -177,6 +177,9 @@ function gamePlay() {
       )
     ) {
       entity.removable = true
+
+      sndPickCoin.play(0, 1, 100)
+
       addScore(
         1,
         imgCoin,
@@ -221,8 +224,10 @@ function gamePlay() {
       fallingPerson.body.position.x = width / 2
 
       if (lives === 1) {
+        sndLost.play(0, 1, 100)
         setTimeout(loseLife, 1000)
       } else {
+        sndLostLife.play(0, 1, 100)
         loseLife()
       }
 
