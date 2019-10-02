@@ -8,7 +8,7 @@
     "mobile_instructions1": "Save the father falling from the sky!",
     "mobile_instructions2": "Help him dodge the obstacles and collect the coins",
     "mobile_instructions3": "Drag left/right to move the father",
-    "lives": "2",
+    "lives": "4",
     "minimumScoreToSave": "3",
     "enableCursor": true,
     "enableTimer": false,

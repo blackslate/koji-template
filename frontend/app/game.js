@@ -56,8 +56,12 @@ function gamePlay() {
     ? Smooth(0, 10, 1) * fallingPerson.moveDir
     : Smooth(0, 10, 0.75) * fallingPerson.moveDir
 
-  // move by keys on desktop
+  if (fallingPerson.body.position.y <= height * 0.25) {
+    fallingPerson.body.position.y += 25
+  }
+
   if (keyIsPressed) {
+    // move by keys on desktop
     if (keyCode === LEFT_ARROW || key === 'a') {
       if (fallingPerson.wentOutOfFrame()) {
         fallingPerson.body.position.x = width
@@ -72,7 +76,6 @@ function gamePlay() {
   }
 
   if (gameStart) {
-    fallingPerson.body.position.y += 0
     // cameraMovementSpeed += 0.0007
 
     // start spawing coins, obstacles and clouds
@@ -119,10 +122,6 @@ function gamePlay() {
     }
   }
 
-  if (!gameStart) {
-    fallingPerson.body.position.y += 25
-  }
-
   // Handle Collision!
   coinsAndObstacles.forEach(entity => {
     // Falling person to Coins
@@ -165,7 +164,11 @@ function gamePlay() {
         { x: fallingPerson.body.position.x, y: fallingPerson.body.position.y },
         10
       )
-      // fallingPerson = null
+
+      fallingPerson.body.position.y = 0 - height * 0.2
+      fallingPerson.body.position.x = random(0, width)
+
+      loseLife()
     }
   })
 
