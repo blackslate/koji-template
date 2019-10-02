@@ -33,7 +33,7 @@ let objSize // Base size modifier of all objects, calculated based on screen siz
 const gameSize = 18
 
 // Game Stuffs (READ-N-WRITE)
-let cameraMovementSpeed = objSize * 1.5 // the speed at which the father falls
+let cameraMovementSpeed = 5 // the speed at which the father falls
 
 // Buttons
 let playButton
@@ -81,6 +81,8 @@ let startingGameTimer
 let gameTimer
 let gameTimerEnabled = false
 let gameOverRectangleHeight = 0 // for game over animation
+
+let spawnTimer = 0
 
 let canScore = false
 
@@ -152,6 +154,7 @@ function preload() {
 
 // Instantiate objects here
 function instantiate() {
+  // Falling Person
   const fallingPersonSize = objSize * 5
   fallingPerson = new GameObject(
     {
@@ -244,6 +247,13 @@ function cleanup() {
   clouds.forEach((cloud, index) => {
     if (cloud.removable) {
       clouds.splice(index, 1)
+    }
+  })
+
+  // Remove gone particles
+  particles.forEach((particle, index) => {
+    if (particle.removable) {
+      particles.splice(index, 1)
     }
   })
 }
@@ -377,6 +387,10 @@ function init() {
   floatingTexts = []
   particles = []
 
+  // reset
+  clouds = []
+  coinsAndObstacles = []
+
   // Keep everyone at their original place
   instantiate()
 
@@ -398,5 +412,5 @@ function init() {
   setTimeout(() => {
     score = 0
     gameStart = true
-  }, 1000)
+  }, 500)
 }

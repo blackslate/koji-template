@@ -34,6 +34,11 @@ function gamePlay() {
   // InGame UI
   clouds.forEach(cloud => {
     cloud.show()
+    cloud.update()
+
+    if (cloud.wentOutOfFrame()) {
+      cloud.removable = true
+    }
   })
 
   fallingPerson.show()
@@ -56,6 +61,21 @@ function gamePlay() {
 
   if (gameStart) {
     // start spawing coins, obstacles and clouds
+    spawnTimer += 1 / frameRate()
+    if (spawnTimer >= 0.3) {
+      clouds.push(
+        new MovingEntity(
+          {
+            x: random(0, width),
+            y: height + height * 0.25,
+          },
+          { width: objSize * 6, height: objSize * 4 },
+          { image: imgCloud, shape: 'rectangle', type: 'cloud' }
+        )
+      )
+
+      spawnTimer = 0
+    }
   }
 
   // Score draw
