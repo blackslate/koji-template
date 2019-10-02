@@ -115,9 +115,8 @@ function gamePlay() {
         button.update()
         button.btn.draw()
       })
-      fallingPerson.body.position.x += isMobileSize
-        ? Smooth(0, 10, 1) * fallingPerson.moveDir
-        : Smooth(0, 10, 0.75) * fallingPerson.moveDir
+      fallingPerson.body.position.x +=
+        Smooth(0, 10, 1.5) * fallingPerson.moveDir
     }
 
     // start spawing coins, obstacles and clouds
