@@ -60,22 +60,31 @@ function gamePlay() {
   }
 
   if (gameStart) {
+    fallingPerson.body.position.y += 0
+
     // start spawing coins, obstacles and clouds
     spawnTimer += 1 / frameRate()
-    if (spawnTimer >= 0.3) {
+    if (spawnTimer >= 0.4) {
       clouds.push(
         new MovingEntity(
           {
             x: random(0, width),
-            y: height + height * 0.25,
+            y: height + height * 0.1,
           },
-          { width: objSize * 6, height: objSize * 4 },
+          {
+            width: random(objSize * 6, objSize * 8),
+            height: random(objSize * 4, objSize * 6),
+          },
           { image: imgCloud, shape: 'rectangle', type: 'cloud' }
         )
       )
 
       spawnTimer = 0
     }
+  }
+
+  if (!gameStart) {
+    fallingPerson.body.position.y += 25
   }
 
   // Score draw

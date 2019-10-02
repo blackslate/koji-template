@@ -159,7 +159,7 @@ function instantiate() {
   fallingPerson = new GameObject(
     {
       x: random(fallingPersonSize / 2, width - fallingPersonSize / 2),
-      y: height * 0.25,
+      y: 0 - height * 0.25,
     },
     { width: fallingPersonSize, height: fallingPersonSize },
     { image: imgFallingPerson, shape: 'rectangle' }
@@ -376,6 +376,7 @@ function keyReleased() {
  */
 function init() {
   gameOver = false
+  gameStart = false
 
   lives = startingLives
   highscoreGained = false
@@ -388,6 +389,7 @@ function init() {
   particles = []
 
   // reset
+  fallingPerson = null
   clouds = []
   coinsAndObstacles = []
 
@@ -412,5 +414,5 @@ function init() {
   setTimeout(() => {
     score = 0
     gameStart = true
-  }, 500)
+  }, 250)
 }
