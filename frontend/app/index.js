@@ -156,7 +156,7 @@ function preload() {
 // Instantiate objects here
 function instantiate() {
   // Falling Person
-  const fallingPersonSize = objSize * 5
+  const fallingPersonSize = isMobileSize ? objSize * 3.8 : objSize * 5
   fallingPerson = new GameObject(
     {
       x: random(fallingPersonSize / 2, width - fallingPersonSize / 2),

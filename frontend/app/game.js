@@ -52,7 +52,9 @@ function gamePlay() {
   })
 
   fallingPerson.show()
-  fallingPerson.body.position.x += Smooth(0, 10, 0.75) * fallingPerson.moveDir
+  fallingPerson.body.position.x += isMobileSize
+    ? Smooth(0, 10, 1) * fallingPerson.moveDir
+    : Smooth(0, 10, 0.75) * fallingPerson.moveDir
 
   // move by keys on desktop
   if (keyIsPressed) {
@@ -100,8 +102,8 @@ function gamePlay() {
             y: height + height * 0.1,
           },
           {
-            width: entitySize,
-            height: entitySize,
+            width: isMobileSize ? entitySize * 0.75 : entitySize,
+            height: isMobileSize ? entitySize * 0.75 : entitySize,
           },
           {
             image: entityType.image,
