@@ -201,7 +201,7 @@ function gamePlay() {
       )
     ) {
       particlesEffect(
-        imgCoin,
+        imgObstacle,
         { x: fallingPerson.body.position.x, y: fallingPerson.body.position.y },
         isMobile ? 10 : 50
       )
