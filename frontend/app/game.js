@@ -41,6 +41,16 @@ function gamePlay() {
     }
   })
 
+  coinsAndObstacles.forEach(entity => {
+    entity.show()
+    entity.update()
+    if (entity.settings.type === 'obstacle') entity.rotate(undefined)
+
+    if (entity.wentOutOfFrame()) {
+      entity.removable = true
+    }
+  })
+
   fallingPerson.show()
   fallingPerson.body.position.x += Smooth(0, 10, 0.75) * fallingPerson.moveDir
 
@@ -61,6 +71,7 @@ function gamePlay() {
 
   if (gameStart) {
     fallingPerson.body.position.y += 0
+    // cameraMovementSpeed += 0.0007
 
     // start spawing coins, obstacles and clouds
     spawnTimer += 1 / frameRate()
@@ -76,6 +87,28 @@ function gamePlay() {
             height: random(objSize * 4, objSize * 6),
           },
           { image: imgCloud, shape: 'rectangle', type: 'cloud' }
+        )
+      )
+
+      const entityType = random(entityTypes)
+      const entitySize =
+        entityType.typeName === 'obstacle' ? objSize * 4 : objSize * 3
+      coinsAndObstacles.push(
+        new MovingEntity(
+          {
+            x: random(0, width),
+            y: height + height * 0.1,
+          },
+          {
+            width: entitySize,
+            height: entitySize,
+          },
+          {
+            image: entityType.image,
+            shape: 'rectangle',
+            type: entityType.typeName,
+            rotate: true,
+          }
         )
       )
 

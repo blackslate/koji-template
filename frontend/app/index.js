@@ -33,7 +33,8 @@ let objSize // Base size modifier of all objects, calculated based on screen siz
 const gameSize = 18
 
 // Game Stuffs (READ-N-WRITE)
-let cameraMovementSpeed = 5 // the speed at which the father falls
+let cameraMovementSpeed = 5.5 // the speed at which the father falls
+let entityTypes = []
 
 // Buttons
 let playButton
@@ -165,6 +166,17 @@ function instantiate() {
     { image: imgFallingPerson, shape: 'rectangle' }
   )
   fallingPerson.moveDir = 0
+
+  // Entities
+  entityTypes = [
+    { type: 0, image: imgCoin, typeName: 'coin', speed: cameraMovementSpeed },
+    {
+      type: 1,
+      image: imgObstacle,
+      typeName: 'obstacle',
+      speed: cameraMovementSpeed,
+    },
+  ]
 }
 
 // Setup your props
@@ -247,6 +259,13 @@ function cleanup() {
   clouds.forEach((cloud, index) => {
     if (cloud.removable) {
       clouds.splice(index, 1)
+    }
+  })
+
+  // Remove gone entities
+  coinsAndObstacles.forEach((entity, index) => {
+    if (entity.removable) {
+      coinsAndObstacles.splice(index, 1)
     }
   })
 

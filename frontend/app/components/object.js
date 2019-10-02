@@ -62,6 +62,8 @@ class GameObject {
     }
   }
 
+  rotateStartAt = 0
+
   /**
    * @description check for collision of this object to any other object
    * @returns true if the otherElement is touching this element.
@@ -219,8 +221,12 @@ class GameObject {
   }
 
   // Rotate the object
-  rotate(degrees = 0) {
-    this.body.angle = degrees
+  rotate(degrees, rotateSpeed = 0.1, mode = 'auto') {
+    const effectiveDegrees =
+      mode === 'degrees'
+        ? degrees
+        : (this.rotateStartAt = this.rotateStartAt + rotateSpeed)
+    this.body.angle = effectiveDegrees
   }
 
   // Use this for your destruction code -> eg. World.remove(world, this.body)
