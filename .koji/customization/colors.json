@@ -16,7 +16,7 @@
     "buttonClickColor": "#2CECF5",
     "lifeColor": "#d54b8c",
     "floatingTextColor": "#ffff00",
-    "negativeFloatingTextColor": "#ffffff",
+    "negativeFloatingTextColor": "#000000",
     "timerText": "#ffff00",
     "gameOverRectangleColor": "#222222"
   },

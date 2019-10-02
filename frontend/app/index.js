@@ -36,6 +36,7 @@ const gameSize = 18
 // Game Stuffs (READ-N-WRITE)
 let cameraMovementSpeed = 5.5 // the speed at which the father falls
 let entityTypes = []
+let fallingPersonSize
 
 // Buttons
 let playButton
@@ -85,6 +86,7 @@ let gameTimerEnabled = false
 let gameOverRectangleHeight = 0 // for game over animation
 
 let spawnTimer = 0
+let bustedTimer = 0
 
 let canScore = false
 
@@ -157,10 +159,10 @@ function preload() {
 // Instantiate objects here
 function instantiate() {
   // Falling Person
-  const fallingPersonSize = isMobileSize ? objSize * 3.8 : objSize * 5
+  fallingPersonSize = isMobileSize ? objSize * 3.8 : objSize * 5
   fallingPerson = new GameObject(
     {
-      x: random(fallingPersonSize / 2, width - fallingPersonSize / 2),
+      x: width / 2,
       y: 0 - height * 0.25,
     },
     {
@@ -409,6 +411,9 @@ function init() {
 
   gameTimer = startingGameTimer
   gameOverRectangleHeight = 0
+
+  bustedTimer = 0
+  spawnTimer = 0
 
   floatingTexts = []
   particles = []

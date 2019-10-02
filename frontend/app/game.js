@@ -28,17 +28,41 @@ function gamePlay() {
     }
   })
 
-  // Floating Text effects
-  for (let i = 0; i < floatingTexts.length; i += 1) {
-    floatingTexts[i].update()
-    floatingTexts[i].render()
-  }
-
   // Particle effects
   for (let i = 0; i < particles.length; i += 1) {
     if (particles[i]) {
       particles[i].render()
       particles[i].update()
+    }
+  }
+
+  if (personBusted) {
+    bustedTimer += 1 / frameRate()
+    if (bustedTimer >= 2) {
+      bustedTimer = 0
+      personBusted = false
+    }
+
+    if (bustedTimer >= 1) {
+      clouds.forEach(cloud => {
+        cloud.body.position.y = Ease(
+          EasingFunctions.easeInOutQuint,
+          1,
+          cloud.body.position.y,
+          height - height * 0.25,
+          5
+        )
+      })
+
+      coinsAndObstacles.forEach(entity => {
+        entity.body.position.y = Ease(
+          EasingFunctions.easeInOutQuint,
+          1,
+          entity.body.position.y,
+          height - height * 0.25,
+          3
+        )
+      })
     }
   }
 
@@ -70,7 +94,7 @@ function gamePlay() {
     )
   }
 
-  if (keyIsPressed) {
+  if (!personBusted && keyIsPressed) {
     // move by keys on desktop
     if (keyCode === LEFT_ARROW || key === 'a') {
       if (fallingPerson.wentOutOfFrame()) {
@@ -170,13 +194,24 @@ function gamePlay() {
       )
     ) {
       particlesEffect(
-        imgFallingPerson,
+        imgCoin,
         { x: fallingPerson.body.position.x, y: fallingPerson.body.position.y },
-        isMobile ? 10 : 20
+        isMobile ? 10 : 50
+      )
+
+      floatingTexts.push(
+        new OldFloatingText(
+          width / 2,
+          height / 2 - height * 0.01,
+          Koji.config.strings.gameLostPersonText,
+          Koji.config.colors.negativeFloatingTextColor,
+          objSize * 1.2,
+          2
+        )
       )
 
       fallingPerson.body.position.y = 0 - height * 0.2
-      fallingPerson.body.position.x = random(0, width)
+      fallingPerson.body.position.x = width / 2
 
       if (lives === 1) {
         setTimeout(loseLife, 1000)
@@ -206,6 +241,12 @@ function gamePlay() {
       lifeSize,
       lifeSize
     )
+  }
+
+  // Floating Text effects
+  for (let i = 0; i < floatingTexts.length; i += 1) {
+    floatingTexts[i].update()
+    floatingTexts[i].render()
   }
 
   cleanup()

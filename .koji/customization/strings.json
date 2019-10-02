@@ -18,6 +18,7 @@
     "endButtonText": "END GAME",
     "gameOverText": "GAME OVER",
     "gameStartedFloatingText": "Save the father!",
+    "gameLostPersonText": "💩 You lost your father!",
     "comboText": "AWESOME 👏, NEAT 👌, GREAT 👏, FANTASTIC 💌, WOW ❤️, AMAZING 😍, RICH 💸, ASSBREAKING 🤟, KOJIWOOOO 🛩️",
     "emailInputEnabled": false,
     "scoreText": "Score:",
@@ -129,6 +130,12 @@
         "key": "gameStartedFloatingText",
         "name": "Game Started Text",
         "description": "The floating text that appears after game starts.",
+        "type": "text"
+      },
+      {
+        "key": "gameLostPersonText",
+        "name": "Person Lost Text",
+        "description": "The floating text that appears after you lose a life.",
         "type": "text"
       },
       {
