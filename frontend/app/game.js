@@ -57,7 +57,13 @@ function gamePlay() {
     : Smooth(0, 10, 0.75) * fallingPerson.moveDir
 
   if (fallingPerson.body.position.y <= height * 0.25) {
-    fallingPerson.body.position.y += 25
+    fallingPerson.body.position.y = Ease(
+      EasingFunctions.easeInCubic,
+      1,
+      fallingPerson.body.position.y,
+      height * 0.25,
+      3
+    )
   }
 
   if (keyIsPressed) {
