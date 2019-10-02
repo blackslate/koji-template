@@ -239,7 +239,7 @@ function setup() {
    */
   if (Koji.config.sounds.backgroundMusic)
     sndMusic = loadSound(Koji.config.sounds.backgroundMusic, () =>
-      playMusic(sndMusic, 0.4, false)
+      playMusic(sndMusic, 0.4, true)
     )
 }
 
