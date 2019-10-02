@@ -7,7 +7,7 @@
     "desktop_instructions3": "Left/Right controls to move the father",
     "mobile_instructions1": "Save the father falling from the sky!",
     "mobile_instructions2": "Help him dodge the obstacles and collect the coins",
-    "mobile_instructions3": "Drag left/right to move the father",
+    "mobile_instructions3": "Press the below buttons to move the father",
     "lives": "4",
     "minimumScoreToSave": "3",
     "enableCursor": true,

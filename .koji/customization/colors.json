@@ -12,6 +12,9 @@
     "instructionsColor": "#dfdcea",
     "playButtonHoverColor": "#E8C034",
     "playButtonClickColor": "#ffda5a",
+    "mobileControlsHoverColor": "#000000",
+    "mobileControlsColor": "#00000080",
+    "mobileControlsClickColor": "#000000",
     "buttonHoverColor": "#23bcc5",
     "buttonClickColor": "#2CECF5",
     "lifeColor": "#d54b8c",
@@ -68,6 +71,21 @@
       {
         "key": "playButtonClickColor",
         "name": "Play Button Click Color",
+        "type": "color"
+      },
+      {
+        "key": "mobileControlsHoverColor",
+        "name": "Mobile Controls Hover Color",
+        "type": "color"
+      },
+      {
+        "key": "mobileControlsColor",
+        "name": "Mobile Controls Color",
+        "type": "color"
+      },
+      {
+        "key": "mobileControlsClickColor",
+        "name": "Mobile Controls Click Color",
         "type": "color"
       },
       {

@@ -43,6 +43,7 @@ let playButton
 let soundButton
 let leaderboardButton
 let endButton
+let gameButtons = []
 
 // Score data
 let startingLives
@@ -214,6 +215,10 @@ function setup() {
   soundButton = new SoundButton()
   leaderboardButton = new LeaderboardButton()
   endButton = new EndButton()
+  gameButtons = [
+    new MoveButton(-1, width / 2 - objSize * 2),
+    new MoveButton(+1, width / 2 + objSize * 2),
+  ]
 
   instantiate()
 

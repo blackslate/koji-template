@@ -79,11 +79,6 @@ function gamePlay() {
 
   fallingPerson.show()
 
-  if (!personBusted)
-    fallingPerson.body.position.x += isMobileSize
-      ? Smooth(0, 10, 1) * fallingPerson.moveDir
-      : Smooth(0, 10, 0.75) * fallingPerson.moveDir
-
   if (!personBusted && fallingPerson.body.position.y <= height * 0.25) {
     fallingPerson.body.position.y = Ease(
       EasingFunctions.easeInCubic,
@@ -94,23 +89,36 @@ function gamePlay() {
     )
   }
 
-  if (!personBusted && keyIsPressed) {
-    // move by keys on desktop
-    if (keyCode === LEFT_ARROW || key === 'a') {
+  if (!personBusted) {
+    if (fallingPerson.body.position.x > width + objSize) {
       if (fallingPerson.wentOutOfFrame()) {
-        fallingPerson.body.position.x = width
+        fallingPerson.body.position.x = 0
       }
     }
 
-    if (keyCode === RIGHT_ARROW || key === 'd') {
+    if (fallingPerson.body.position.x < 0 - objSize) {
       if (fallingPerson.wentOutOfFrame()) {
-        fallingPerson.body.position.x = 0
+        fallingPerson.body.position.x = width
       }
     }
   }
 
   if (gameStart && !personBusted) {
     // cameraMovementSpeed += 0.0007
+
+    if (!isMobile) {
+      fallingPerson.body.position.x += isMobileSize
+        ? Smooth(0, 10, 1) * fallingPerson.moveDir
+        : Smooth(0, 10, 0.75) * fallingPerson.moveDir
+    } else {
+      gameButtons.forEach(button => {
+        button.update()
+        button.btn.draw()
+      })
+      fallingPerson.body.position.x += isMobileSize
+        ? Smooth(0, 10, 1) * fallingPerson.moveDir
+        : Smooth(0, 10, 0.75) * fallingPerson.moveDir
+    }
 
     // start spawing coins, obstacles and clouds
     spawnTimer += 1 / frameRate()
