@@ -11,20 +11,6 @@ function gamePlay() {
     background(Koji.config.colors.backgroundColor)
   }
 
-  // Floating Text effects
-  for (let i = 0; i < floatingTexts.length; i += 1) {
-    floatingTexts[i].update()
-    floatingTexts[i].render()
-  }
-
-  // Particle effects
-  for (let i = 0; i < particles.length; i += 1) {
-    if (particles[i]) {
-      particles[i].render()
-      particles[i].update()
-    }
-  }
-
   // Draw Timer! (Comment this blob of code if you don't want timer)
   if (Koji.config.strings.enableTimer && gameTimerEnabled) {
     gameTimer -= 1 / frameRate()
@@ -40,6 +26,20 @@ function gamePlay() {
       cloud.removable = true
     }
   })
+
+  // Floating Text effects
+  for (let i = 0; i < floatingTexts.length; i += 1) {
+    floatingTexts[i].update()
+    floatingTexts[i].render()
+  }
+
+  // Particle effects
+  for (let i = 0; i < particles.length; i += 1) {
+    if (particles[i]) {
+      particles[i].render()
+      particles[i].update()
+    }
+  }
 
   coinsAndObstacles.forEach(entity => {
     entity.show()
@@ -104,10 +104,11 @@ function gamePlay() {
           {
             width: isMobileSize ? entitySize * 0.75 : entitySize,
             height: isMobileSize ? entitySize * 0.75 : entitySize,
+            radius: isMobileSize ? (entitySize * 0.75) / 2 : entitySize / 2,
           },
           {
             image: entityType.image,
-            shape: 'rectangle',
+            shape: 'circle',
             type: entityType.typeName,
             rotate: true,
           }
@@ -121,6 +122,52 @@ function gamePlay() {
   if (!gameStart) {
     fallingPerson.body.position.y += 25
   }
+
+  // Handle Collision!
+  coinsAndObstacles.forEach(entity => {
+    // Falling person to Coins
+    if (
+      entity.settings.type === 'coin' &&
+      fallingPerson.didTouch(
+        {
+          sizing: entity.sizing,
+          body: entity.body,
+        },
+        'circle'
+      )
+    ) {
+      entity.removable = true
+      addScore(
+        1,
+        imgCoin,
+        {
+          x: entity.body.position.x,
+          y: entity.body.position.y - entity.sizing.radius / 2,
+        },
+        10,
+        { floatingText: true }
+      )
+    }
+
+    // Falling person to Obstacles
+    if (
+      entity.settings.type === 'obstacle' &&
+      fallingPerson.didTouch(
+        {
+          sizing: entity.sizing,
+          body: entity.body,
+        },
+        'circle'
+      )
+    ) {
+      particlesEffect(
+        imgFallingPerson,
+        { x: fallingPerson.body.position.x, y: fallingPerson.body.position.y },
+        10
+      )
+      // fallingPerson = null
+    }
+  })
 
   // Score draw
   const scoreX = width - objSize / 2

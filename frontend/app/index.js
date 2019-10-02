@@ -162,8 +162,12 @@ function instantiate() {
       x: random(fallingPersonSize / 2, width - fallingPersonSize / 2),
       y: 0 - height * 0.25,
     },
-    { width: fallingPersonSize, height: fallingPersonSize },
-    { image: imgFallingPerson, shape: 'rectangle' }
+    {
+      width: fallingPersonSize,
+      height: fallingPersonSize,
+      radius: fallingPersonSize / 2,
+    },
+    { image: imgFallingPerson, shape: 'circle' }
   )
   fallingPerson.moveDir = 0
 
