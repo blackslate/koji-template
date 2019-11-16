@@ -16,7 +16,9 @@ function getFontFamily(ff) {
 const textFont = getFontFamily(Koji.config.strings.textFont)
 const buttonFont = getFontFamily(Koji.config.strings.buttonFont)
 const colors = {
-  btnTint: toneColor(Koji.config.colors.buttonColor, 1.5)
+  text: Koji.config.colors.textColor
+
+, btnTint: toneColor(Koji.config.colors.buttonColor, 1.5)
 , btnShade: toneColor(Koji.config.colors.buttonColor, 0.75)
 , hoverTint: toneColor(Koji.config.colors.buttonHoverColor, 1.5)
 , hoverShade: toneColor(Koji.config.colors.buttonHoverColor, 0.75)
@@ -57,7 +59,7 @@ export const StyledMenu = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${Koji.config.colors.backgroundColor};
-  color: ${Koji.config.colors.textColor};
+  color: ${colors.text};
   font-family: ${textFont};
   display: flex;
   flex-direction: column;
@@ -156,6 +158,7 @@ export const StyledHeader = styled.div`
   align-items: center;
   font-size: ${Koji.config.strings.headerFontSize + "vmin"};
   color: ${Koji.config.colors.titleColor};
+  font-weight: bold;
   text-transform: capitalize;
 `
 
@@ -232,15 +235,45 @@ export const StyledCredits = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${Koji.config.colors.backgroundColor};
+  color: ${colors.text};
+  text-align: center;
 
+  & ul {
+    height: calc(100vh - ${Koji.config.strings.headerHeight + "vmin"});
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow-y: auto
+  }
 
   & h1 {
-    color: ${Koji.config.colors.titleColor};
-    font-size: 10vmin;
+    font-size: ${Koji.config.credits.h1Size}vmin;
+    margin: 1em 0 0;
     position: relative;
     top: -3vmin;
     display: flex;
     justify-content: center;
+  }
+
+  & ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+
+  & h2 {
+    font-size: ${Koji.config.credits.h2Size}vmin;
+    margin: 1.5em 0 0;
+  }
+
+  & p {
+    font-size: ${Koji.config.credits.pSize}vmin;
+    margin: 0.25em;
+  }
+
+  & a {
+    color: ${colors.text}
   }
 
 `

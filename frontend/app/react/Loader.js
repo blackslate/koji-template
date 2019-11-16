@@ -25,7 +25,7 @@ class Loader extends Component {
   render() {
     return (
       <StyledLoader>
-        <img src={Koji.config.basics.spinner} />
+        <img src={Koji.config.assets.spinner} />
       </StyledLoader>
     )
   }

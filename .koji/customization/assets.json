@@ -1,5 +1,5 @@
 {
-  "basics": {
+  "assets": {
     "music": [
       {
         "name": "Crystal Waters",
@@ -21,10 +21,10 @@
   },
   "@@editor": [
     {
-      "key": "basics",
-      "name": "Basics",
+      "key": "assets",
+      "name": "Assets",
       "icon": "🝙",
-      "source": "basics.json",
+      "source": "assets.json",
       "fields": [
         {
           "key": "music",

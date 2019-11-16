@@ -4,25 +4,58 @@
 
 
 import React, { Component } from 'react'
-import { StyledCredits, StyledCloseButton } from './styles.js'
+import Koji from '@withkoji/vcc'
+import Header from './Header.js'
+import { StyledCredits } from './styles.js'
 
 
 class Credits extends Component {
   constructor({ setView }) {
     super()
-    this.close = setView
+    this.setView = setView
   }
 
+
+  getCredits() {
+    const items  = Koji.config.credits.credit.map((data, index) => {
+     const style = (data.url.startsWith("https://fonts.google.com/"))
+                 ? {fontFamily: data.name}
+                 : {}
+
+      return (
+        <li
+          key={index}
+          style={style}
+        >
+          <h2><a target="credits" href={data.url}>{data.name}</a></h2>
+          <p>{Koji.config.credits.by} {data.author}</p>
+          <p>
+            <a target="credits" href={data.licenseURL}>
+              {data.license}
+            </a>
+          </p>
+        </li>
+      )
+    }) 
+
+    return items
+  }
+
+
   render() {
+    const credits = this.getCredits()
+
     return (
       <StyledCredits>
-        CREDITS GO HERE
-        <StyledCloseButton
-          onMouseUp={this.close}
+        <Header
+          text={Koji.config.credits.credits}
+          close={this.setView}
         />
+        <ul>{credits}</ul>
       </StyledCredits>
     )
   }
 }
 
 export default Credits
+

@@ -15,7 +15,7 @@ export const preload = (milliseconds) => {
   const sections   = Object.keys(config)
   const extensions = ["mp3","ogg","jpg","jpeg","png","gif","svg","webp"]
 
-  const images = [Koji.config.basics.spinner]
+  const images = [Koji.config.assets.spinner]
   const sounds = []
 
   sections.forEach( section => {
