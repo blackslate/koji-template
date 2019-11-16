@@ -5,8 +5,16 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import { GetLeaderboard } from 'koji-react-leaderboard'
+import { StyledLeaderboard } from './styles.js'
+
 
 class Leaderboard extends Component {
+  constructor({ setView }) {
+    super()
+    this.setView = setView
+  }
+
+
   render() {
     return (
       <GetLeaderboard
@@ -26,7 +34,7 @@ class Leaderboard extends Component {
                   <div>Error!</div>
 
                   {/* eslint-disable-next-line react/button-has-type */}
-                  <button onClick={() => window.setAppView('game')}>
+                  <button onClick={() => this.setView()}>
                     {'Back to Game'}
                   </button>
                 </div>
@@ -46,18 +54,19 @@ class Leaderboard extends Component {
                       className="leaderboard-title-text"
                       style={{ color: Koji.config.colors.titleColor }}
                     >
-                      {'Top Scores'}
+                      {Koji.config.strings.topScores}
                     </div>
                     <div
                       className="leaderboard-close-button"
                       onClick={() => {
-                        window.setAppView('game')
+                        this.setView()
                       }}
                       style={{ color: Koji.config.colors.titleColor }}
                     >
-                      {'Close'}
+                      {Koji.config.strings.closeLeaderboard}
                     </div>
                   </div>
+
                   <div className="leaderboard-contents">
                     {data.scores.slice(0, 100).map((score, index) => (
                       <div

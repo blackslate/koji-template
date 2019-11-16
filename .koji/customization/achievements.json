@@ -1,0 +1,123 @@
+{
+  "achievements": {
+    "color": "#2a2a51",
+    "bgColor": "#fff",
+    "radius": 50,
+    "defaultTrophy": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ssh5s-trails.png",
+    "trophies": [
+      {
+        "key": "one",
+        "name": "First Time",
+        "description": "Your first achievement: just coming here",
+        "image": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ex9ir-laurel.png"
+     } ,
+      {
+        "key": "two",
+        "name": "Medal",
+        "description": "Awarded for simply muddling through",
+        "image": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/tr4oc-medal.png"
+      },
+      {
+        "key": "three",
+        "name": "Cup",
+        "description": "A cup to keep your car keys in",
+        "image": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/uxf8l-cup.png"
+      },
+      {
+        "key": "four",
+        "name": "Trails",
+        "description": "This achievement uses the default trophy image"
+      },
+      {
+        "key": "five",
+        "name": "Placeholder Trophy Title",
+        "description": "Placeholder description"
+      },
+      {
+        "key": "six",
+        "name": "Inspirational",
+        "description": "You were born a winner, a warrior, one who defied the odds by surviving the most gruesome battle of them all - the race to the egg."
+      },
+      {
+        "key": "seven",
+        "name": "Desperational",
+        "description": "There is no way to win this trophy."
+      }
+    ]
+  },
+  "@@editor": [
+    {
+      "key": "achievements",
+      "name": "Achievements",
+      "icon": "🏆",
+      "source": "achievements.json",
+      "fields": [
+        {
+          "key": "color",
+          "name": "Text Color",
+          "description": "Color for the text",
+          "type": "color"
+        },
+        {
+          "key": "bgColor",
+          "name": "Bagkground Color",
+          "description": "Color for tthe background",
+          "type": "color"
+        },
+        {
+          "key": "radius",
+          "name": "Radius",
+          "description": "Radius of box corners",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 50,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "defaultTrophy",
+          "name": "Default Trophy",
+          "description": "Image of trophy if no custom image is provided",
+          "type": "image"
+        },
+        {
+          "key": "trophies",
+          "name": "Trophies",
+          "description": "List of trophies you can win",
+          "type": "object<Trophy>[]",
+          "arrayOptions": {
+            "isCollapsed": false,
+            "min": 7,
+            "max": 7,
+            "addItemLabel": "Add Trophy"
+          },
+          "typeOptions": {
+            "Trophy": {
+              "key": {
+                "name": "Unique Key",
+                "description": "DO NOT ALTER THIS VALUE UNLESS YOU KNOW WHAT YOU ARE DOING",
+                "type": "text"
+              },
+              "name": {
+                "name": "Achievement Name",
+                "description": "Punchy title for achievement",
+                "type": "text"
+              },
+              "description": {
+                "name": "Description",
+                "description": "Description of how to win this trophy",
+                "type": "text"
+              },
+              "image": {
+                "name": "Trophy Image",
+                "description": "Image of trophy for this achievement",
+                "type": "image"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

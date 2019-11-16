@@ -1,0 +1,178 @@
+{
+  "credits": {
+    "credits": "Acknowledgments",
+    "by": "by",
+    "h1Size": 6,
+    "h2Size": 4,
+    "pSize": 2.3,
+    "credit": [
+      {
+        "name": "Loading spinner",
+        "author": "Nevit Dilmen",
+        "url": "https://commons.wikimedia.org/wiki/File:Gray_circles_rotate.gif\"",
+        "license": "Creative Commons Attribution-Share Alike 3.0 Unported",
+        "licenseURL": "https://creativecommons.org/licenses/by-sa/3.0/deed.en"
+      },
+      {
+        "name": "Crystal Waters",
+        "author": "Purple Planet Music",
+        "url": "https://www.purple-planet.com/dreamy",
+        "license": "Creative Commons Attribution License 3.0",
+        "licenseURL": "https://www.purple-planet.com/using-our-free-music"
+      },
+      {
+        "name": "Rosette",
+        "author": "OpenClipart-Vectors",
+        "url": "https://pixabay.com/vectors/award-prize-ribbon-winner-win-155595/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Podium",
+        "author": "OpenClipart-Vectors",
+        "url": "https://pixabay.com/vectors/podium-rostrum-victor-victory-win-2026694/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Crown",
+        "author": "Openclipart",
+        "url": "https://publicdomainvectors.org/en/free-clipart/Pinkleader-board-button/51039.html",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Game Console",
+        "author": "mohamed hassan",
+        "url": "https://pxhere.com/en/photo/1447477",
+        "license": "CC0 1.0 Universal Domain Dedication",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Rainbow Ribbon",
+        "author": "David Zydd",
+        "url": "https://pixabay.com/illustrations/element-graphic-rainbow-ribbon-2822606/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },   
+      {
+        "name": "Laurels",
+        "author": "TheDigitalArtist",
+        "url": "https://pixabay.com/illustrations/laurel-victory-trophy-award-wreath-4520880/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Medal",
+        "author": "Clker-Free-Vector-Images",
+        "url": "https://pixabay.com/vectors/medal-gold-award-olympics-winner-295094/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Cup",
+        "author": "472301",
+        "url": "https://pixabay.com/illustrations/cup-golden-leadership-leader-620897/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Chilanka font",
+        "author": "Santhosh Thottingal",
+        "url": "https://fonts.google.com/specimen/Chilanka",
+        "license": "Open Font License",
+        "licenseURL": "http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web"
+      }
+    ]
+  },
+  "@@editor": [
+    {
+      "key": "credits",
+      "name": "Credits",
+      "icon": "🏆",
+      "source": "credits.json",
+      "fields": [
+        {
+          "key": "credits",
+          "name": "Title",
+          "description": "Title for Credits section",
+          "type": "text"
+        },
+        {
+          "key": "by",
+          "name": "By",
+          "description": "'by' attribution",
+          "type": "text"
+        },
+        {
+          "key": "h1Size",
+          "name": "Title Size",
+          "description": "Font Size for Title (% of width)",
+          "type": "range",
+          "typeOptions": {
+            "min": 1,
+            "max": 10,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "h2Size",
+          "name": "Header Size",
+          "description": "Font Size for Credit Header (% of width)",
+          "type": "range",
+          "typeOptions": {
+            "min": 1,
+            "max": 10,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "pSize",
+          "name": "Credit Size",
+          "description": "Font Size for Credit (% of width)",
+          "type": "range",
+          "typeOptions": {
+            "min": 1,
+            "max": 10,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "credit",
+          "name": "Credit",
+          "description": "List of authors to credit",
+          "type": "object<Credit>[]",
+          "typeOptions": {
+            "Credit": {
+              "name": {
+                "name": "Asset name",
+                "description": "Short description of asset",
+                "type": "text"
+              },
+              "author": {
+                "name": "Author",
+                "description": "Author or company",
+                "type": "text"
+              },
+              "url": {
+                "name": "URL",
+                "description": "Link to original asset",
+                "type": "text"
+              },
+              "license": {
+                "name": "License",
+                "description": "Name of license",
+                "type": "text"
+              },
+              "licenseURL": {
+                "name": "License URL",
+                "description": "Link to text of license",
+                "type": "text"
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,66 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-	<meta charset="utf-8" />
-
-	<link rel="shortcut icon" href="./favicon.ico" />
-
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="theme-color" content="#000000" />
-
-	<!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no"
+    />
+    <meta name="theme-color" content="#000000" />
+    <!--
+      manifest.json provides metadata used when your web app is
+      installed on a user's mobile device or desktop. See
+      https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-	<link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="manifest" href="./manifest.webmanifest" />
 
-	<title>Falling Father Koji Game</title>
-	<script async src='https://www.google-analytics.com/analytics.js'></script>
+    <title>Line</title>
+    <script async src='https://www.google-analytics.com/analytics.js'></script>
+  </head>
 
-	<script language="javascript" type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.min.js"></script>
+  <body>
+    <noscript>
+      You need to enable JavaScript to run this app.
+    </noscript>
 
-	<!-- If you want to add any P5 Libraries, paste them in below -->
-	<script language="javascript" type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
-	<script language="javascript" type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
-	<script language="javascript" type="text/javascript"
-		src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.12.0/matter.min.js"></script>
-	<!-- End P5 Library Section -->
-</head>
+    <div id="root"></div>
+    
+    <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
 
-<!--Disable touch zooming, mobile scrolling, and right click on desktop-->
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
 
-<body oncontextmenu="return false">
-	<noscript>You need to enable JavaScript to run this app.</noscript>
-
-	<div id="p5_loading">
-		<div class="lds-ring">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-		</div>
-	</div>
-
-	<div id="p5Game"></div>
-</body>
-
-<footer>
-	<!-- Prevent mobile scrolling/refreshing -->
-	<script>
-		/* eslint-disable */
-		document.addEventListener(
-			'touchmove',
-			function (e) {
-				e.preventDefault()
-			}, {
-				passive: false,
-			}
-		)
-	</script>
-</footer>
-
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+  </body>
 </html>

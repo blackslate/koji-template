@@ -2,50 +2,82 @@
 
 import React, { Component } from 'react'
 
-import GameContainer from './GameContainer'
+import Loader from './Loader'
+import Game from './Game'
 import Leaderboard from './Leaderboard'
 import SetScore from './SetScore'
+import Settings from './Settings'
+import Achievements from './Achievements'
+import Credits from './Credits'
+import Menu from './Menu'
+
 
 export default class App extends Component {
-  state = {
-    score: 0,
-    view: 'game',
+  constructor() {
+    super()
+    this.state = {
+      score: 0
+    , view: "loader"
+    }
+
+    // Comment out any views that are not required. Change the order
+    // as you wish.
+    this.views = [
+      "settings"
+    , "achievements"
+    , "leaderboard"
+    , "credits"
+    ]
+
+    this.setView = this.setView.bind(this)
+    this.setScore = this.setScore.bind(this)
   }
 
-  componentDidMount() {
-    window.setAppView = view => {
-      this.setState({ view })
-    }
-    window.setScore = score => {
-      this.setState({ score })
-    }
+
+  setView(view) {
+    this.setState({ view })
   }
+
+
+  setScore(score) {
+    this.setState({ score })
+  }
+
 
   render() {
-    if (this.state.view === 'game') {
-      return (
-        <div>
-          <GameContainer />
-        </div>
-      )
-    }
+    switch (this.state.view) {
+      case "loader":   
+        return <Loader setView={this.setView} />
 
-    if (this.state.view === 'setScore') {
-      return (
-        <div>
-          <SetScore score={this.state.score} />
-        </div>
-      )
-    }
+      case "play":
+        return <Game
+          setView={this.setView}
+          setScore={this.setScore}
+        />
 
-    if (this.state.view === 'leaderboard') {
-      return (
-        <div>
-          <Leaderboard />
-        </div>
-      )
-    }
+      case "leaderboard":
+        return <Leaderboard setView={this.setView} />
 
-    return null
+      case "achievements":
+        return <Achievements setView={this.setView} />
+
+      case "settings":
+        return <Settings setView={this.setView} />
+
+      case "credits":
+        return <Credits setView={this.setView} />
+
+      case "setScore":
+        return <SetScore
+          setView={this.setView}
+          score={this.state.score}
+        />
+
+      default: // case "menu":
+        return <Menu
+          setView={this.setView}
+          views={this.views}
+        />
+    }
   }
 }

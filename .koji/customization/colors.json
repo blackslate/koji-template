@@ -1,22 +1,28 @@
 {
   "colors": {
-    "backgroundColor": "#0a0a31",
+    "backgroundColor": "#2a2a51",
     "textColor": "#ffffff",
-    "playButtonTextColor": "#0a0a31",
+
+    "playButtonTextColor": "#2a2a51",
     "playButtonColor": "#ffda5a",
-    "buttonTextColor": "#222222",
+    "playButtonHoverColor": "#E8C034",
+    "playButtonClickColor": "#ffda5a",
+
+    "buttonTextColor": "#229",
     "buttonColor": "#2CECF5",
+    "buttonHoverColor": "#23bcc5",
+    "buttonClickColor": "#21b1b7",
+
     "scoreColor": "#ffda5a",
     "highscoreColor": "#ffda5a",
     "titleColor": "#ffda5a",
+
     "instructionsColor": "#dfdcea",
-    "playButtonHoverColor": "#E8C034",
-    "playButtonClickColor": "#ffda5a",
+
     "mobileControlsHoverColor": "#000000",
     "mobileControlsColor": "#00000080",
     "mobileControlsClickColor": "#000000",
-    "buttonHoverColor": "#23bcc5",
-    "buttonClickColor": "#2CECF5",
+
     "lifeColor": "#d54b8c",
     "floatingTextColor": "#ffff00",
     "negativeFloatingTextColor": "#000000",

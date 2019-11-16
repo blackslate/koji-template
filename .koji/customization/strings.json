@@ -1,30 +1,26 @@
 {
   "strings": {
-    "fontFamily": "https://fonts.googleapis.com/css?family=Luckiest+Guy",
-    "title": "Falling Father ☠️",
-    "desktop_instructions1": "Save the father falling from the sky!",
-    "desktop_instructions2": "Help him dodge the obstacles and collect the coins",
-    "desktop_instructions3": "Left/Right controls to move the father",
-    "mobile_instructions1": "Save the father falling from the sky!",
-    "mobile_instructions2": "Help him dodge the obstacles and collect the coins",
-    "mobile_instructions3": "Press the below buttons to move the father",
-    "lives": "4",
-    "minimumScoreToSave": "3",
-    "enableCursor": true,
-    "enableTimer": false,
-    "gameTimer": "10",
+    "textFont": "https://fonts.googleapis.com/css?family=Chilanka",
+    "title": "Game Title",
+    "titleSize": 10,
+    "rules": "Game rules go here. It's good to keep them short, but it's also good to make them easy to follow.",
+    "rulesSize": 7.5,
+    "buttonFont": "https://fonts.googleapis.com/css?family=Luckiest+Guy",
     "playButtonText": "PLAY NOW",
+    "playButtonTextSize": 7,
     "leaderboardButtonText": "LEADERBOARD",
-    "endButtonText": "END GAME",
+    "achievementsButtonText": "achievements",
+    "settingsButtonText": "SETTINGS",
+    "creditsButtonText": "CREDITS",
+    "buttonTextRatio": 11,
+    "buttonHeight": 10,
+    "buttonRadius": 2,
+    "headerHeight": 8,
+    "headerFontSize": 5,
+    "trophyFontSize": 4,
     "gameOverText": "GAME OVER",
-    "gameStartedFloatingText": "Save the father!",
-    "gameLostPersonText": "💩 You lost your father!",
-    "comboText": "AWESOME 👏, NEAT 👌, GREAT 👏, FANTASTIC 💌, WOW ❤️, AMAZING 😍, RICH 💸, ASSBREAKING 🤟, KOJIWOOOO 🛩️",
-    "emailInputEnabled": false,
-    "scoreText": "Score:",
-    "highscoreText": "High Score:",
-    "highscoreGainedText": "New High Score!",
-    "trialTesting": false
+    "topScores": "Top Scores",
+    "closeLeaderboard": "Close"
   },
   "@@editor": [{
     "key": "strings",
@@ -32,75 +28,27 @@
     "icon": "💡",
     "source": "strings.json",
     "fields": [{
-        "key": "fontFamily",
-        "name": "Font Family",
-        "description": "Google fonts link to font to use in the game",
+        "key": "textFont",
+        "name": "Text Font Family",
+        "description": "Google fonts link to font to use for text",
         "type": "text"
       },
       {
         "key": "title",
         "name": "Game Title",
-        "description": "The title that is displayed in the start menu",
+        "description": "The title to show on the start screen",
         "type": "text"
       },
       {
-        "key": "desktop_instructions1",
-        "name": "Desktop Game Instructions 1",
-        "type": "text"
+        "key": "rules",
+        "name": "Rules",
+        "description": "Description of how to play",
+        "type": "textarea"
       },
       {
-        "key": "desktop_instructions2",
-        "name": "Desktop Game Instructions 2",
-        "type": "text"
-      },
-      {
-        "key": "desktop_instructions3",
-        "name": "Desktop Game Instructions 3",
-        "type": "text"
-      },
-      {
-        "key": "mobile_instructions1",
-        "name": "Mobile Game Instructions 1",
-        "type": "text"
-      },
-      {
-        "key": "mobile_instructions2",
-        "name": "Mobile Game Instructions 2",
-        "type": "text"
-      },
-      {
-        "key": "mobile_instructions3",
-        "name": "Mobile Game Instructions 3",
-        "type": "text"
-      },
-      {
-        "key": "lives",
-        "name": "Starting Lives",
-        "description": "How many lives you initially have",
-        "type": "text"
-      },
-      {
-        "key": "minimumScoreToSave",
-        "name": "Minimum Score to Save",
-        "description": "Minimum score needed for user to save his/her name in Leaderboard.",
-        "type": "text"
-      },
-      {
-        "key": "enableCursor",
-        "name": "Enable Cursor",
-        "description": "Do you want the game to have cursor when game starts?",
-        "type": "boolean"
-      },
-      {
-        "key": "enableTimer",
-        "name": "Enable Game Timer",
-        "description": "Disable if you don't want game to have a timer.",
-        "type": "boolean"
-      },
-      {
-        "key": "gameTimer",
-        "name": "Game Timer",
-        "description": "How many seconds before game should over?",
+        "key": "buttonFont",
+        "name": "Button Font Family",
+        "description": "Google fonts link to font to use for buttons",
         "type": "text"
       },
       {
@@ -110,16 +58,105 @@
         "type": "text"
       },
       {
+        "key": "playButtonTextSize",
+        "name": "Play Button Font Size",
+        "description": "Font size for Play button",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
         "key": "leaderboardButtonText",
         "name": "Leaderboard Button Text",
         "description": "Label on the Leaderboard Button",
         "type": "text"
       },
       {
-        "key": "endButtonText",
-        "name": "End Button Text",
-        "description": "Label on the End Button",
+        "key": "achievementsButtonText",
+        "name": "Achievements Button Text",
+        "description": "Label on the Achievements Button",
         "type": "text"
+      },
+      {
+        "key": "settingsButtonText",
+        "name": "Settings Button Text",
+        "description": "Label on the Settings Button",
+        "type": "text"
+      },
+      {
+        "key": "creditsButtonText",
+        "name": "Credits Button Text",
+        "description": "Label on the Credits Button",
+        "type": "text"
+      },
+      {
+        "key": "buttonTextRatio",
+        "name": "Button Text Ratio",
+        "description": "Relative font size for buttons",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "buttonHeight",
+        "name": "Button Height",
+        "description": "Relative height for buttons",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "buttonRadius",
+        "name": "Button Corner Radius",
+        "description": "Corner radius for buttons",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
+          "max": 50,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "headerHeight",
+        "name": "Header Height",
+        "description": "Height of headers",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "headerFontSize",
+        "name": "Header Font Size",
+        "description": "Font size of headers",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "trophyFontSize",
+        "name": "Trophy Font Size",
+        "description": "Font size of trophy descriptions",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
       },
       {
         "key": "gameOverText",
@@ -127,45 +164,15 @@
         "type": "text"
       },
       {
-        "key": "gameStartedFloatingText",
-        "name": "Game Started Text",
-        "description": "The floating text that appears after game starts.",
+        "key": "topScores",
+        "name": "Top Scores Title",
+        "description": "Title for leaderboard",
         "type": "text"
       },
       {
-        "key": "gameLostPersonText",
-        "name": "Person Lost Text",
-        "description": "The floating text that appears after you lose a life.",
-        "type": "text"
-      },
-      {
-        "key": "comboText",
-        "name": "Success Texts",
-        "description": "Appreiciating texts that appear after some success.",
-        "type": "text"
-      },
-      {
-        "key": "emailInputEnabled",
-        "name": "Enable E-Mail Input",
-        "description": "Enable/Disable E-Mail input while submitting score.",
-        "type": "boolean"
-      },
-      {
-        "key": "scoreText",
-        "name": "Score Text",
-        "description": "Default: 'Score:'",
-        "type": "text"
-      },
-      {
-        "key": "highscoreText",
-        "name": "High Score Text",
-        "description": "Default: 'High Score:'",
-        "type": "text"
-      },
-      {
-        "key": "highscoreGainedText",
-        "name": "High Score Gained Text",
-        "description": "When you get a new high score",
+        "key": "closeLeaderboard",
+        "name": "Close Leaderboard button",
+        "description": "Text for the 'Close' button in the Leaderboard",
         "type": "text"
       }
     ]

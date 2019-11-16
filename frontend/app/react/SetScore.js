@@ -8,16 +8,24 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Koji from '@withkoji/vcc'
 import { SaveToLeaderboard } from 'koji-react-leaderboard'
+import { StyledScore } from './styles.js'
+
 
 class SetScore extends Component {
   static propTypes = {
     score: PropTypes.number,
   }
 
-  state = {
-    email: '',
-    name: '',
-    data: null,
+
+  constructor({ setView }) {
+    super()
+    this.setView = setView
+  
+    this.state = {
+      email: '',
+      name: '',
+      data: null,
+    }
   }
 
   componentDidMount() {
@@ -32,12 +40,12 @@ class SetScore extends Component {
 
   componentDidUpdate() {
     if (this.state.data && this.state.data.success) {
-      window.setAppView('leaderboard')
+      this.setView('leaderboard')
     }
   }
 
   handleClose = () => {
-    window.setAppView('game')
+    this.setView()
   }
 
   handleSubmit = async (e, saveData) => {
