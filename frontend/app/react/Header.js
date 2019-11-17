@@ -21,7 +21,7 @@ class Header extends Component {
   render() {
     return (
       <StyledHeader>
-        {this.text}
+        <h1>{this.text}</h1>
         <StyledCloseButton
           onMouseUp={this.close}
         />

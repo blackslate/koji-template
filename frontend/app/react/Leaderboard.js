@@ -54,7 +54,7 @@ class Leaderboard extends Component {
                       className="leaderboard-title-text"
                       style={{ color: Koji.config.colors.titleColor }}
                     >
-                      {Koji.config.strings.topScores}
+                      {Koji.config.leaderboard.topScores}
                     </div>
                     <div
                       className="leaderboard-close-button"
@@ -63,7 +63,7 @@ class Leaderboard extends Component {
                       }}
                       style={{ color: Koji.config.colors.titleColor }}
                     >
-                      {Koji.config.strings.closeLeaderboard}
+                      {Koji.config.leaderboard.closeLeaderboard}
                     </div>
                   </div>
 

@@ -48,7 +48,7 @@ class Credits extends Component {
     return (
       <StyledCredits>
         <Header
-          text={Koji.config.credits.credits}
+          text={Koji.config.credits.title}
           close={this.setView}
         />
         <ul>{credits}</ul>

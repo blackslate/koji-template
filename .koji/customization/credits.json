@@ -1,9 +1,9 @@
 {
   "credits": {
-    "credits": "Credits",
+    "title": "Credits",
     "by": "by",
     "h2Size": 10,
-    "pSize": 4,
+    "fontSize": 4,
     "credit": [
       {
         "name": "Loading spinner",
@@ -74,6 +74,48 @@
         "url": "https://pixabay.com/illustrations/cup-golden-leadership-leader-620897/",
         "license": "Pixabay License",
         "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "SFX",
+        "author": "472301",
+        "url": "https://www.maxpixel.net/Bomb-Explosion-Star-Battle-Military-Fire-War-145687",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Settings",
+        "author": "Anonymous",
+        "url": "https://publicdomainvectors.org/en/free-clipart/Settings-icon/38737.html",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Avatars",
+        "author": "emilijae",
+        "url": "https://pixabay.com/illustrations/avatar-customer-avatars-profile-4322968/",
+        "license": "Pixabay License",
+        "licenseURL": "https://pixabay.com/service/license/"
+      },
+      {
+        "name": "Weft Background",
+        "author": "Anonymous",
+        "url": "https://pxhere.com/en/photo/947466",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Bubble Background",
+        "author": "Anonymous",
+        "url": "https://pxhere.com/en/photo/1397917",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
+      },
+      {
+        "name": "Grid Background",
+        "author": "Anonymous",
+        "url": "https://pxhere.com/en/photo/70171",
+        "license": "Public domain",
+        "licenseURL": "https://creativecommons.org/publicdomain/zero/1.0/"
       },
       {
         "name": "Chilanka",

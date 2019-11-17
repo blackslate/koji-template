@@ -13,8 +13,9 @@ function getFontFamily(ff) {
   return ff // + ', sans-serif'
 }
 
+
+const titleFont = getFontFamily(Koji.config.strings.titleFont)
 const textFont = getFontFamily(Koji.config.strings.textFont)
-const buttonFont = getFontFamily(Koji.config.strings.buttonFont)
 const colors = {
   text: Koji.config.colors.textColor
 
@@ -25,12 +26,12 @@ const colors = {
 , clickTint: toneColor(Koji.config.colors.buttonClickColor, 1.25)
 , clickShade: toneColor(Koji.config.colors.buttonClickColor, 0.75)
 
-, playTint: toneColor(Koji.config.colors.playButtonColor, 1.5)
-, playShade: toneColor(Koji.config.colors.playButtonColor, 0.75)
-, playHoverTint: toneColor(Koji.config.colors.playButtonHoverColor, 1.5)
-, playHoverShade: toneColor(Koji.config.colors.playButtonHoverColor, 0.75)
-, playClickTint: toneColor(Koji.config.colors.playButtonClickColor, 1.25)
-, playClickShade: toneColor(Koji.config.colors.playButtonClickColor, 0.75)
+, playTint: toneColor(Koji.config.game.buttonColor, 1.5)
+, playShade: toneColor(Koji.config.game.buttonColor, 0.75)
+, playHoverTint: toneColor(Koji.config.game.buttonHoverColor, 1.5)
+, playHoverShade: toneColor(Koji.config.game.buttonHoverColor, 0.75)
+, playClickTint: toneColor(Koji.config.game.buttonClickColor, 1.25)
+, playClickShade: toneColor(Koji.config.game.buttonClickColor, 0.75)
 
 , closeTint: toneColor(Koji.config.colors.backgroundColor, 1.1)
 , closeShade: toneColor(Koji.config.colors.backgroundColor, 0.9)
@@ -67,30 +68,30 @@ export const StyledMenu = styled.div`
   align-items: center;
 
   & h1 {
-    font-size: ${Koji.config.strings.titleSize + "vmin"};
+    font-size: ${Koji.config.game.titleSize}vmin;
   }
 
   & p {
-    font-size: ${Koji.config.strings.rulesSize + "vmin"};
+    font-size: ${Koji.config.game.rulesSize}vmin;
   }
 `
 
 export const StyledMenuButtons = styled.div`
   width: 100%;
-  height: ${Koji.config.strings.buttonHeight + "vmin"};
+  height: ${Koji.config.strings.buttonHeight}vmin;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
 
   & button {
-    width: ${(props) => (100 / props.count) + "vw"};
+    width: ${(props) => (100 / props.count)}vw;
     height: 100%;
-    font-family: ${buttonFont};
+    font-family: ${titleFont};
     font-size: ${(props) => (
       Koji.config.strings.buttonTextRatio / props.count
-    ) + "vw"};
-    border-radius: ${Koji.config.strings.buttonRadius + "vmin"};
+    )}vw;
+    border-radius: ${Koji.config.strings.buttonRadius}vmin;
     background-color: ${Koji.config.colors.buttonColor};
     color: ${Koji.config.colors.buttonTextColor}
     border: 0.5vmin solid ${colors.btnTint};
@@ -120,24 +121,24 @@ export const StyledMenuButtons = styled.div`
 export const StyledPlayButton = styled.button`
   width: 45vmin;
   height: 20vmin;
-  font-family: ${buttonFont};
-  font-size: ${Koji.config.strings.playButtonTextSize + "vmin"};
+  font-family: ${titleFont};
+  font-size: ${Koji.config.game.buttonTextSize}vmin;
   border-radius: 4.5vmin;
-  background-color: ${Koji.config.colors.playButtonColor};
-  color: ${Koji.config.colors.playButtonTextColor}
+  background-color: ${Koji.config.game.buttonColor};
+  color: ${Koji.config.game.buttonTextColor}
   border: 0.5vmin solid ${colors.playTint};
   border-right-color: ${colors.playShade};
   border-bottom-color: ${colors.playShade};
 
   &:hover {
-    background-color: ${Koji.config.colors.playButtonHoverColor};
+    background-color: ${Koji.config.game.buttonHoverColor};
     border: 0.5vmin solid ${colors.playHoverTint};
     border-right-color: ${colors.playHoverShade};
     border-bottom-color: ${colors.playHoverShade};
   }
 
   &:active {
-    background-color: ${Koji.config.colors.playButtonClickColor};
+    background-color: ${Koji.config.game.buttonClickColor};
     border: 0.5vmin solid ${colors.playClickTint};
     border-top-color: ${colors.playClickShade};
     border-left-color: ${colors.playClickShade};
@@ -152,14 +153,19 @@ export const StyledPlayButton = styled.button`
 
 export const StyledHeader = styled.div`
   width: 100%;
-  height:  ${Koji.config.strings.headerHeight + "vmin"};
+  height:  ${Koji.config.strings.headerHeight}vmin;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: ${Koji.config.strings.headerFontSize + "vmin"};
+  font-family: ${titleFont};
+  font-size: ${Koji.config.strings.headerFontSize}vmin;
   color: ${Koji.config.colors.titleColor};
-  font-weight: bold;
-  text-transform: capitalize;
+
+  & h1 {
+    position: relative;
+    top: 0.1em;
+    font-weight: normal;
+  }
 `
 
 // ACHIEVEMENTS // ACHIEVEMENTS // ACHIEVEMENTS // ACHIEVEMENTS //
@@ -172,11 +178,11 @@ export const StyledAchievement = styled.li`
   height: 15vh;
   color: ${Koji.config.achievements.color};
   background-color: ${Koji.config.achievements.bgColor};
-  border-radius: ${Koji.config.achievements.radius+ "vmin"};
+  border-radius: ${Koji.config.achievements.radius}vmin;
   margin: 1vmin auto;
 
   & img {
-    margin: 0 3vmin;
+    margin: 0 4vmin;
     ${props => props.unlocked
              ? ""
              : `filter: saturate(0%);opacity:0.25`
@@ -185,8 +191,13 @@ export const StyledAchievement = styled.li`
   }
 
   & div {
+    ${props => props.unlocked
+             ? ""
+             : "opacity:0.5;"
+     }
     max-height: 100%;
     overflow: hidden;
+    margin: 0 4vmin 0 0;
   }
 
   & h1 {
@@ -205,10 +216,10 @@ export const StyledAchievements = styled.div`
   background-color: ${Koji.config.colors.backgroundColor};
 
   & ul {
-    height: calc(100vh - ${Koji.config.strings.headerHeight + "vmin"});
+    height: calc(100vh - ${Koji.config.strings.headerHeight}vmin);
     margin: 0;
     padding: 0 5vmin;
-    font-size: ${Koji.config.strings.trophyFontSize + "vmin"};
+    font-size: ${Koji.config.achievements.fontSize}vmin;
     overflow-y: auto;
   }
 `
@@ -239,7 +250,7 @@ export const StyledCredits = styled.div`
   text-align: center;
 
   & ul {
-    height: calc(100vh - ${Koji.config.strings.headerHeight + "vmin"});
+    height: calc(100vh - ${Koji.config.strings.headerHeight}vmin);
     list-style: none;
     margin: 0;
     padding: 0;
@@ -268,7 +279,7 @@ export const StyledCredits = styled.div`
   }
 
   & p {
-    font-size: ${Koji.config.credits.pSize}vmin;
+    font-size: ${Koji.config.credits.fontSize}vmin;
     margin: 0.25em;
   }
 

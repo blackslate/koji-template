@@ -1,0 +1,43 @@
+{
+  "leaderboard": {
+    "title": "Leaderboard",
+    "topScores": "Top Scores",
+    "closeLeaderboard": "Close",
+    "scoreColor": "#ffda5a",
+    "highscoreColor": "#ffda5a"
+  },
+  "@@editor": [{
+    "key": "leaderboard",
+    "name": "Leaderboard",
+    "icon": "🏅",
+    "source": "leaderboard.json",
+    "fields": [{
+        "key": "title",
+        "name": "Leaderboard Title",
+        "type": "text"
+      },
+      {
+        "key": "topScores",
+        "name": "Top Scores Title",
+        "description": "Title for leaderboard",
+        "type": "text"
+      },
+      {
+        "key": "closeLeaderboard",
+        "name": "Close Leaderboard button",
+        "description": "Text for the 'Close' button in the Leaderboard",
+        "type": "text"
+      },
+      {
+        "key": "scoreColor",
+        "name": "Score color",
+        "type": "color"
+      },
+      {
+        "key": "highscoreColor",
+        "name": "High Score color",
+        "type": "color"
+      }
+    ]
+  }]
+}

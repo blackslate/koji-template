@@ -1,95 +1,30 @@
 {
   "strings": {
+    "titleFont": "https://fonts.googleapis.com/css?family=Luckiest+Guy",
     "textFont": "https://fonts.googleapis.com/css?family=Chilanka",
-    "title": "Game Title",
-    "titleSize": 10,
-    "rules": "Game rules go here. It's good to keep them short, but it's also good to make them easy to follow.",
-    "rulesSize": 7.5,
-    "buttonFont": "https://fonts.googleapis.com/css?family=Luckiest+Guy",
-    "playButtonText": "PLAY NOW",
-    "playButtonTextSize": 7,
-    "leaderboardButtonText": "LEADERBOARD",
-    "achievementsButtonText": "achievements",
-    "settingsButtonText": "SETTINGS",
-    "creditsButtonText": "CREDITS",
+
     "buttonTextRatio": 11,
-    "buttonHeight": 10,
+    "buttonHeight": 9,
     "buttonRadius": 2,
+
     "headerHeight": 8,
-    "headerFontSize": 5,
-    "trophyFontSize": 4,
-    "gameOverText": "GAME OVER",
-    "topScores": "Top Scores",
-    "closeLeaderboard": "Close"
+    "headerFontSize": 3.2
   },
   "@@editor": [{
     "key": "strings",
-    "name": "Game Settings",
-    "icon": "💡",
+    "name": "Fonts & Sizes",
+    "icon": "✍",
     "source": "strings.json",
     "fields": [{
-        "key": "textFont",
+        "key": "titleFont",
         "name": "Text Font Family",
-        "description": "Google fonts link to font to use for text",
+        "description": "Google font to use for titles and buttons",
         "type": "text"
-      },
-      {
-        "key": "title",
-        "name": "Game Title",
-        "description": "The title to show on the start screen",
-        "type": "text"
-      },
-      {
-        "key": "rules",
-        "name": "Rules",
-        "description": "Description of how to play",
-        "type": "textarea"
       },
       {
         "key": "buttonFont",
         "name": "Button Font Family",
         "description": "Google fonts link to font to use for buttons",
-        "type": "text"
-      },
-      {
-        "key": "playButtonText",
-        "name": "Play Button Text",
-        "description": "Label on the Play Button",
-        "type": "text"
-      },
-      {
-        "key": "playButtonTextSize",
-        "name": "Play Button Font Size",
-        "description": "Font size for Play button",
-        "type": "range",
-        "typeOptions": {
-          "min": 2,
-          "max": 20,
-          "step": 0.1
-        }
-      },
-      {
-        "key": "leaderboardButtonText",
-        "name": "Leaderboard Button Text",
-        "description": "Label on the Leaderboard Button",
-        "type": "text"
-      },
-      {
-        "key": "achievementsButtonText",
-        "name": "Achievements Button Text",
-        "description": "Label on the Achievements Button",
-        "type": "text"
-      },
-      {
-        "key": "settingsButtonText",
-        "name": "Settings Button Text",
-        "description": "Label on the Settings Button",
-        "type": "text"
-      },
-      {
-        "key": "creditsButtonText",
-        "name": "Credits Button Text",
-        "description": "Label on the Credits Button",
         "type": "text"
       },
       {
@@ -146,34 +81,6 @@
           "max": 20,
           "step": 0.1
         }
-      },
-      {
-        "key": "trophyFontSize",
-        "name": "Trophy Font Size",
-        "description": "Font size of trophy descriptions",
-        "type": "range",
-        "typeOptions": {
-          "min": 2,
-          "max": 20,
-          "step": 0.1
-        }
-      },
-      {
-        "key": "gameOverText",
-        "name": "Game Over Text",
-        "type": "text"
-      },
-      {
-        "key": "topScores",
-        "name": "Top Scores Title",
-        "description": "Title for leaderboard",
-        "type": "text"
-      },
-      {
-        "key": "closeLeaderboard",
-        "name": "Close Leaderboard button",
-        "description": "Text for the 'Close' button in the Leaderboard",
-        "type": "text"
       }
     ]
   }]

@@ -1,0 +1,90 @@
+{
+  "game": {
+    "title": "Game Title",
+    "titleSize": 10,
+
+    "rules": "Game rules go here. It's good to keep them short, but it's also good to make them easy to follow.",
+    "rulesSize": 7.5,
+
+    "buttonText": "Play now",
+
+    "buttonTextSize": 7,
+    "buttonTextColor": "#2a2a51",
+    "buttonColor": "#ffda5a",
+    "buttonHoverColor": "#E8C034",
+    "buttonClickColor": "#ffda5a",
+
+    "gameOverText": "Game Over"
+  },
+  "@@editor": [{
+    "key": "game",
+    "name": "Game Settings",
+    "icon": "🎮",
+    "source": "game.json",
+    "fields": [{
+        "key": "title",
+        "name": "Game Title",
+        "type": "text"
+      },
+      {
+        "key": "titleSize",
+        "name": "Title Size",
+        "description": "Relative font size for Game title",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "rules",
+        "name": "Rules",
+        "description": "Description of how to play",
+        "type": "textarea"
+      },
+      {
+        "key": "buttonText",
+        "name": "Play Button Text",
+        "description": "Label on the Play Button",
+        "type": "text"
+      },
+      {
+        "key": "buttonTextSize",
+        "name": "Play Button Font Size",
+        "description": "Font size for Play button",
+        "type": "range",
+        "typeOptions": {
+          "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "buttonTextColor",
+        "name": "Play Button Text Color",
+        "type": "color"
+      },
+      {
+        "key": "buttonColor",
+        "name": "Play Button Color",
+        "type": "color"
+      },
+      {
+        "key": "buttonHoverColor",
+        "name": "Play Button Hover Color",
+        "type": "color"
+      },
+      {
+        "key": "buttonClickColor",
+        "name": "Play Button Click Color",
+        "type": "color"
+      },
+      {
+        "key": "gameOverText",
+        "name": "Game Over Text",
+        "type": "text"
+      }
+    ]
+  }]
+}

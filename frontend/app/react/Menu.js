@@ -11,12 +11,12 @@ import { StyledMenu
 
 
 const Title = () => {
-  return <h1>{Koji.config.strings.title}</h1>
+  return <h1>{Koji.config.game.title}</h1>
 }
 
 
 const Rules = () => {
-  return <p>{Koji.config.strings.rules}</p>
+  return <p>{Koji.config.game.rules}</p>
 }
 
 
@@ -28,9 +28,14 @@ class Menu extends Component {
   }
 
   createButtonDiv() {
-    const buttonsArray = this.views.map(view => {
-      const key = view + "ButtonText"
-      const text = Koji.config.strings[key]
+    const viewMap = Koji.config.views
+    const views = Object.keys(viewMap).filter( key => {
+      const value = viewMap[key]
+      return (isNaN(value)) ? false : value
+    }).sort(( a, b ) => (viewMap[a] - viewMap[b]))
+
+    const buttonsArray = views.map(view => {
+      const text = Koji.config[view].title
       return (
         <button
           key={view}
@@ -60,7 +65,7 @@ class Menu extends Component {
         <StyledPlayButton
           onMouseUp={() => this.setView("play")}
         >
-          {Koji.config.strings.playButtonText}
+          {Koji.config.game.buttonText}
         </StyledPlayButton>
         {buttonDiv}
       </StyledMenu>

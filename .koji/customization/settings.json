@@ -1,0 +1,68 @@
+{
+  "settings": {
+    "title": "Settings",
+    "settings": [],
+    "defaultSetting": "Avatars",
+    "display": "icon&text"
+  },
+  "@@editor": [{
+    "key": "settings",
+    "name": "Settings",
+    "icon": "⚙",
+    "source": "settings.json",
+    "fields": [{
+        "key": "title",
+        "name": "Settings Title",
+        "type": "text"
+      },
+      {
+        "key": "settings",
+        "name": "Settings",
+        "description": "List of settings to display",
+        "type": "object<Setting>[]",
+        "arrayOptions": {
+          "isCollapsed": false,
+          "addItemLabel": "Add Setting"
+        },
+        "typeOptions": {
+          "Setting": {
+            "name": {
+              "name": "Name",
+              "type": "text"
+            },
+            "tooltip": {
+              "name": "Tooltip",
+              "description": "Tooltip description of what setting sets",
+              "type": "text"
+            },
+            "image": {
+              "name": "Icon",
+              "description": "Image of trophy for this achievement",
+              "type": "image"
+            }
+          }
+        }
+      },
+      {
+        "key": "defaultSetting",
+        "name": "Default Setting",
+        "description": "Exact name of setting to show by default",
+        "type": "text"
+      },
+      {
+        "key": "display",
+        "name": "Icon & Text display",
+        "description": "How to display the Settings buttons",
+        "type": "select",
+        "typeOptions": {
+          "placeholder": "Choose an option...",
+          "options": [
+            { "value": "icon", "label": "Icon only" },
+            { "value": "text", "label": "Text only" },
+            { "value": "icon&text", "label": "Both icon and text" }
+          ]
+        }
+      }
+    ]
+  }]
+}

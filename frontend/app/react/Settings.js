@@ -4,23 +4,27 @@
 
 
 import React, { Component } from 'react'
-import { StyledSettings, StyledCloseButton } from './styles.js'
+import Header from './Header.js'
+import { StyledSettings } from './styles.js'
 
 
 class Settings extends Component {
   constructor({ setView }) {
     super()
-    this.close = setView
+    this.setView = setView
   }
 
 
   render() {
+    const settings = ""
+
     return (
       <StyledSettings>
-        Settings Go Here
-        <StyledCloseButton
-          onMouseUp={this.close}
+        <Header
+          text={Koji.config.settings.title}
+          close={this.setView}
         />
+        <ul>{settings}</ul>
       </StyledSettings>
     )
   }

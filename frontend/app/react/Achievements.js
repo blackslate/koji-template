@@ -94,7 +94,7 @@ class Achievements extends Component {
     return (
       <StyledAchievements>
         <Header
-          text={Koji.config.strings.achievementsButtonText}
+          text={Koji.config.achievements.title}
           close={this.setView}
         />
         <ul>{achievements}</ul>
