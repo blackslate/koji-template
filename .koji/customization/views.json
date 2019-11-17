@@ -3,68 +3,80 @@
     "leaderboard": 2,
     "achievements": 3,
     "credits": 4,
-    "settings": 1,
+    "settings": 0,
     "display": "icon&text"
   },
-  "@@editor": [{
-    "key": "views",
-    "name": "Views",
-    "icon": "༗",
-    "source": "views.json",
-    "fields": [{
-        "key": "leaderboard",
-        "name": "Show Leaderboard in which position?",
-        "type": "range",
-        "typeOptions": {
-          "min": 0,
-          "max": 4,
-          "step": 1
+  "@@editor": [
+    {
+      "key": "views",
+      "name": "Views",
+      "icon": "༗",
+      "source": "views.json",
+      "fields": [
+        {
+          "key": "leaderboard",
+          "name": "Show Leaderboard in which position?",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 4,
+            "step": 1
+          }
+        },
+        {
+          "key": "achievements",
+          "name": "Show Achievements in which position?",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 4,
+            "step": 1
+          }
+        },
+        {
+          "key": "credits",
+          "name": "Show Credits in which position?",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 4,
+            "step": 1
+          }
+        },
+        {
+          "key": "settings",
+          "name": "Show Settings in which position?",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 4,
+            "step": 1
+          }
+        },
+        {
+          "key": "display",
+          "name": "Icon & Text display",
+          "description": "How to display the View buttons",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "icon",
+                "label": "Icon only"
+              },
+              {
+                "value": "text",
+                "label": "Text only"
+              },
+              {
+                "value": "icon&text",
+                "label": "Both icon and text"
+              }
+            ]
+          }
         }
-      },
-      {
-        "key": "achievements",
-        "name": "Show Achievements in which position?",
-        "type": "range",
-        "typeOptions": {
-          "min": 0,
-          "max": 4,
-          "step": 1
-        }
-      },
-      {
-        "key": "credits",
-        "name": "Show Credits in which position?",
-        "type": "range",
-        "typeOptions": {
-          "min": 0,
-          "max": 4,
-          "step": 1
-        }
-      },
-      {
-        "key": "settings",
-        "name": "Show Settings in which position?",
-        "type": "range",
-        "typeOptions": {
-          "min": 0,
-          "max": 4,
-          "step": 1
-        }
-      },
-      {
-        "key": "display",
-        "name": "Icon & Text display",
-        "description": "How to display the View buttons",
-        "type": "select",
-        "typeOptions": {
-          "placeholder": "Choose an option...",
-          "options": [
-            { "value": "icon", "label": "Icon only" },
-            { "value": "text", "label": "Text only" },
-            { "value": "icon&text", "label": "Both icon and text" }
-          ]
-        }
-      }
-    ]
-  }]
+      ]
+    }
+  ]
 }

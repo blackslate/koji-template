@@ -22,9 +22,9 @@
         "type": "text"
       },
       {
-        "key": "buttonFont",
-        "name": "Button Font Family",
-        "description": "Google fonts link to font to use for buttons",
+        "key": "textFont",
+        "name": "Text Font Family",
+        "description": "Google fonts link to font to use for text",
         "type": "text"
       },
       {

@@ -1,68 +1,96 @@
 {
   "settings": {
     "title": "Settings",
-    "settings": [],
-    "defaultSetting": "Avatars",
+    "settings": [
+      {
+        "name": "Audio",
+        "tooltip": "Switch music and sound effects on and off",
+        "image": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/xpbnt-audio.svg"
+      },
+      {
+        "name": "Avatars",
+        "tooltip": "Choose your avatar",
+        "image": "https://images.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/c2vq5-avatar.png"
+      },
+      {
+        "name": "Background",
+        "tooltip": "Choose a background",
+        "image": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/2be2g-pattern.svg"
+      }
+    ],
+    "defaultSetting": "Audio",
     "display": "icon&text"
   },
-  "@@editor": [{
-    "key": "settings",
-    "name": "Settings",
-    "icon": "⚙",
-    "source": "settings.json",
-    "fields": [{
-        "key": "title",
-        "name": "Settings Title",
-        "type": "text"
-      },
-      {
-        "key": "settings",
-        "name": "Settings",
-        "description": "List of settings to display",
-        "type": "object<Setting>[]",
-        "arrayOptions": {
-          "isCollapsed": false,
-          "addItemLabel": "Add Setting"
+  "@@editor": [
+    {
+      "key": "settings",
+      "name": "Settings",
+      "icon": "⚙",
+      "source": "settings.json",
+      "fields": [
+        {
+          "key": "title",
+          "name": "Settings Title",
+          "type": "text"
         },
-        "typeOptions": {
-          "Setting": {
-            "name": {
-              "name": "Name",
-              "type": "text"
-            },
-            "tooltip": {
-              "name": "Tooltip",
-              "description": "Tooltip description of what setting sets",
-              "type": "text"
-            },
-            "image": {
-              "name": "Icon",
-              "description": "Image of trophy for this achievement",
-              "type": "image"
+        {
+          "key": "settings",
+          "name": "Settings",
+          "description": "List of settings to display",
+          "type": "object<Setting>[]",
+          "arrayOptions": {
+            "isCollapsed": false,
+            "addItemLabel": "Add Setting"
+          },
+          "typeOptions": {
+            "Setting": {
+              "name": {
+                "name": "Name",
+                "type": "text"
+              },
+              "tooltip": {
+                "name": "Tooltip",
+                "description": "Tooltip description of what setting sets",
+                "type": "text"
+              },
+              "image": {
+                "name": "Icon",
+                "description": "Image of trophy for this achievement",
+                "type": "image"
+              }
             }
           }
+        },
+        {
+          "key": "defaultSetting",
+          "name": "Default Setting",
+          "description": "Exact name of setting to show by default",
+          "type": "text"
+        },
+        {
+          "key": "display",
+          "name": "Icon & Text display",
+          "description": "How to display the Settings buttons",
+          "type": "select",
+          "typeOptions": {
+            "placeholder": "Choose an option...",
+            "options": [
+              {
+                "value": "icon",
+                "label": "Icon only"
+              },
+              {
+                "value": "text",
+                "label": "Text only"
+              },
+              {
+                "value": "icon&text",
+                "label": "Both icon and text"
+              }
+            ]
+          }
         }
-      },
-      {
-        "key": "defaultSetting",
-        "name": "Default Setting",
-        "description": "Exact name of setting to show by default",
-        "type": "text"
-      },
-      {
-        "key": "display",
-        "name": "Icon & Text display",
-        "description": "How to display the Settings buttons",
-        "type": "select",
-        "typeOptions": {
-          "placeholder": "Choose an option...",
-          "options": [
-            { "value": "icon", "label": "Icon only" },
-            { "value": "text", "label": "Text only" },
-            { "value": "icon&text", "label": "Both icon and text" }
-          ]
-        }
-      }
-    ]
-  }]
+      ]
+    }
+  ]
 }
