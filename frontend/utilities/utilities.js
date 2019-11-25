@@ -53,6 +53,51 @@ export const translucify = (color, opacity) => {
 }
 
 
+
+/**
+ * @param   {<type>}  color   Must be a color (rgb or hex)
+ * @param   {object}  values  May be an object with the same
+ *                            structure as defaults
+ * @return  {object}  Returns an object with the same structure as
+ *                    defaults, but where each value is a color
+ */
+export const buttonColors = (color, values) => {
+  const output = {
+    restBg:     1
+  , restTint:   1.5
+  , restShade:  0.75
+
+  , overBg:    1.1
+  , overTint:  1.65
+  , overShade: 0.667
+
+  , downBg:    0.95
+  , downTint:  1.333
+  , downShade: 0.6
+  }
+  const keys = Object.keys(output)
+
+  ;(function merge(input) {
+    if (typeof input === "object") {     
+      keys.forEach( key => {
+        const value = input[key]
+        if (!isNaN(value)) {
+          if (value > 0) {
+            output[key] = value
+          }
+        }
+      })
+    }
+  })()
+
+  keys.forEach( key => (
+    output[key] = toneColor(color, output[key])
+  ))
+
+  return output 
+}
+
+
 /// ARRAY FUNCTIONS ///
 
 export const removeFrom = (array, item, removeAll) => {
@@ -295,3 +340,35 @@ export const valuesMatch = (a, b) => {
 
   return true
 }
+
+
+// FONTS //
+
+export const getFontFamily = (ff) => {
+  const start = ff.indexOf('family=')
+  if (start === -1) return 'sans-serif'
+  let end = ff.indexOf('&', start)
+  if(end === -1) end = undefined
+  ff = ff.slice(start + 7, end).replace("+", " ")
+  ff = '"'+ ff + '"'
+  return ff // + ', sans-serif'
+}
+
+
+// ENCRYPTION
+
+// by bryc https://stackoverflow.com/a/52171480/1927589 
+export const hash = function(str, seed = 0) {
+    let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
+    for (let i = 0, ch; i < str.length; i++) {
+        ch = str.charCodeAt(i);
+        h1 = Math.imul(h1 ^ ch, 2654435761);
+        h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ h1>>>16, 2246822507)
+       ^ Math.imul(h2 ^ h2>>>13, 3266489909);
+    h2 = Math.imul(h2 ^ h2>>>16, 2246822507)
+       ^ Math.imul(h1 ^ h1>>>13, 3266489909);
+
+    return 4294967296 * (2097151 & h2) + (h1>>>0);
+};

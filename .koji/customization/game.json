@@ -2,8 +2,8 @@
   "game": {
     "title": "Game Title",
     "titleSize": 10,
-    "rules": "Game rules go here.\nIt's good to keep them short,\nbut it's also good to make them\neasy to follow.",
-    "rulesSize": 7.5,
+    "rules": "Game rules go here.\n\nIt's good to keep them short,\nbut it's also good to make them\neasy to follow.",
+    "rulesSize": 6.5,
     "buttonText": "Play now",
     "buttonTextSize": 7,
     "buttonTextColor": "#2a2a51",
@@ -15,7 +15,7 @@
   "@@editor": [
     {
       "key": "game",
-      "name": "Game Settings",
+      "name": "Game",
       "icon": "🎮",
       "source": "game.json",
       "fields": [

@@ -1,17 +1,8 @@
 import styled, { css } from 'styled-components'
 import Koji from '@withkoji/vcc'
-import { toneColor } from '../../utilities/utilities'
-
-
-function getFontFamily(ff) {
-  const start = ff.indexOf('family=')
-  if (start === -1) return 'sans-serif'
-  let end = ff.indexOf('&', start)
-  if(end === -1) end = undefined
-  ff = ff.slice(start + 7, end).replace("+", " ")
-  ff = '"'+ ff + '"'
-  return ff // + ', sans-serif'
-}
+import { toneColor
+       , getFontFamily
+       } from '../../utilities/utilities'
 
 
 const titleFont = getFontFamily(Koji.config.strings.titleFont)
@@ -69,10 +60,20 @@ export const StyledMenu = styled.div`
 
   & h1 {
     font-size: ${Koji.config.game.titleSize}vmin;
+    margin-bottom: 0;
   }
 
   & p {
     font-size: ${Koji.config.game.rulesSize}vmin;
+    margin: 0;
+  }
+
+  & p:empty {
+    font-size: ${Koji.config.game.rulesSize / 2}vmin;
+  }
+
+  & p:empty::after {
+    content: " ";
   }
 `
 
@@ -229,6 +230,21 @@ export const StyledSettings = styled.div`
   height: 100vh;
   background-color: ${Koji.config.colors.backgroundColor};
 `
+
+
+export const StyledSettingLabel = styled.label`
+  display: flex;
+  flexDirection: column;
+  justifyContent: center;
+  textAlign: center;
+  margin: 0 auto;
+  fontFamily: font;
+  color: ${Koji.config.colors.textColor};
+  fontSize: ${Koji.config.settings.buttonSize}vmin;
+  borderWidth: ${Koji.config.settings.borderWidth}vmin;
+  borderStyle: solid;
+`
+
 
 export const StyledGame = styled.div`
 `

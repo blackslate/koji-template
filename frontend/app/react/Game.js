@@ -7,6 +7,7 @@
 import React, { Component } from 'react'
 import GameOverScreen from './GameOver'
 import { StyledGame, StyledButton } from './styles.js'
+import storage from '../../utilities/storage.js'
 
 
 class Game extends Component {
@@ -16,6 +17,8 @@ class Game extends Component {
     this.setView = setView
     this.setScore = setScore
     this.play = this.play.bind(this)
+
+    console.log("Game storage", storage.stamp)
   }
 
 

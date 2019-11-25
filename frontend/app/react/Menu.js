@@ -16,14 +16,16 @@ const Title = () => {
 
 
 const Rules = () => {
-  return <p>{Koji.config.game.rules}</p>
+  const rules = Koji.config.game.rules.split("\n").map((line, index) => (
+    <p key={index}>{line}</p>
+  ))
+  return <div>{rules}</div>
 }
 
 
 class Menu extends Component {
-  constructor({ setView, views }) {
+  constructor({ setView }) {
     super()
-    this.views = views
     this.setView = setView
   }
 

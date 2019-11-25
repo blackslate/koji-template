@@ -13,8 +13,6 @@ class Header extends Component {
     super()
     this.close = close
     this.text = text
-
-    console.log(close)
   }
 
 

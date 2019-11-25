@@ -32,7 +32,7 @@
  * reset your game, you can run the following command in the browser
  * console:
  *    
- *    window.localStorage.removeItem("achievements")
+ *    window.localStorage.removeItem("KojiGame_b6342f53")
  *    
 **/
 
@@ -40,30 +40,10 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import Header from './Header.js'
+import storage from '../../utilities/storage.js'
 import { StyledAchievement
        , StyledAchievements } from './styles.js'
 
-
-/**
- * If window.localStorage is not available, an instance of the
- * CustomStorage class will be used instead. No data will be saved
- * to the user's hard drive.
- *
- * @class      CustomStorage (name)
- */
-class CustomStorage{
-  constructor() {
-    this.storage = {}
-  }
-
-  getItem(key) {
-    return this.storage[key]
-  }
-
-  setItem(key, value) {
-    this.storage[key] = value
-  }
-}
 
 
 
@@ -75,12 +55,9 @@ class Achievements extends Component {
 
     this._save = this._save.bind(this)
     this._saveState = this._saveState.bind(this)
-
-    /// <<< HARD-CODED
-    this.storageName = "achievements"
-    /// HARD-CODED >>>
+    this.storageItem = "achievements"
     
-    this.state = this._getLockedState()
+    this.state = this._getInitialState()
 
     // For testing only. Remove for production
     window.kojiTest = { achievements: this }
@@ -110,7 +87,7 @@ class Achievements extends Component {
       return
     }
 
-    this.setState({ [key]: value })
+    this._saveState({ [key]: value })
   }
 
 
@@ -127,23 +104,15 @@ class Achievements extends Component {
                 ? increment
                 : this.state[key] + increment
 
-    this.setState({ [key]: value })
+    this._saveState({ [key]: value })
   }
 
 
   // PRIVATE METHODS
 
-  _getLockedState() {
-    let state
+  _getInitialState() {
+    const state = storage.getItem(this.storageItem) || {}
 
-    try {
-      this.storage = window.localStorage
-    } catch(error) {
-      this.storage = new CustomStorage()
-    }
-
-    state = this.storage.getItem(this.storageName) || "{}"
-    state = JSON.parse(state)
     if (!state.trophies) {
       state.trophies = {}
     }
@@ -191,8 +160,7 @@ class Achievements extends Component {
 
 
   _save() {
-    const string = JSON.stringify(this.state)
-    this.storage.setItem(this.storageName, string)
+    storage.setItem(this.storageItem, this.state)
   }
 
 

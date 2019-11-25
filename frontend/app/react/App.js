@@ -20,15 +20,6 @@ export default class App extends Component {
     , view: "loader"
     }
 
-    // Comment out any views that are not required. Change the order
-    // as you wish.
-    this.views = [
-      "settings"
-    , "achievements"
-    , "leaderboard"
-    , "credits"
-    ]
-
     this.setView = this.setView.bind(this)
     this.setScore = this.setScore.bind(this)
   }
@@ -76,7 +67,6 @@ export default class App extends Component {
       default: // case "menu":
         return <Menu
           setView={this.setView}
-          views={this.views}
         />
     }
   }

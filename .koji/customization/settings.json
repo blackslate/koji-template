@@ -1,25 +1,132 @@
 {
   "settings": {
     "title": "Settings",
-    "settings": [
+    "display": "icon&text",
+    "buttonWidth": 15,
+    "buttonFontSize": 2.2,
+    "borderWidth": 0.5,
+    "borderRadius": 2,
+    "itemSpacing": 5,
+    "transitionTime": 500,
+    "storageName": "b6342f53",
+    "selections": [
       {
         "name": "Audio",
         "tooltip": "Switch music and sound effects on and off",
-        "image": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/xpbnt-audio.svg"
+        "icon": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/xpbnt-audio.svg",
+        "bgColor": "#235",
+        "mode": "zeroOrMore",
+        "selected": false,
+        "hasMaster": false,
+        "options": [
+          {
+            "name": "Music On",
+            "codeName": "music",
+            "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/317zo-music.svg",
+            "selected": false
+          },
+          {
+            "name": "Music Off",
+            "codeName": "music",
+            "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ovf2n-nomusic.svg",
+            "selected": false
+          },
+          {
+            "name": "Sound Effects On",
+            "codeName": "sfx",
+            "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/jdk0o-SFX.svg",
+            "selected": true
+          },
+          {
+            "name": "Sound Effects Off",
+            "codeName": "sfx",
+            "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/i24dk-noSFX.svg",
+            "selected": true
+          }
+        ]
       },
       {
         "name": "Avatars",
         "tooltip": "Choose your avatar",
-        "image": "https://images.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/c2vq5-avatar.png"
+        "icon": "https://images.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/c2vq5-avatar.png",
+        "options": [
+          {
+            "name": "Malcolm",
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/v22sd-blue.png",
+            "selected": false
+          },
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/xxe5t-green.png",
+            "name": "Karen",
+            "selected": false
+          },
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/w8gg4-yellow.png",
+            "name": "Rita",
+            "selected": false
+          },
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/d62ya-red.png",
+            "name": "Jim",
+            "selected": false
+          }
+        ],
+        "mode": "oneOrMore",
+        "bgColor": "#225",
+        "selected": true,
+        "hasMaster": false
       },
       {
         "name": "Background",
         "tooltip": "Choose a background",
-        "image": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/2be2g-pattern.svg"
+        "icon": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/2be2g-pattern.svg",
+        "options": [
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/6fobd-grid.jpg",
+            "name": "Grid",
+            "selected": false
+          },
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/555kf-bubbles.jpg",
+            "name": "Bubbles",
+            "selected": true
+          },
+          {
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/xrozz-weft.jpg",
+            "name": "Weft",
+            "selected": true
+          }
+        ],
+        "mode": "onlyOne",
+        "bgColor": "#325",
+        "selected": true,
+        "hasMaster": false,
+        "position": 2
       }
     ],
-    "defaultSetting": "Audio",
-    "display": "icon&text"
+    "values": [
+      {
+        "name": "Speed",
+        "position": 1,
+        "options": [
+          {
+            "name": "Initial speed",
+            "maximum": 60,
+            "step": 3,
+            "max": 51,
+            "value": 30
+          },
+          {
+            "name": "Acceleration",
+            "maximum": 10,
+            "minimum": 1,
+            "step": 3,
+            "max": 9,
+            "value": 3
+          }
+        ]
+      }
+    ]
   },
   "@@editor": [
     {
@@ -31,40 +138,6 @@
         {
           "key": "title",
           "name": "Settings Title",
-          "type": "text"
-        },
-        {
-          "key": "settings",
-          "name": "Settings",
-          "description": "List of settings to display",
-          "type": "object<Setting>[]",
-          "arrayOptions": {
-            "isCollapsed": false,
-            "addItemLabel": "Add Setting"
-          },
-          "typeOptions": {
-            "Setting": {
-              "name": {
-                "name": "Name",
-                "type": "text"
-              },
-              "tooltip": {
-                "name": "Tooltip",
-                "description": "Tooltip description of what setting sets",
-                "type": "text"
-              },
-              "image": {
-                "name": "Icon",
-                "description": "Image of trophy for this achievement",
-                "type": "image"
-              }
-            }
-          }
-        },
-        {
-          "key": "defaultSetting",
-          "name": "Default Setting",
-          "description": "Exact name of setting to show by default",
           "type": "text"
         },
         {
@@ -88,6 +161,292 @@
                 "label": "Both icon and text"
               }
             ]
+          }
+        },
+        {
+          "key": "buttonWidth",
+          "name": "Button Width",
+          "description": "Relative width for buttons",
+          "type": "range",
+          "typeOptions": {
+            "min": 2,
+            "max": 30,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "buttonFontSize",
+          "name": "Button Font Size",
+          "description": "Relative font size for buttons",
+          "type": "range",
+          "typeOptions": {
+            "min": 0.5,
+            "max": 5,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "borderWidth",
+          "name": "Button Border Width",
+          "description": "Relative border width for buttons",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 5,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "borderRadius",
+          "name": "Button Corner Radius",
+          "description": "Relative corner radius for buttons",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 15,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "itemSpacing",
+          "name": "Space Between Items",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 20,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "transitionTime",
+          "name": "Transition Time",
+          "description": "Duration of panel transition (milliseconds)",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 2000,
+            "step": 10
+          }
+        },
+        {
+          "key": "storageName",
+          "name": "Local Storage Name",
+          "description": "Unique string to identify this game",
+          "type": "text"
+        },
+        {
+          "key": "selections",
+          "name": "Selection Panes",
+          "description": "List of selection panes to display",
+          "type": "object<Selection>[]",
+          "arrayOptions": {
+            "isCollapsed": false,
+            "addItemLabel": "Add Selection Pane"
+          },
+          "typeOptions": {
+            "Selection": {
+              "name": {
+                "name": "Name",
+                "type": "text"
+              },
+              "tooltip": {
+                "name": "Tooltip",
+                "description": "Tooltip description of what setting sets",
+                "type": "text"
+              },
+              "icon": {
+                "name": "Icon",
+                "description": "Icon for the setting button",
+                "type": "image"
+              },
+              "bgColor": {
+                "name": "Background Color",
+                "description": "Color for button and sliding overlay",
+                "type": "color"
+              },
+              "mode": {
+                "name": "Selection Mode",
+                "description": "How will options be selectable?",
+                "type": "select",
+                "typeOptions": {
+                  "placeholder": "Choose an option...",
+                  "options": [
+                    {
+                      "value": "onlyOne",
+                      "label": "Choose only one"
+                    },
+                    {
+                      "value": "oneOrMore",
+                      "label": "Choose one or more"
+                    },
+                    {
+                      "value": "zeroOrMore",
+                      "label": "Choose zero or more"
+                    }
+                  ]
+                }
+              },
+              "selected": {
+                "name": "Show This Panel by Default",
+                "description": "When the player first opens the Settings view, only the first panel with its `selected` property set to true will be displayed.",
+                "type": "boolean"
+              },
+              "hasMaster": {
+                "name": "First Option is Master",
+                "description": "Is the first option in this group a button that toggles all the other options in the group off?",
+                "type": "boolean"
+              },
+              "position": {
+                "name": "Position",
+                "description": "Higher numbered items appear later in the Settings list. Items with the same number appear in their order of appearance in the VCC display.",
+                "type": "range",
+                "typeOptions": {
+                  "min": 0,
+                  "max": 12,
+                  "step": 1
+                }
+              },
+              "options": {
+                "name": "Options",
+                "description": "List of options",
+                "type": "object<Options>[]",
+                "arrayOptions": {
+                  "isCollapsed": false,
+                  "addItemLabel": "Add Option"
+                },
+                "typeOptions": {
+                  "Options": {
+                    "name": {
+                      "name": "Name",
+                      "type": "text"
+                    },
+                    "codeName": {
+                      "name": "Code Name (for buttons with 2 icons)",
+                      "description": "To create a button with two different icons — one for On, one for Off — add a separate Option for each icon, and give both options the same Code Name. The first icon will be used for the On state, the second for the Off state. In your code, use the option.codeName, not the option.name to check if the option is selected.",
+                      "type": "text"
+                    },
+                    "tooltip": {
+                      "name": "Tooltip",
+                      "description": "Tooltip description of option",
+                      "type": "text"
+                    },
+                    "icon": {
+                      "name": "Icon",
+                      "description": "Icon for this option",
+                      "type": "image"
+                    },
+                    "selected": {
+                      "name": "Selected",
+                      "description": "Check to select this item by default.",
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "key": "values",
+          "name": "Value Panes",
+          "description": "List of value panes to display",
+          "type": "object<Value>[]",
+          "arrayOptions": {
+            "isCollapsed": false,
+            "addItemLabel": "Add Value Pane"
+          },
+          "typeOptions": {
+            "Value": {
+              "name": {
+                "name": "Name",
+                "type": "text"
+              },
+              "tooltip": {
+                "name": "Tooltip",
+                "description": "Tooltip description of the value to set",
+                "type": "text"
+              },
+              "icon": {
+                "name": "Icon",
+                "description": "Icon to illustrate the value",
+                "type": "image"
+              },
+              "selected": {
+                "name": "Show This Panel by Default",
+                "description": "When the player first opens the Settings view, only the first panel with its `selected` property set to true will be displayed.",
+                "type": "boolean"
+              },
+              "position": {
+                "name": "Position",
+                "description": "Higher numbered items appear later in the Settings list. Items with the same number appear in their order of appearance in the VCC display.",
+                "type": "range",
+                "typeOptions": {
+                  "min": 0,
+                  "max": 12,
+                  "step": 1
+                }
+              },
+              "options": {
+                "name": "Options",
+                "description": "List of options",
+                "type": "object<Options>[]",
+                "arrayOptions": {
+                  "isCollapsed": false,
+                  "addItemLabel": "Add Option"
+                },
+                "typeOptions": {
+                  "Options": {
+                    "name": {
+                      "name": "Name",
+                      "type": "text"
+                    },
+                    "tooltip": {
+                      "name": "Tooltip",
+                      "description": "Tooltip description of option",
+                      "type": "text"
+                    },
+                    "min": {
+                      "name": "Minimum",
+                      "type": "range",
+                      "typeOptions": {
+                        "min": 0,
+                        "max": 1000,
+                        "step": 1
+                      }
+                    },
+                    "max": {
+                      "name": "Maximum",
+                      "type": "range",
+                      "typeOptions": {
+                        "min": 0,
+                        "max": 1000,
+                        "step": 1
+                      }
+                    },
+                    "step": {
+                      "name": "Step",
+                      "description": "Interval between possible values",
+                      "type": "range",
+                      "typeOptions": {
+                        "min": 1,
+                        "max": 50,
+                        "step": 1
+                      }
+                    },
+                    "value": {
+                      "name": "Value",
+                      "description": "Default value",
+                      "type": "range",
+                      "typeOptions": {
+                        "min": 1,
+                        "max": 1000,
+                        "step": 1
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       ]
