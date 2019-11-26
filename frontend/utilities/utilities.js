@@ -78,7 +78,7 @@ export const buttonColors = (color, values) => {
   const keys = Object.keys(output)
 
   ;(function merge(input) {
-    if (typeof input === "object") {     
+    if (typeof input === "object") {
       keys.forEach( key => {
         const value = input[key]
         if (!isNaN(value)) {
@@ -94,7 +94,7 @@ export const buttonColors = (color, values) => {
     output[key] = toneColor(color, output[key])
   ))
 
-  return output 
+  return output
 }
 
 
@@ -357,7 +357,7 @@ export const getFontFamily = (ff) => {
 
 // ENCRYPTION
 
-// by bryc https://stackoverflow.com/a/52171480/1927589 
+// by bryc https://stackoverflow.com/a/52171480/1927589
 export const hash = function(str, seed = 0) {
     let h1 = 0xdeadbeef ^ seed, h2 = 0x41c6ce57 ^ seed;
     for (let i = 0, ch; i < str.length; i++) {

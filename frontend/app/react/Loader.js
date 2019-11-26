@@ -28,7 +28,7 @@ class Loader extends Component {
     this.state = { throbber }
 
     // The preloader will do its best to load all the assets in a
-    // given number of milliseconds and then will start the game 
+    // given number of milliseconds and then will start the game
     // without the missing assets. The list of missing assets will
     // have been logged in the console.
     const preloadMs = Koji.config.assets.preloadTime * 1000
@@ -47,7 +47,7 @@ class Loader extends Component {
       setTimeout(this.setView, remaining)
     } else {
       this.setView()
-    }   
+    }
   }
 
 

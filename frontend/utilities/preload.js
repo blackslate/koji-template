@@ -31,7 +31,7 @@ export const preload = (milliseconds) => {
       if (index < 0) {
         // ignore non-file strings and files with unknown extensions
       } else if (index > 1) {
-        images.push(item) 
+        images.push(item)
       } else { // "mp3", "ogg"
         sounds.push(item)
       }
@@ -88,9 +88,9 @@ export const preload = (milliseconds) => {
     })
   )))
   .concat([new Promise((resolve, reject) => {
-    // Show spinner for `milliseconds` at the most, and then show an 
+    // Show spinner for `milliseconds` at the most, and then show an
     // warning in the console to indicate which items failed to load.
-    
+
     const duration = Math.round(milliseconds / 1000)
     let iterations = 100
     const delay    = Math.ceil(milliseconds / iterations)

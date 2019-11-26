@@ -38,7 +38,7 @@ render(App)
 
 // Add a <link> in the <head> of index.html file for each custom font
 // defined in a json file at .koji/customization/
- 
+
 ;(function addLinksForCustomFonts(){
   const fonts = []
   const vccs = Object.keys(Koji.config)

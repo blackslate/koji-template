@@ -81,7 +81,7 @@ class Game extends Component {
       return <GameOverScreen
         setView={this.setView}
       />
-      
+
     } else {
       return this.gameScreen()
     }

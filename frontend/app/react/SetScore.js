@@ -20,7 +20,7 @@ class SetScore extends Component {
   constructor({ setView }) {
     super()
     this.setView = setView
-  
+
     this.state = {
       email: '',
       name: '',

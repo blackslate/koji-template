@@ -9,9 +9,9 @@
  * then displays each trophy either in its locked state (semi-
  * transparent black-and-white) or it in its unlocked state (saturated
  * color.)
- * 
+ *
  * This script is self-contained and you should not need to change it.
- * 
+ *
  * The script at frontend/utilities/achievement.js, however needs
  * to be customized. For each trophy key in
  * .koji/customization/achievement.json, you will need to add a method

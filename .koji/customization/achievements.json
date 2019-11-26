@@ -53,7 +53,7 @@
       "name": "Achievements",
       "icon": "🏆",
       "source": "achievements.json",
-      "fields": [     
+      "fields": [
         {
           "key": "title",
           "name": "Achievements Title",

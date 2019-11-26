@@ -292,8 +292,8 @@ class Settings extends Component {
   }
 
 
-  customizeButton(buttonName, panelData, panelDimensions, method) { 
-    const optionData = panelData.optionData[buttonName]  
+  customizeButton(buttonName, panelData, panelDimensions, method) {
+    const optionData = panelData.optionData[buttonName]
     const checked    = this.itemIsSelected(panelData.name,buttonName)
     const buttonData = checked
                      ? optionData[0]
@@ -327,7 +327,7 @@ class Settings extends Component {
                     , panelDimensions.height
                     )
                   : panelDimensions.height
-    
+
     const style = {
       display: "flex"
     , flexDirection: panelDimensions.vertical ? "column" : "row"
@@ -377,7 +377,7 @@ class Settings extends Component {
                        + panelData.mode.substring(1)
                      : "setValue"
     const method = this[methodName] || function() {} // fail silently
-    
+
     return this.getContents(panelData, panelDimensions, method)
   }
 

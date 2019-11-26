@@ -1,38 +1,38 @@
-/** 
+/**
  * achievement.js
- * 
+ *
  * Each trophy in in the .koji/customization/achievement.json file has
  * a custom key. You will need to edit the Achievement class below so
  * that it has a method corresponding to each achievementkey. This
  * method will be called from `frontend/app/react/Achievements.js`
  * to check if that particular trophy has been unlocked.
- * 
+ *
  * You can update the data.stats property of the Achievements instance
  * in order to provide the raw data from which the achievements can be
  * calculated. See the following public methods for more details;
- * 
+ *
  *   setStats(key, value)
- *   
+ *
  *   incrementStats(key [, increment])
- * 
+ *
  * An instance of the Game class (frontend/app/react/Game.js) imports
  * an instance of the Achievment class. This means that you can make
  * the following calls from the Game instance:
- * 
+ *
  * • achievement.unlock(<key>)
  * • setStats(<prop>, <value>)
  * • achievement.incrementStats(<prop>, <value>)
- * 
+ *
  * Your <trophy key> methods can use the data stored in
  * this.data.stats to calculate whether each particular trophy has
  * been unlocked.
- * 
- * The achievements are stored as "achievements" in localStorage. To 
+ *
+ * The achievements are stored as "achievements" in localStorage. To
  * reset your game, you can run the following command in the browser
  * console:
- *    
+ *
  *    window.localStorage.removeItem("KojiGame_b6342f53")
- *    
+ *
  * Note: the name of the item to remove is set as "storageName" in
  * .koji/customization/settings.json
  *    import storage from './storage.js'
@@ -44,7 +44,7 @@ import storage from './storage.js'
 
 
 class Achievement {
-  constructor() {    
+  constructor() {
     this.storageItem = "achievements"
     this.data = this._getInitialState()
     this.listeners = []
@@ -64,7 +64,7 @@ class Achievement {
 
   one() {
     // Unlocks trophy one 1 second after the user views the
-    // achievements page. On the second visit, the achievment will 
+    // achievements page. On the second visit, the achievment will
     // already be unlocked.
 
     const unlocked = this.data.trophies.one
@@ -89,28 +89,28 @@ class Achievement {
 
   three() {
     // To unlock trophy three, from Game.js call...
-    // 
+    //
     //   achievement.setStats("unlockThree", true)
-    //   
+    //
     // ... or...
-    // 
+    //
     //   achievement.unlock("three")
-    
+
     return !!this.data.stats.unlockThree
   }
 
 
   four() {
     // To unlock trophy 4, from Game.js call...
-    // 
+    //
     //   achievement.incrementStats("unlockFour")
-    //   
+    //
     // ...  4 times, or ...
-    // 
-    //   achievement.incrementStats("unlockFour", 2) 
-    //   
+    //
+    //   achievement.incrementStats("unlockFour", 2)
+    //
     // ...twice.
-    
+
     return this.data.stats.unlockFour > 3
   }
 
@@ -141,7 +141,7 @@ class Achievement {
     this._save()
     this._broadcast(key)
   }
- 
+
 
   setStats(key, value) {
     if (typeof key !== "string") {
@@ -199,7 +199,7 @@ class Achievement {
     if (!remove) {
       if (index < 0) {
         this.listeners.push(listener)
-        listener(this.data.trophies)       
+        listener(this.data.trophies)
       }
 
     } else if (index > -1) {

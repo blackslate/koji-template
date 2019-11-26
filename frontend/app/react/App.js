@@ -37,7 +37,7 @@ export default class App extends Component {
 
   render() {
     switch (this.state.view) {
-      case "loader":   
+      case "loader":
         return <Loader setView={this.setView} />
 
       case "play":

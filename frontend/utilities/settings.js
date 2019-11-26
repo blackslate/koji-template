@@ -110,14 +110,14 @@ class Settings{
   setValue(key, item, value) {
     const array = this.settings.values[key]
                || (this.settings.values[key] = [])
-    
+
     array[item] = value
 
     this._save()
 
     return this.settings.values
   }
-  
+
   // PRIVATE METHODS // PRIVATE METHODS // PRIVATE METHODS //
 
   _save() {
@@ -129,8 +129,8 @@ class Settings{
     const settings   = Koji.config.settings
 
     // Crop-clone a separate object for properties that affect the
-    // CSS. These values will not change over time. 
-    const { 
+    // CSS. These values will not change over time.
+    const {
       title           // string
     , display         // icon | text | icon&text
     , buttonWidth     // vmin size
@@ -157,7 +157,7 @@ class Settings{
     const panelMap   = {}
 
     // Dynamic properties set in the Settings view, saved by the
-    // storage object and used in the Game view 
+    // storage object and used in the Game view
     const selections = {}
     const values     = {}
     let panel
@@ -186,7 +186,7 @@ class Settings{
       } else {
         console.log("Duplicate selection panel name:", name)
       }
-      
+
       selectionData.options.forEach( option  => {
         // { name: <string>
         // , codeName:
@@ -280,7 +280,7 @@ class Settings{
       } else {
         console.log("Duplicate value panel name:", name)
       }
-      
+
       valueData.options.forEach( option  => {
         // { name
         // , tooltip
@@ -313,7 +313,7 @@ class Settings{
       // name      \
       // tooltip    🡂 optional
       // icon      /
-      
+
       panelMap[name] = valueData
     }
 

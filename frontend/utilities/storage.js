@@ -33,7 +33,7 @@ class Storage{
       this.storage = new CustomStorage()
     }
 
-    if (!this.settings || typeof this.settings !== "object") {    
+    if (!this.settings || typeof this.settings !== "object") {
       this.settings = {}
     }
   }

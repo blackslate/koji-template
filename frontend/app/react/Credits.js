@@ -36,7 +36,7 @@ class Credits extends Component {
           </p>
         </li>
       )
-    }) 
+    })
 
     return items
   }
