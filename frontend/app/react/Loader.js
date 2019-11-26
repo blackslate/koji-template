@@ -8,6 +8,7 @@ import { preload } from '../../utilities/preload.js'
 import { StyledLoader } from './styles.js'
 
 
+
 class Loader extends Component {
   constructor({ setView }) {
     super()

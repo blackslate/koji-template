@@ -18,27 +18,41 @@ export const preload = (milliseconds) => {
   const images = [Koji.config.assets.spinner]
   const sounds = []
 
-  sections.forEach( section => {
-    const sectionData = config[section]
 
-    const keys = Object.keys(sectionData)
-    keys.forEach( key => {
-      const item = sectionData[key]
+  sections.forEach( section => {    
+    const addURL = (item) => {
+      const extension = item.substring(item.lastIndexOf(".")+1)
+      const index = extensions.indexOf(extension)
 
-      if (typeof item === "string") {
-        const extension = item.substring(item.lastIndexOf(".")+1)
-        const index = extensions.indexOf(extension)
-
-        if (index < 0) {
-          // ignore non-file strings and files with unknown extensions
-        } else if (index > 1) {
-          images.push(item) 
-        } else { // "mp3", "ogg"
-          sounds.push(item)
-        }
+      if (index < 0) {
+        // ignore non-file strings and files with unknown extensions
+      } else if (index > 1) {
+        images.push(item) 
+      } else { // "mp3", "ogg"
+        sounds.push(item)
       }
-    })  
+    }
+
+    const findURLs = (object) => {
+      const keys = Object.keys(object)
+
+      keys.forEach( key => {
+        const item = object[key]
+
+        switch (typeof item) {
+          case "string":
+            return addURL(item)
+          case "object":
+            findURLs(item)
+        }
+      })
+    }
+
+    findURLs(config[section])
   })
+
+  // console.log("images:", images)
+  // console.log("sounds:", sounds)
 
   const unresolved = images.concat(sounds)
 
@@ -73,13 +87,13 @@ export const preload = (milliseconds) => {
     
     const duration = Math.round(milliseconds / 1000)
     let iterations = 100
-    const delay    = milliseconds / iterations
+    const delay    = Math.ceiling(milliseconds / iterations)
 
     const timeout = () => {
       if (!iterations--) {
-        // console.warn( `Assets not loaded after ${duration}s:\n`
-        //            + "————————————\n"
-        //            + unresolved.join("\n"))
+        console.warn( `Assets not loaded after ${duration}s:\n`
+                   + "————————————\n"
+                   + unresolved.join("\n"))
         reject(unresolved)
 
       } else if (!unresolved.length) {

@@ -34,6 +34,9 @@
  *    
  *    window.localStorage.removeItem("KojiGame_b6342f53")
  *    
+ * Note: the name of the item to remove is set as "storageName" in
+ * .koji/customization/settings.json
+ *    
 **/
 
 
