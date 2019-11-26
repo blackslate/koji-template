@@ -51,13 +51,6 @@ class Settings{
 
   // SELECTIONS // SELECTIONS // SELECTIONS // SELECTIONS //
 
-
-  itemIsSelected(key, item) {
-    const array = this.settings.selections[key]
-    return !(array.indexOf(item) < 0)
-  }
-
-
   replaceSelection(key, item) {
     const array = this.settings.selections[key]
                || (this.settings.selections[key] = [])
@@ -116,8 +109,7 @@ class Settings{
 
     return this.settings.values
   }
-
-
+  
   // PRIVATE METHODS // PRIVATE METHODS // PRIVATE METHODS //
 
   _save() {

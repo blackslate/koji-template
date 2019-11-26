@@ -1,8 +1,6 @@
 import Koji from '@withkoji/vcc'
 import { hash } from './utilities.js'
 
-console.log("loading storage.js")
-
 /**
  * If window.localStorage is not available, an instance of the
  * CustomStorage class will be used instead. No data will be saved

@@ -18,8 +18,6 @@ class Settings extends Component {
   constructor({ setView }) {
     super()
 
-    console.log("Settings storage", settings)
-
     this.setView = setView //function to close view (set view to Menu)
 
     // Bound methods
@@ -44,9 +42,9 @@ class Settings extends Component {
 
     // Layout uses px not vxxx units, so it does not adapt to changes
     // in screen dimensions. Use window.resize to force refresh.
-    this.resize        = this.resize.bind(this)
-    this.debounce      = 0
-    this.debounceDelay = 200
+    this.resize   = this.resize.bind(this)
+    this.debounce = 200
+    this.timeOut  = 0
     window.addEventListener("resize", this.resize, false)
 
     this.state = settings.settings
@@ -54,13 +52,16 @@ class Settings extends Component {
 
 
   resize() {
-    const time = + new Date()
-    if (time - this.debounce < this.debounceDelay) {
+    if (this.timeOut) {
       return
     }
 
-    this.debounce = time
-    this.setState({ time })
+    this.timeOut = setTimeout(() => {
+      this.setState({ resize: this.timeOut })
+      this.timeOut = 0
+
+      console.log(this.state)
+    }, this.debounce)
   }
 
 
@@ -68,6 +69,12 @@ class Settings extends Component {
     settings.setPanel(event.target.id)
 
     this.setState({ panel: event.target.id })
+  }
+
+
+  itemIsSelected(key, item) {
+    const array = this.state.selections[key]
+    return !(array.indexOf(item) < 0)
   }
 
 
@@ -239,7 +246,7 @@ class Settings extends Component {
   }
 
 
-  getPanelDimensions(scrollbars) {
+  getPanelDimensions(count) {
     const bodyRect     = document.body.getBoundingClientRect()
     const vmin         = Math.min(bodyRect.width, bodyRect.height)/100
     const buttonWidth  = this.skin.buttonWidth
@@ -251,20 +258,27 @@ class Settings extends Component {
     const vertical     = height > width
     const spacing      = this.skin.itemSpacing * minSize / 100
 
-    console.log("spacing:", spacing)
+    let side = Math.min(
+      minSize - spacing * 2
+    , (maxSize - (spacing * 3)) / 2
+    )
 
-    if (scrollbars) {
+    // Allow for scrollbars if necessary
+    const length = (side + spacing) * count + spacing
+
+    if (length > maxSize) {
       if (vertical) {
         width -= 20
       } else {
         height -= 20
       }
+
+      side = Math.min(
+        minSize - spacing * 2
+      , (maxSize - (spacing * 3)) / 2
+      )
     }
 
-    const side = Math.min(
-      minSize - spacing * 2
-    , (maxSize - (spacing * 3)) / 2
-    )
     const panelData = {
       width
     , height
@@ -273,15 +287,13 @@ class Settings extends Component {
     , spacing
     }
 
-    console.log("panelData:", panelData)
-
     return panelData
   }
 
 
   customizeButton(buttonName, panelData, panelDimensions, method) { 
     const optionData = panelData.optionData[buttonName]  
-    const checked    = settings.itemIsSelected(panelData.name, buttonName)
+    const checked    = this.itemIsSelected(panelData.name,buttonName)
     const buttonData = checked
                      ? optionData[0]
                      : optionData[optionData.length - 1]
@@ -356,8 +368,8 @@ class Settings extends Component {
 
 
   getPanelContents(panelData) {
-    const scrollbars = panelData.options.length > 2
-    const panelDimensions = this.getPanelDimensions(scrollbars)
+    const count = panelData.options.length
+    const panelDimensions = this.getPanelDimensions(count)
     const methodName = panelData.mode
                      ? "set"
                        + panelData.mode[0].toUpperCase()
