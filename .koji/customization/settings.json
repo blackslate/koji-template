@@ -273,7 +273,7 @@
                   "options": [
                     {
                       "value": "onlyOne",
-                      "label": "Choose only one"
+                      "label": "Choose only one (radio buttons)"
                     },
                     {
                       "value": "oneOrMore",

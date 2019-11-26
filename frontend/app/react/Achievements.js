@@ -5,38 +5,18 @@
 /** achievements.js **
  *
  * The Achievements class reads in the details of the trophies that
- * are defined in the .koji/customization/achievement.json file.
+ * are defined in the .koji/customization/achievement.json file. It
+ * then displays each trophy either in its locked state (semi-
+ * transparent black-and-white) or it in its unlocked state (saturated
+ * color.)
  * 
- * Each trophy in that file has a custom key. You will need to edit
- * the Achievements class so that it has a method corresponding to 
- * each key. This method will be called to check if that particular
- * trophy has been unlocked.
+ * This script is self-contained and you should not need to change it.
  * 
- * You can update the state property of the Achievements instance, in
- * order to provide the raw data from which the achievements can be
- * calculated. Se the following public methods for more details;
- * 
- *   setStats(key, value)
- *   
- *   incrementStats(key [, increment])
- * 
- * To test these methods, open your game at the Achievements page and
- * run the following commands in the Developer Tools console:
- * 
- *   kojiTest.achievements.setStats("unlockThree", true)
- *   
- *   kojiTest.achievements.incrementStats("unlockFour")
- *   (You'll need to do this 4 times)
- *   
- * The achievements are stored as "achievements" in localStorage. To 
- * reset your game, you can run the following command in the browser
- * console:
- *    
- *    window.localStorage.removeItem("KojiGame_b6342f53")
- *    
- * Note: the name of the item to remove is set as "storageName" in
- * .koji/customization/settings.json
- *    
+ * The script at frontend/utilities/achievement.js, however needs
+ * to be customized. For each trophy key in
+ * .koji/customization/achievement.json, you will need to add a method
+ * with the same name that returns true when the trophy has been
+ * unlocked.
 **/
 
 

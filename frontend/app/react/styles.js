@@ -114,7 +114,7 @@ export const StyledMenuButtons = styled.div`
 
   & button:active {
     background-color: ${Koji.config.colors.buttonClickColor};
-    border: 0.5vmin solid ${colors.clickTint};
+    border: ${Koji.config.text.buttonBorder}vmin solid ${colors.clickTint};
     border-top-color: ${colors.clickShade};
     border-left-color: ${colors.clickShade};
   }

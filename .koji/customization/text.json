@@ -5,10 +5,18 @@
 
     "buttonTextRatio": 11,
     "buttonHeight": 9,
+    "buttonBorder": 1,
     "buttonRadius": 2,
 
     "headerHeight": 8,
-    "headerFontSize": 3.2
+    "headerFontSize": 3.2,
+
+    "tooltipFontSize": 1.2,
+    "tooltipTextColor": "#000",
+    "tooltipBgColor": "#fe9",
+    "tooltipEdgeColor": "#000",
+    "tooltipBorder": 0.1,
+    "tooltipRadius": 1
   },
   "@@editor": [{
     "key": "text",
@@ -50,6 +58,17 @@
         }
       },
       {
+        "key": "buttonBorder",
+        "name": "Button Border",
+        "description": "Border width for buttons",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
+          "max": 5,
+          "step": 0.1
+        }
+      },
+      {
         "key": "buttonRadius",
         "name": "Button Corner Radius",
         "description": "Corner radius for buttons",
@@ -78,6 +97,55 @@
         "type": "range",
         "typeOptions": {
           "min": 2,
+          "max": 20,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "tooltipFontSize",
+        "name": "Tooltip Font Size",
+        "description": "Font size of tooltips",
+        "type": "range",
+        "typeOptions": {
+          "min": 0.5,
+          "max": 5,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "tooltipTextColor",
+        "name": "Tooltip Text Color",
+        "type": "color"
+      },
+      {
+        "key": "tooltipBgColor",
+        "name": "Tooltip Background Color",
+        "type": "color"
+      },
+      {
+        "key": "tooltipEdgeColor",
+        "name": "Tooltip Border Color",
+        "description": "Color of tooltip borders",
+        "type": "color"
+      },
+      {
+        "key": "tooltipBorder",
+        "name": "Tooltip Border Width",
+        "description": "Thickness of tooltip borders",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
+          "max": 5,
+          "step": 0.1
+        }
+      },
+      {
+        "key": "tooltipRadius",
+        "name": "Tooltip Corner Radius",
+        "description": "Radius of tooltip corners",
+        "type": "range",
+        "typeOptions": {
+          "min": 0,
           "max": 20,
           "step": 0.1
         }

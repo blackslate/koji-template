@@ -1,3 +1,44 @@
+/** 
+ * achievement.js
+ * 
+ * Each trophy in in the .koji/customization/achievement.json file has
+ * a custom key. You will need to edit the Achievement class below so
+ * that it has a method corresponding to each achievementkey. This
+ * method will be called from `frontend/app/react/Achievements.js`
+ * to check if that particular trophy has been unlocked.
+ * 
+ * You can update the data.stats property of the Achievements instance
+ * in order to provide the raw data from which the achievements can be
+ * calculated. See the following public methods for more details;
+ * 
+ *   setStats(key, value)
+ *   
+ *   incrementStats(key [, increment])
+ * 
+ * An instance of the Game class (frontend/app/react/Game.js) imports
+ * an instance of the Achievment class. This means that you can make
+ * the following calls from the Game instance:
+ * 
+ * • achievement.unlock(<key>)
+ * • setStats(<prop>, <value>)
+ * • achievement.incrementStats(<prop>, <value>)
+ * 
+ * Your <trophy key> methods can use the data stored in
+ * this.data.stats to calculate whether each particular trophy has
+ * been unlocked.
+ * 
+ * The achievements are stored as "achievements" in localStorage. To 
+ * reset your game, you can run the following command in the browser
+ * console:
+ *    
+ *    window.localStorage.removeItem("KojiGame_b6342f53")
+ *    
+ * Note: the name of the item to remove is set as "storageName" in
+ * .koji/customization/settings.json
+ *    import storage from './storage.js'
+ */
+
+
 import storage from './storage.js'
 
 

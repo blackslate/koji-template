@@ -1,5 +1,6 @@
 {
   "assets": {
+    "backgrounds": [],
     "music": [
       {
         "name": "Crystal Waters",
@@ -8,13 +9,20 @@
         "loop": true
       }
     ],
-    "backgrounds": [
+    "sfx": [
+      {
+        "name": "win",
+        "url": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ymvy8-ace.mp3",
+        "volume": 0.5
+      },
+      {
+        "name": "lose",
+        "url": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/sjser-lose.mp3",
+        "volume": 0.5
+      }
     ],
-    "grapple": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ymvy8-ace.mp3",
-    "release": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ymvy8-ace.mp3",
-    "crash": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/sjser-lose.mp3",
     "splashTime": 1,
-    "preloadTime": 5
+    "preloadTime": 20
   },
   "@@editor": [
     {
@@ -23,6 +31,29 @@
       "icon": "🝙",
       "source": "assets.json",
       "fields": [
+        {
+          "key": "backgrounds",
+          "name": "Background Images",
+          "description": "List of files for background images",
+          "type": "object<Image>[]",
+          "arrayOptions": {
+            "addItemLabel": "Add Image file"
+          },
+          "typeOptions": {
+            "Image": {
+              "name": {
+                "name": "Title",
+                "description": "Title",
+                "type": "text"
+              },
+              "url": {
+                "name": "URL",
+                "description": "URL of image to use as background",
+                "type": "image"
+              }
+            }
+          }
+        },
         {
           "key": "music",
           "name": "Background Music and Sounds",
@@ -62,45 +93,37 @@
           }
         },
         {
-          "key": "backgrounds",
-          "name": "Background Images",
-          "description": "List of files for background images",
-          "type": "object<Image>[]",
+          "key": "sfx",
+          "name": "Sound Effects",
+          "description": "List of files for background audio",
+          "type": "object<SFX>[]",
           "arrayOptions": {
-            "addItemLabel": "Add Image file"
+            "addItemLabel": "Add Sound Effect"
           },
           "typeOptions": {
-            "Image": {
+            "SFX": {
               "name": {
-                "name": "Title",
-                "description": "Title",
+                "name": "Name",
+                "description": "Name",
                 "type": "text"
               },
               "url": {
                 "name": "URL",
-                "description": "URL of image to use as background",
-                "type": "image"
+                "description": "URL of music file",
+                "type": "sound"
+              },
+              "volume": {
+                "name": "Volume",
+                "description": "Volume of playback",
+                "type": "range",
+                "typeOptions": {
+                  "min": 0,
+                  "max": 1,
+                  "step": 0.01
+                }
               }
             }
           }
-        },
-        {
-          "key": "grapple",
-          "name": "Grapple Sound",
-          "type": "sound",
-          "description": "Sound when player grapples a node"
-        },
-        {
-          "key": "release",
-          "name": "Release Sound",
-          "type": "sound",
-          "description": "Sound when player lets go of a node"
-        },
-        {
-          "key": "crash",
-          "name": "Crash Sound",
-          "type": "sound",
-          "description": "Sound when player crashes"
         },
         {
           "key": "splashTime",
@@ -116,12 +139,12 @@
         {
           "key": "preloadTime",
           "name": "Preload Time",
-          "description": "Maximum number of seconds to show the Splash/Loading screen before launching game even if assets have not all preloaded",
+          "description": "Maximum number of seconds to show the Splash/Loading screen before launching the game even if assets have not all preloaded",
           "type": "range",
           "typeOptions": {
             "min": 2,
-            "max": 10,
-            "step": 0.5
+            "max": 20,
+            "step": 1
           }
         }
       ]
