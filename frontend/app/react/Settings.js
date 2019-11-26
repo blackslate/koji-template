@@ -38,10 +38,10 @@ class Settings extends Component {
     this.buttonWidth  = this.skin.buttonWidth + "vmin"
     this.panelWidth   = "calc(100vw - " + this.buttonWidth + ")"
     this.panelHeight  = "calc(100vh - "
-                      + Koji.config.strings.headerHeight + "vmin)"
+                      + Koji.config.text.headerHeight + "vmin)"
     const panelCount  = this.panels.length
     this.buttonHeight = `calc(${this.panelHeight}/${panelCount})`
-    this.titleFont    = getFontFamily(Koji.config.strings.titleFont)
+    this.titleFont    = getFontFamily(Koji.config.text.titleFont)
 
     // Layout uses px not vxxx units, so it does not adapt to changes
     // in screen dimensions. Use window.resize to force refresh.
@@ -62,8 +62,6 @@ class Settings extends Component {
     this.timeOut = setTimeout(() => {
       this.setState({ resize: this.timeOut })
       this.timeOut = 0
-
-      console.log(this.state)
     }, this.debounce)
   }
 
@@ -241,7 +239,7 @@ class Settings extends Component {
     , height: this.panelHeight
     , width:  this.panelWidth
     , left: checked ? this.buttonWidth : "-100vw"
-    , top: Koji.config.strings.headerHeight + "vmin"
+    , top: Koji.config.text.headerHeight + "vmin"
     , backgroundColor: bgColor
     , transition: checked ? `left ${time} ${time}` : `left ${time}`
     , overflow: "auto"
@@ -253,7 +251,7 @@ class Settings extends Component {
     const bodyRect     = document.body.getBoundingClientRect()
     const vmin         = Math.min(bodyRect.width, bodyRect.height)/100
     const buttonWidth  = this.skin.buttonWidth
-    const headerHeight = Koji.config.strings.headerHeight
+    const headerHeight = Koji.config.text.headerHeight
     let width          = bodyRect.width - buttonWidth * vmin
     let height         = bodyRect.height - headerHeight * vmin
     const minSize      = Math.min(width, height)
@@ -420,7 +418,7 @@ class Settings extends Component {
         <div
           style={{
             position: "absolute"
-          , top: Koji.config.strings.headerHeight + "vmin"
+          , top: Koji.config.text.headerHeight + "vmin"
           , left: 0
           }}
         >

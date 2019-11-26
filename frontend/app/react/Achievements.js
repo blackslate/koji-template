@@ -43,11 +43,9 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import Header from './Header.js'
-import storage from '../../utilities/storage.js'
+import achievement from '../../utilities/achievement.js'
 import { StyledAchievement
        , StyledAchievements } from './styles.js'
-
-
 
 
 
@@ -55,18 +53,54 @@ class Achievements extends Component {
   constructor({ setView }) {
     super()
     this.setView = setView
+    this.mounted = false
 
-    this._save = this._save.bind(this)
-    this._saveState = this._saveState.bind(this)
-    this.storageItem = "achievements"
-    
-    this.state = this._getInitialState()
-
-    // For testing only. Remove for production
-    window.kojiTest = { achievements: this }
+    this.newAchievement = this.newAchievement.bind(this)
+    const trophies = achievement.setListener(this.newAchievement)
+    this.state = { trophies }
   }
 
-  /// PUBLIC METHODS
+
+  componentDidMount() {
+    this.mounted = true
+  }
+
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
+
+  newAchievement(trophies, newTrophy) {
+    if (!this.mounted) {
+      return
+    }
+
+    this.setState({ trophies })
+
+    // TODO: Show newTrophy notification
+    console.log("Achievements: new trophy", newTrophy)
+  }
+
+
+  _getAchievements() {
+    const defaultTrophy = Koji.config.achievements.defaultTrophy
+
+    return Koji.config.achievements.trophies.map( trophyData => (
+        <StyledAchievement
+          key={trophyData.key}
+          unlocked={achievement.isUnlocked(trophyData.key)}
+        >
+          <img src={trophyData.image || defaultTrophy} />
+          <div>
+            <h1>{trophyData.name}</h1>
+            <p>{trophyData.description}</p>
+          </div>
+        </StyledAchievement>
+      )
+    )
+  }
+
 
   render() {
     const achievements = this._getAchievements()
@@ -80,166 +114,6 @@ class Achievements extends Component {
         <ul>{achievements}</ul>
       </StyledAchievements>
     )
-  }
- 
-
-  setStats(key, value) {
-    if (typeof key !== "string") {
-      return
-    } else if (key === "trophies") {
-      return
-    }
-
-    this._saveState({ [key]: value })
-  }
-
-
-  incrementStats(key, increment) {
-    if (typeof key !== "string") {
-      return
-    } else if (key === "trophies") {
-      return
-    } else if (isNaN(increment)) {
-      increment = 1
-    }
-
-    const value = isNaN(this.state[key])
-                ? increment
-                : this.state[key] + increment
-
-    this._saveState({ [key]: value })
-  }
-
-
-  // PRIVATE METHODS
-
-  _getInitialState() {
-    const state = storage.getItem(this.storageItem) || {}
-
-    if (!state.trophies) {
-      state.trophies = {}
-    }
-
-    return state
-  }
-
-
-  _getUnlocked(key) {
-    let unlocked = this.state.trophies[key]
-
-    if (!unlocked) {
-      // The unique key for this trophy is also the name of the method
-      // for testing if it has been unlocked
-      const method = (this[key] || function () {}).bind(this)
-
-      unlocked = method()
-      if (unlocked) {
-        this._unlockAchievement(key)
-      }
-    }
-
-    return unlocked
-  }
-
-
-  _unlockAchievement(key) {
-    const trophies = this.state.trophies
-    trophies[key] = true
-
-    setTimeout(
-      () => this._saveState({ trophies })
-    , 0
-    )
-  }
-
-
-  _saveState(data) {
-    this.setState(data)
-    setTimeout(
-      this._save
-    , 0
-    )
-  }
-
-
-  _save() {
-    storage.setItem(this.storageItem, this.state)
-  }
-
-
-  _getAchievements() {
-    const defaultTrophy = Koji.config.achievements.defaultTrophy
-
-    return Koji.config.achievements.trophies.map( trophyData => (
-        <StyledAchievement
-          key={trophyData.key}
-          unlocked={this._getUnlocked(trophyData.key)}
-        >
-          <img src={trophyData.image || defaultTrophy} />
-          <div>
-            <h1>{trophyData.name}</h1>
-            <p>{trophyData.description}</p>
-          </div>
-        </StyledAchievement>
-      )
-    )
-  }
-
-
-  // TESTS FOR WHETHER A GIVEN TROPHY IS NOW UNLOCKED
-  // If no test is provided for a given key, the trophy cannot be
-  // unlocked. You must ensure that the keys used for trophies in
-  // the file at .koji/customization/achievements.json match the
-  // method names below exactly.
-
-  one() {
-    // Unlocks trophy one 1 second after the user views the
-    // achievements page. On the second visit, the achievment will 
-    // already be unlocked.
-
-    const unlocked = this.state.trophies.one
-
-    if (!unlocked) {
-      setTimeout(
-        () => this._unlockAchievement("one")
-      , 1000
-      )
-    }
-
-    return unlocked
-  }
-
-
-  two() {
-    // Gives a 1/10 chance of Unlocking trophy two each time the
-    // achievements page is visited.
-    return Math.random() * 10 < 1
-  }
-
-
-  three() {
-    // To unlock trophy three, call setStats("unlockThree", true)
-    // from elsewhere.
-    return !!this.state.unlockThree
-  }
-
-
-  four() {
-    // To unlock trophy 4, call incrementStats("unlockFour") 4 times
-    // or incrementStats("unlockFour", 2) twice
-    return this.state.unlockFour > 3
-  }
-
-
-  five() {
-    // Method to customize
-    return false
-  }
-
-
-  six() {
-    // Method to customize
-    return false
   }
 }
 

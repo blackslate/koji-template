@@ -13,7 +13,8 @@
     "grapple": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ymvy8-ace.mp3",
     "release": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ymvy8-ace.mp3",
     "crash": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/sjser-lose.mp3",
-    "spinner": "https://images.koji-cdn.com/bb863e42-1e20-4554-939e-b2b25e3d7541/zzt17-spinner.gif"
+    "splashTime": 1,
+    "preloadTime": 5
   },
   "@@editor": [
     {
@@ -102,10 +103,26 @@
           "description": "Sound when player crashes"
         },
         {
-          "key": "spinner",
-          "name": "Loading Animation",
-          "type": "image",
-          "description": "URL of image to use for loading spinner"
+          "key": "splashTime",
+          "name": "Splash Screen Time",
+          "description": "Minimum number of seconds to show the Splash/Loading screen",
+          "type": "range",
+          "typeOptions": {
+            "min": 0,
+            "max": 10,
+            "step": 0.5
+          }
+        },
+        {
+          "key": "preloadTime",
+          "name": "Preload Time",
+          "description": "Maximum number of seconds to show the Splash/Loading screen before launching game even if assets have not all preloaded",
+          "type": "range",
+          "typeOptions": {
+            "min": 2,
+            "max": 10,
+            "step": 0.5
+          }
         }
       ]
     }

@@ -33,6 +33,14 @@ class Settings{
   }
 
 
+  getGameSettings() {
+    return {
+      values: this.settings.values
+    , selections: this.settings.selections
+    }
+  }
+
+
   getPanelData(key) {
     return this.panelData[key]
   }

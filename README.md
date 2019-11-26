@@ -1,116 +1,76 @@
-# `🌤️ Falling Father!`
+# Leaderboard, Achievements, Settings and Credits
 
-Start your day with some father saving game!
+This scaffold provides you with a placeholder game, together with ready-built views for:
 
-## 😃 Getting Started
+* Leaderboard
+* Achievements
+* Player Settings
+* Credits
 
-Main code is in *frontend/app/index.js*
+## View VCCs
 
-I've provided comments in the most important parts of the code, so you don't get lost.
+Each of the views (Leaderboard, Achievements, Settings, Credits and the Game itself) has its own VCC. You can use these to set title, font size, colors and contents of each view. You can use the VCC at
+`.koji/customization/views.json` to show or hide each of the non-Game views.
 
-Feel free to modify anything, upgrade the game, add more stuff!
+## Styling
 
-## 🖥️ Spin up the game locally
+The app uses React [styled-components](https://www.styled-components.com/) for the layout. The styles for all the views are stored together in the same file at `frontend/app/react/styles.js`.
 
-- Run
+If you are comfortable with CSS, you should be able to edit the various styles to create the look that you want for your game.
 
-```bash
-$ git clone <YOUR_REMIXED_REMOTE_URL> <PROJECT_NAME>
-$ cd <PROJECT_NAME>/frontend
-$ npm i
-$ npm start
-```
+## Loading Screen
 
-- Visit [https://localhost:8080](https://localhost:8080)
+The app opens with a Loading screen which shows a throbber while assets are downloaded. You can set the minimum and (suggested)
+maximum time to display the Splash screen in `.koji/customization/assets.json`. If preloading takes so long that the maximum time is
+exceeded, then the game will start anyway, but certain assets may not
+yet be available.
 
-## 💥 About The Game
+To avoid a white screen while the JavaScript files are loading, the `background-color` of the &lt;body&gt; tag is set directly in the
+`frontend/common/index.html` file. You might want to change this to match your app's color scheme.
 
-Save your father from obstacles and help him collect coins in the meanwhile.
+## Leaderboard
 
-## ⚒️ Customizations
+### View Style
 
-Take a look at the Koji VCC to see what all you can customize.
+In the `.koji/customization/leaderboard.json` VCC, you can set the text for the Menu button, the view title and the colors used to display the top scores. You can also decide whether to allow your players to provide an email address.
 
-## ☕ For developers
+### Code
 
-### For setting scores, use the following code snippet 👇
+The code for the Leaderboard can be found at `frontend/app/react/SetScore.js` and `frontend/app/react/Leaderboard.js`, but you shouldn't need to modify this. The database for the scores is stored on the Koji servers, so the leaderboard will not work without an Internet connection.
+
+### Setting a New Score:
+
+* From the `frontend/app/react/Game.js` script, use the following code snippet, at any time:
 
 ```js
-window.setScore(score)
-window.setAppView('setScore')
+    this.setScore(score)
+````
+* When the game is over, call...
+```js
+    this.setState({ gameOver: true })
 ```
+... and the view will automatically switch to a Game Over screen, and then, after a delay, to the Set Score view.
 
-### Develop locally
+## Achievements
 
-- Developing locally on VSCode gives you perks of ESLint and Prettier and having them lint code automatically is fun!
+The Achievements VCC at `.koji/customization/achievements.json` allows you to define the achievements for your own game. The code that displays the Achievements view can be found at `frontend/app/react/Achievements.js`.
 
-- Just do `git clone <REMOTE_GIT_URL> <PROJECT_NAME>`
+The Achievements VCC asks you to provide a `key` for each trophy. The Achievements.js should contain a method to match each `key`. There are two ways that you can unlock an achievement from another script:
 
-- Then do `$ npm i` in the `frontend` and `backend` directories.
+1. Call the method `unlockAchievement(<key>)`
+2. Provide a method with the same name as the key, and draw on the data held in `this.state` to determine whether the achievement has been obtained or not.
 
-- Now, run the `$ env` command in the online Koji editor terminal and copy the result.
+You have two public methods to alter the data held in `this.state`:
 
-- Create `.env` file in the root directory of the project and paste the content in it. Now, your environment variables will be filled with the necessary tokens needed to run the Leaderboard.
+ * `setStats(key, value)`
+ * `incrementStats(key, increment)`
 
-- Run `$ npm start` and `$ npm run start-dev` in the `frontend` and `backend` directories respectively.
+You can use `setStats()` to add any property with any value to `this.state`. You can use `incrementStats` to set any property to a numerical value. The 
 
-- That's how you get your local dev environment.
+## The Game Itself
 
-- As per now, there are problems with Leaderboard working locally. But you don't have to worry as Leaderboard will always work when you deploy your changes.
 
-### Save to GitHub
+## Developing locally
 
-- Create a New Repository
+You can find a three-part tutorial on how to develop locally on the [Koji Documentation site](https://withkoji.com/docs/tutorials/using-git-to-manage-your-project)
 
-- Run the following commands Local Terminal or on Online Koji Editor terminal
-
-```bash
-$ git remote add github https://github.com/<GITHUB_USERNAME>/<REPO_NAME>.git
-$ git push -u github master
-```
-
-- And now everytime you make changes, do the following
-
-```bash
-$ git add .
-$ git commit -m "Save changes"
-$ git push origin master
-$ git push github master
-```
-
-- On GitHub, for better development processes, you are advised to use Branches and Pull Requests instead of directly commiting to master. Learn more [here](https://guides.github.com/).
-
-### Deploying the changes made locally
-
-- Run the following commands
-
-```bash
-$ git add .
-$ git commit -m "Save changes"
-$ git push origin master
-$ git push github master # <- only if you also maintain a GitHub Repository
-```
-
-- Now open the online Koji Editor and get the changes you made by running the following command 👉 `$ git pull origin master`
-
-- To officially deploy your project, you can **Publish the project using the Koji GUI**.
-
-## 🤙 Wanna contribute❓
-
-Just shoot a Pull Request at [the official GitHub repository of this game 📦](https://github.com/KumarAbhirup/falling_father)
-
-Or follow me and DM on [Twitter @kumar_abhirup](https://twitter.com/kumar_abhirup) 🙌
-
-Or hit me up on Koji's official Discord server, username: kumar_abhirup 🌱
-
-## 📝 Licence
-
-**GPL © [Kumar Abhirup](https://kumar.now.sh)**
-
-_Follow me 👋 **on Twitter**_ →   [![Twitter](https://img.shields.io/twitter/follow/kumar_abhirup.svg?style=social&label=@kumar_abhirup)](https://twitter.com/kumar_abhirup)
-
-## Credits for assets
-
-OpenGameArt 👉 [https://opengameart.org](https://opengameart.org)
-
-If you see your assets being used without your permission, DM me for getting credited or remove the asset altogether!

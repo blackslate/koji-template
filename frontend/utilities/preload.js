@@ -15,11 +15,15 @@ export const preload = (milliseconds) => {
   const sections   = Object.keys(config)
   const extensions = ["mp3","ogg","jpg","jpeg","png","gif","svg","webp"]
 
-  const images = [Koji.config.assets.spinner]
+  const images = []
   const sounds = []
 
 
-  sections.forEach( section => {    
+  sections.forEach( section => {
+    if (section === "credits") {
+      return
+    }
+
     const addURL = (item) => {
       const extension = item.substring(item.lastIndexOf(".")+1)
       const index = extensions.indexOf(extension)
@@ -51,17 +55,18 @@ export const preload = (milliseconds) => {
     findURLs(config[section])
   })
 
+  const unresolved = images.concat(sounds)
+
   // console.log("images:", images)
   // console.log("sounds:", sounds)
-
-  const unresolved = images.concat(sounds)
+  // console.log("unresolved:", unresolved)
 
   const promiseArray = images.map( url => (
     new Promise((resolve, reject) => {
-      removeFrom(unresolved, url)
       const fileName = url.substring(url.lastIndexOf("/") + 1)
       const image = new Image()
       image.onload = () => {
+        // console.log("onload", fileName)
         resolve(0)
         removeFrom(unresolved, url)
       }
@@ -73,6 +78,7 @@ export const preload = (milliseconds) => {
       const fileName = url.substring(url.lastIndexOf("/") + 1)
       const audio = new Audio()
       audio.oncanplaythrough = () => {
+        // console.log("canplaythrough", fileName)
         resolve(0)
         removeFrom(unresolved, url)
       }
@@ -87,7 +93,7 @@ export const preload = (milliseconds) => {
     
     const duration = Math.round(milliseconds / 1000)
     let iterations = 100
-    const delay    = Math.ceiling(milliseconds / iterations)
+    const delay    = Math.ceil(milliseconds / iterations)
 
     const timeout = () => {
       if (!iterations--) {
@@ -97,15 +103,20 @@ export const preload = (milliseconds) => {
         reject(unresolved)
 
       } else if (!unresolved.length) {
+        // console.log("All resolved")
         resolve()
 
       } else {
         setTimeout(timeout, delay)
       }
+
+      // console.log("iterations:", iterations)
     }
 
     timeout()
   })])
+
+  // console.log(promiseArray)
 
   return Promise.all(promiseArray)
 }

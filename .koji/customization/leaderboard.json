@@ -3,8 +3,10 @@
     "title": "Leaderboard",
     "topScores": "Top Scores",
     "closeLeaderboard": "Close",
+
     "scoreColor": "#ffda5a",
-    "highscoreColor": "#ffda5a"
+    "highscoreColor": "#ffda5a",
+    "emailInputEnabled": true
   },
   "@@editor": [{
     "key": "leaderboard",
@@ -37,6 +39,11 @@
         "key": "highscoreColor",
         "name": "High Score color",
         "type": "color"
+      },
+      {
+        "key": "emailInputEnabled",
+        "name": "Show Email Field in the SetScore view?",
+        "type": "boolean"
       }
     ]
   }]

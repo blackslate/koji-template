@@ -1,5 +1,5 @@
 {
-  "strings": {
+  "text": {
     "titleFont": "https://fonts.googleapis.com/css?family=Luckiest+Guy",
     "textFont": "https://fonts.googleapis.com/css?family=Chilanka",
 
@@ -11,10 +11,10 @@
     "headerFontSize": 3.2
   },
   "@@editor": [{
-    "key": "strings",
+    "key": "text",
     "name": "Fonts & Sizes",
     "icon": "✍",
-    "source": "strings.json",
+    "source": "text.json",
     "fields": [{
         "key": "titleFont",
         "name": "Text Font Family",

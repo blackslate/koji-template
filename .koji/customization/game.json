@@ -1,6 +1,7 @@
 {
   "game": {
     "title": "Game Title",
+    "byLine": "Your Name Here",
     "titleSize": 10,
     "rules": "Game rules go here.\n\nIt's good to keep them short,\nbut it's also good to make them\neasy to follow.",
     "rulesSize": 6.5,
@@ -22,6 +23,11 @@
         {
           "key": "title",
           "name": "Game Title",
+          "type": "text"
+        },
+        {
+          "key": "byLine",
+          "name": "Maker's Name",
           "type": "text"
         },
         {

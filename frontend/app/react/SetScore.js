@@ -38,15 +38,18 @@ class SetScore extends Component {
     )
   }
 
+
   componentDidUpdate() {
     if (this.state.data && this.state.data.success) {
       this.setView('leaderboard')
     }
   }
 
+
   handleClose = () => {
     this.setView()
   }
+
 
   handleSubmit = async (e, saveData) => {
     e.preventDefault()
@@ -65,6 +68,7 @@ class SetScore extends Component {
       this.setState({ data: response })
     }
   }
+
 
   render() {
     return (
@@ -135,7 +139,7 @@ class SetScore extends Component {
                   />
                 </div>
 
-                {Koji.config.strings.emailInputEnabled ? (
+                {Koji.config.leaderboard.emailInputEnabled ? (
                   <div className="input-wrapper">
                     <label style={{ color: Koji.config.colors.titleColor }}>
                       {'Your Email Address (Private)'}

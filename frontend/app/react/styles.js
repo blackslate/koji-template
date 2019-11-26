@@ -5,8 +5,8 @@ import { toneColor
        } from '../../utilities/utilities'
 
 
-const titleFont = getFontFamily(Koji.config.strings.titleFont)
-const textFont = getFontFamily(Koji.config.strings.textFont)
+const titleFont = getFontFamily(Koji.config.text.titleFont)
+const textFont = getFontFamily(Koji.config.text.textFont)
 const colors = {
   text: Koji.config.colors.textColor
 
@@ -37,11 +37,16 @@ export const StyledLoader = styled.div`
   height: 100vh;
   background-color: ${Koji.config.colors.backgroundColor};
   display: flex;
-  justify-content: center;
+  flex-direction: column
+  justify-content: space-between;
   align-items: center;
 
   & img {
     width: 10vmin;
+  }
+
+  & h1, h2 {
+    color: ${colors.text}
   }
 `
 
@@ -79,7 +84,7 @@ export const StyledMenu = styled.div`
 
 export const StyledMenuButtons = styled.div`
   width: 100%;
-  height: ${Koji.config.strings.buttonHeight}vmin;
+  height: ${Koji.config.text.buttonHeight}vmin;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -90,9 +95,9 @@ export const StyledMenuButtons = styled.div`
     height: 100%;
     font-family: ${titleFont};
     font-size: ${(props) => (
-      Koji.config.strings.buttonTextRatio / props.count
+      Koji.config.text.buttonTextRatio / props.count
     )}vw;
-    border-radius: ${Koji.config.strings.buttonRadius}vmin;
+    border-radius: ${Koji.config.text.buttonRadius}vmin;
     background-color: ${Koji.config.colors.buttonColor};
     color: ${Koji.config.colors.buttonTextColor}
     border: 0.5vmin solid ${colors.btnTint};
@@ -154,12 +159,12 @@ export const StyledPlayButton = styled.button`
 
 export const StyledHeader = styled.div`
   width: 100%;
-  height:  ${Koji.config.strings.headerHeight}vmin;
+  height:  ${Koji.config.text.headerHeight}vmin;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-family: ${titleFont};
-  font-size: ${Koji.config.strings.headerFontSize}vmin;
+  font-size: ${Koji.config.text.headerFontSize}vmin;
   color: ${Koji.config.colors.titleColor};
 
   & h1 {
@@ -217,7 +222,7 @@ export const StyledAchievements = styled.div`
   background-color: ${Koji.config.colors.backgroundColor};
 
   & ul {
-    height: calc(100vh - ${Koji.config.strings.headerHeight}vmin);
+    height: calc(100vh - ${Koji.config.text.headerHeight}vmin);
     margin: 0;
     padding: 0 5vmin;
     font-size: ${Koji.config.achievements.fontSize}vmin;
@@ -266,7 +271,7 @@ export const StyledCredits = styled.div`
   text-align: center;
 
   & ul {
-    height: calc(100vh - ${Koji.config.strings.headerHeight}vmin);
+    height: calc(100vh - ${Koji.config.text.headerHeight}vmin);
     list-style: none;
     margin: 0;
     padding: 0;

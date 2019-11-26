@@ -7,18 +7,46 @@
 import React, { Component } from 'react'
 import GameOverScreen from './GameOver'
 import { StyledGame, StyledButton } from './styles.js'
-import storage from '../../utilities/storage.js'
+import settings from '../../utilities/settings.js'
+import achievement from '../../utilities/achievement.js'
+
 
 
 class Game extends Component {
   constructor({ setView, setScore }) {
     super()
-    this.state = { gameOver: false }
-    this.setView = setView
+    this.setView  = setView
     this.setScore = setScore
-    this.play = this.play.bind(this)
+    this.settings = settings.getGameSettings()
+    this.mounted  = false
 
-    console.log("Game storage", storage.stamp)
+    this.play = this.play.bind(this)
+    this.newAchievement = this.newAchievement.bind(this)
+
+    const trophies = achievement.setListener(this.newAchievement)
+    this.state = { trophies, gameOver: false }
+  }
+
+
+  componentDidMount() {
+    this.mounted = true
+  }
+
+
+  componentWillUnmount() {
+    this.mounted = false
+  }
+
+
+  newAchievement(trophies, newTrophy) {
+    if (!this.mounted) {
+      return
+    }
+
+    this.setState({ trophies })
+
+    // TODO: Show newTrophy notification as overlay
+    console.log("Game: new trophy", newTrophy)
   }
 
 
@@ -27,6 +55,10 @@ class Game extends Component {
     console.log(score)
     this.setScore(score)
     this.setState({ gameOver: true })
+
+    achievement.setStats("unlockThree", true)
+    achievement.incrementStats("unlockFour")
+    achievement.unlock("five")
   }
 
 
