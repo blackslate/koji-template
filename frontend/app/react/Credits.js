@@ -6,7 +6,7 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import Header from './Header.js'
-import { StyledCredits } from './styles.js'
+import { StyledCredits } from './Styles/styles.js'
 
 
 class Credits extends Component {

@@ -4,6 +4,7 @@
     "display": "icon&text",
     "buttonWidth": 15,
     "buttonFontSize": 2.2,
+    "settingFontSize": 3.0,
     "borderWidth": 0.5,
     "borderRadius": 2,
     "itemSpacing": 5,
@@ -14,7 +15,7 @@
         "name": "Audio",
         "tooltip": "Switch music and sound effects on and off",
         "icon": "https://objects.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/xpbnt-audio.svg",
-        "bgColor": "#235",
+        "bgColor": "#f90",
         "mode": "zeroOrMore",
         "selected": false,
         "hasMaster": false,
@@ -23,37 +24,47 @@
             "name": "Music On",
             "codeName": "music",
             "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/317zo-music.svg",
-            "selected": false
+            "selected": false,
+            "tooltip": "Press to switch off background music"
           },
           {
             "name": "Music Off",
             "codeName": "music",
             "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/ovf2n-nomusic.svg",
-            "selected": false
+            "selected": false,
+            "tooltip": "Press to play background music"
           },
           {
             "name": "Sound Effects On",
             "codeName": "sfx",
             "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/jdk0o-SFX.svg",
-            "selected": true
+            "selected": true,
+            "tooltip": "Press to switch off sound effects"
           },
           {
             "name": "Sound Effects Off",
             "codeName": "sfx",
             "icon": "https://objects.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/i24dk-noSFX.svg",
-            "selected": true
+            "selected": true,
+            "tooltip": "Press to switch on sound effects"
           }
         ]
       },
       {
         "name": "Avatars",
-        "tooltip": "Choose your avatar",
+        "tooltip": "Choose one or more avatars",
         "icon": "https://images.koji-cdn.com/b6342f53-8284-4598-9ada-816723a3b39f/c2vq5-avatar.png",
         "options": [
           {
             "name": "Malcolm",
-            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/v22sd-blue.png",
-            "selected": false
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/03y2m-blue.png",
+            "selected": false,
+            "codeName": "Malcolm"
+          },
+          {
+            "name": "Malcolm",
+            "codeName": "Malcolm",
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/kgqkm-bluegrey.png"
           },
           {
             "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/xxe5t-green.png",
@@ -72,7 +83,7 @@
           }
         ],
         "mode": "oneOrMore",
-        "bgColor": "#225",
+        "bgColor": "#060",
         "selected": true,
         "hasMaster": false
       },
@@ -98,7 +109,7 @@
           }
         ],
         "mode": "onlyOne",
-        "bgColor": "#325",
+        "bgColor": "#906",
         "selected": true,
         "hasMaster": false,
         "position": 2
@@ -106,25 +117,31 @@
     ],
     "values": [
       {
-        "name": "Speed",
+        "name": "Numbers",
         "position": 1,
+        "bgColor": "#039",
         "options": [
           {
-            "name": "Initial speed",
-            "maximum": 60,
+            "name": "Rotation speed",
+            "max": 60,
+            "min": 0,
             "step": 3,
-            "max": 51,
-            "value": 30
+            "value": 30,
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/bhirm-rotation.png",
+            "tooltip": "Speed at which targets rotate"
           },
           {
-            "name": "Acceleration",
-            "maximum": 10,
-            "minimum": 1,
+            "name": "Number of hits required",
+            "max": 10,
+            "min": 1,
             "step": 3,
-            "max": 9,
-            "value": 3
+            "value": 3,
+            "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/gnwgq-taps.png",
+            "tooltip": "Number of times player needs to tap a target to win a trophy"
           }
-        ]
+        ],
+        "icon": "https://images.koji-cdn.com/70da9eec-d05c-4adb-aa5c-21f9373b2d7d/667kl-numbers.png",
+        "tooltip": "Rotation speed & Hits required"
       }
     ]
   },
@@ -177,11 +194,22 @@
         {
           "key": "buttonFontSize",
           "name": "Button Font Size",
-          "description": "Relative font size for buttons",
+          "description": "Relative font size for menu buttons",
           "type": "range",
           "typeOptions": {
             "min": 0.5,
             "max": 5,
+            "step": 0.1
+          }
+        },
+        {
+          "key": "settingFontSize",
+          "name": "Setting Font Size",
+          "description": "Relative font size for setting names",
+          "type": "range",
+          "typeOptions": {
+            "min": 0.5,
+            "max": 10,
             "step": 0.1
           }
         },
@@ -352,7 +380,7 @@
           "description": "List of value panes to display",
           "type": "object<Value>[]",
           "arrayOptions": {
-            "isCollapsed": false,
+            "isCollapsed": true,
             "addItemLabel": "Add Value Pane"
           },
           "typeOptions": {
@@ -404,6 +432,11 @@
                       "name": "Tooltip",
                       "description": "Tooltip description of option",
                       "type": "text"
+                    },
+                    "icon": {
+                      "name": "Icon",
+                      "description": "Icon for this option",
+                      "type": "image"
                     },
                     "min": {
                       "name": "Minimum",

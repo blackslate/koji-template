@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import Koji from '@withkoji/vcc'
 import { toneColor
        , getFontFamily
-       } from '../../utilities/utilities'
+       } from '../../../utilities/utilities'
 
 
 const titleFont = getFontFamily(Koji.config.text.titleFont)
@@ -191,7 +191,7 @@ export const StyledAchievement = styled.li`
     margin: 0 4vmin;
     ${props => props.unlocked
              ? ""
-             : `filter: saturate(0%);opacity:0.25`
+             : `filter: saturate(0%);opacity:0.5`
      }
     height: 80%;
   }
@@ -230,26 +230,140 @@ export const StyledAchievements = styled.div`
   }
 `
 
-export const StyledSettings = styled.div`
+// SETTINGS 
+
+export const StyledSettingsBackground = styled.div`
   width: 100%;
   height: 100vh;
   background-color: ${Koji.config.colors.backgroundColor};
 `
 
-
-export const StyledSettingLabel = styled.label`
+export const StyledSettingsPanelSet = styled.div`
   display: flex;
   flexDirection: column;
-  justifyContent: center;
-  textAlign: center;
-  margin: 0 auto;
-  fontFamily: font;
-  color: ${Koji.config.colors.textColor};
-  fontSize: ${Koji.config.settings.buttonSize}vmin;
-  borderWidth: ${Koji.config.settings.borderWidth}vmin;
-  borderStyle: solid;
+  height: ${props => props.panelHeight};
 `
 
+export const StyledSettingsButtonSet = styled.div`
+  position: absolute;
+  top: ${Koji.config.text.headerHeight}vmin;
+  left: 0;
+`
+
+export const StyledSettingPanelDrawer = styled.div`
+  position: absolute;
+  height: ${props => props.height};
+  width: ${props => props.width};
+  left: ${props => props.checked
+                 ? props.offset
+                 : "-100vw"
+         };
+  top: ${Koji.config.text.headerHeight}vmin;
+  background-color: ${props => props.bgColor};
+  transition: ${props => props.checked
+                      ? `left ${props.time} ${props.time}`
+                      : `left ${props.time}`
+               }
+  overflow:  auto 
+`
+
+export const StyledSettingPanel = styled.div`
+  display: flex;
+  flex-direction: ${props => props.vertical ? "column" : "row"};
+  justify-content: space-evenly;
+  align-items: center;
+  width: ${props => props.width}px;
+  height: ${props => props.height}px;
+`
+
+export const StyledSettingButton = styled.div`
+  width:               ${props => props.width};
+  height               ${props => props.height};
+  display:             flex;
+  flex-direction:      column;
+  justify-content:     center;
+  text-align:          center; 
+
+  font-family:         ${props => props.titleFont};
+  color:               ${Koji.config.colors.textColor};
+  font-size:           ${props => props.panel
+                                ? props.skin.buttonFontSize
+                                : props.skin.settingFontSize
+                        }vmin;
+
+  border-width:        ${props => props.skin.borderWidth}vmin;
+  border-style:        solid;
+  box-sizing:          border-box;
+  /* CUSTOM COLORS FOR BACKGROUND AND BORDER */
+  border-color:        ${props => props.checked
+                               ? props.colors.downShade
+                               : props.colors.restTint};
+  border-right-color:  ${props => props.checked
+                              ? props.colors.downTint
+                              : props.colors.restShade};
+  border-bottom-color: ${props => props.checked
+                              ? props.colors.downTint
+                              : props.colors.restShade};
+  border-radius:       ${props => props.skin.borderRadius}vmin;
+  background-color:    ${props => props.checked
+                                  ? props.colors.downBg
+                                  : props.colors.restBg
+                                  };
+  & img {
+    ${props => props.checked || props.panel
+             ? ""
+             : `filter: saturate(0%);opacity:0.5`
+     }
+  }
+`
+
+export const StyledSettingSlider = styled.div`
+  width:               ${props => props.width};
+  height               ${props => props.height};
+  display:             flex;
+  flex-direction:      column;
+  justify-content:     center;
+  align-items:         center;
+
+  font-family:         ${props => props.titleFont};
+  color:               ${Koji.config.colors.textColor};
+  font-size:           ${props => props.skin.settingFontSize}vmin;
+
+  border-width:        ${props => props.skin.borderWidth}vmin;
+  border-style:        solid;
+  box-sizing:          border-box;
+  /* CUSTOM COLORS FOR BACKGROUND AND BORDER */
+  border-color:        ${props => props.colors.downShade};
+  border-right-color:  ${props => props.colors.downTint};
+  border-bottom-color: ${props => props.colors.downTint};
+  border-radius:       ${props => props.skin.borderRadius}vmin;
+  background-color:    ${props => props.colors.downBg};
+
+  & div {
+    position: relative;
+    width: 90%;
+    display: flex;
+  }
+`
+
+export const StyledSlider = styled.input.attrs({ type: 'range' })`
+  width: 80%;
+`
+
+export const StyledNumber = styled.input.attrs({ type: 'number' })`
+`
+
+export const StyledSettingButtonImage = styled.img`
+  margin: 0 auto;
+`
+
+export const StyledHiddenInput = styled.input`
+  opacity: 0;
+  position: absolute;
+`
+
+
+// GAME //
 
 export const StyledGame = styled.div`
 `

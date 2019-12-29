@@ -4,7 +4,7 @@
 
 
 import React, { Component } from 'react'
-import { StyledGameOver } from './styles.js'
+import { StyledGameOver } from './Styles/styles.js'
 
 
 class GameOver extends Component {

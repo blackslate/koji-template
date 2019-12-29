@@ -5,7 +5,7 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import { GetLeaderboard } from 'koji-react-leaderboard'
-import { StyledLeaderboard } from './styles.js'
+import { StyledLeaderboard } from './Styles/styles.js'
 
 
 class Leaderboard extends Component {
@@ -120,6 +120,7 @@ class Leaderboard extends Component {
                     <div></div>
                     <div></div>
                   </div>
+                  
                 </div>
               </div>
             </div>

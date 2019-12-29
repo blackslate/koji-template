@@ -8,7 +8,17 @@
 import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import Header from './Header.js'
-import { StyledSettings } from './styles.js'
+import Slider from './Slider.js'
+import { StyledSettingsBackground
+       , StyledSettingsPanelSet
+       , StyledSettingsButtonSet
+       , StyledSettingPanelDrawer
+       , StyledSettingPanel
+       , StyledSettingButton
+       , StyledSettingButtonImage
+       , StyledHiddenInput
+       , StyledSettingSlider
+       } from './Styles/styles.js'
 
 import settings from '../../utilities/settings.js'
 import { buttonColors
@@ -80,6 +90,9 @@ class Settings extends Component {
 
 
   setValue(setting, item, value) {
+    // console.log( "setValue", "event:", event
+    //            , "panel:", panel, "item:", item)
+    // return
     const values = settings.setValue(setting, item, value)
 
     this.setState({ values })
@@ -107,91 +120,88 @@ class Settings extends Component {
   }
 
 
-  getButtonStyle(bgColor, checked, width, height) {
+  getButton(
+    { name
+      , icon
+      , onClick  // for buttons in the panel
+      , onChange // for radio buttons on the left
+      , bgColor
+      , height
+      , width
+      , panel=false
+      }
+    , checked
+    , ignore
+    ) {
+
     const colors = buttonColors(bgColor)
-
-    return {
-      width
-    , height
-    , display:           "flex"
-    , flexDirection:     "column"
-    , justifyContent:    "center"
-    , textAlign:         "center"
-    //, margin:            "0 auto"
-
-    , fontFamily:        this.titleFont
-    , color:             Koji.config.colors.textColor
-    , fontSize:          this.skin.buttonFontSize + "vmin"
-
-    , borderWidth:       this.skin.borderWidth+"vmin"
-    , borderStyle:       "solid"
-    , boxSizing:         "border-box"
-    // CUSTOM COLORS FOR BACKGROUND AND BORDER
-    , borderColor:       checked ? colors.downShade : colors.restTint
-    , borderRightColor:  checked ? colors.downTint  : colors.restShade
-    , borderBottomColor: checked ? colors.downTint  : colors.restShade
-    , borderRadius:      this.skin.borderRadius+"vmin"
-    , backgroundColor:   checked ? colors.downBg: bgColor
+    const contents = []
+    if (!ignore.icon) {
+      contents.push(
+        <StyledSettingButtonImage
+          src={icon}
+          key="icon"
+          width="75%"
+        />
+      )
     }
-  }
 
+    if (!ignore.name) {
+      contents.push(
+        <p
+          key="name"
+        >
+          {name}
+        </p>
+      )
+    }
 
-  getTextButton({ name, onClick }, style) {
-
-  }
-
-
-  getIconButton({ icon, onClick }, style) {
-
-  }
-
-
-  getDualButton({ name, icon, onClick, onChange }, style) {
     return (
-      <div
+      <StyledSettingButton
         key={name}
-        style={style}
         onChange={onChange}
         onClick={onClick}
+        checked={checked}
+        width={width}
+        height={height}
+        titleFont={this.titleFont}
+        skin={this.skin}
+        colors={colors}
+        panel={panel}
       >
-        <img
-          width="82%"
-          style={{margin: "0 auto"}}
-          src={icon}
-        />
-        <p>{name}</p>
-      </div>
+        {contents}      
+      </StyledSettingButton>
     )
   }
 
 
-  getButtonContents(itemData, style) {
-    // const { name, tooltip, icon, bgColor } = itemData
+  getButtonContents(itemData, checked) {
+    const ignore = []
 
     switch (this.skin.display) {
       case "icon":
         if (!itemData.icon) {
-          return this.getTextButton(itemData, style)
+          ignore.push("icon")
         } else {
-          return this.getIconButton(itemData, style)
+          ignore.push("name")
         }
 
       case "text":
         if (!itemData.name) {
-          return this.getIconButton(itemData, style)
+          ignore.push("name")
         } else {
-          return this.getTextButton(itemData, style)
+          ignore.push("icon")
         }
 
       default: // "icon&text"
         if (!itemData.name) {
-          return this.getIconButton(itemData, style)
+          ignore.push("name")
         } else if (!itemData.icon) {
-          return this.getTextButton(itemData, style)
-        } else {
-          return this.getDualButton(itemData, style)
+          ignore.push("icon")
         }
     }
+
+    return this.getButton(itemData, checked, ignore)
   }
 
 
@@ -202,48 +212,28 @@ class Settings extends Component {
     const width     = this.buttonWidth
     const height    = this.buttonHeight
 
-    const style = this.getButtonStyle(
-      panelData.bgColor
-    , checked
-    , width
-    , height
-    )
+    panelData.width = width
+    panelData.height = height
+    panelData.panel = true
 
-    const contents = this.getButtonContents(panelData)
+    const contents = this.getButtonContents(panelData, checked)
 
     return (
       <label
         key={uniqueKey}
-        style={style}
         htmlFor={uniqueKey}
       >
-        <input
+        <StyledHiddenInput
           type="radio"
           name="settings"
           id={uniqueKey}
           value={panelData.name}
           onChange={this.change}
           checked={checked}
-          style={{height: 0, opacity: 0}}
         />
         {contents}
       </label>
     )
-  }
-
-
-  getPanelStyle(bgColor, checked) {
-    const time = this.skin.transitionTime + "ms"
-    return {
-      position: "absolute"
-    , height: this.panelHeight
-    , width:  this.panelWidth
-    , left: checked ? this.buttonWidth : "-100vw"
-    , top: Koji.config.text.headerHeight + "vmin"
-    , backgroundColor: bgColor
-    , transition: checked ? `left ${time} ${time}` : `left ${time}`
-    , overflow: "auto"
-    }
   }
 
 
@@ -299,16 +289,147 @@ class Settings extends Component {
                      ? optionData[0]
                      : optionData[optionData.length - 1]
 
-    buttonData.onClick = () => method(panelData.name, buttonData.codeName)
+    buttonData.onClick = () => method(
+      panelData.name
+    , buttonData.codeName
+    )
+    buttonData.bgColor = panelData.bgColor
+    buttonData.width   = panelDimensions.side + "px"
+    buttonData.height  = panelDimensions.side + "px"
 
-    const style = this.getButtonStyle(
-      panelData.bgColor
-    , checked
-    , panelDimensions.side + "px"
-    , panelDimensions.side + "px"
+    return this.getButtonContents(buttonData, checked)
+  }
+
+
+  getSliderContents({
+    name
+    , tooltip
+    , bgColor
+    , height
+    , width
+    , icon
+    , max
+    , min
+    , step
+    , value
+    , method
+    }) {
+
+    const colors = buttonColors(bgColor)
+
+    const contents = []
+    if (icon) {
+      contents.push(
+        <img
+          key="icon"
+          src={icon}
+          width="50%"
+        />
+      )
+    }
+    contents.push(
+      <p
+        key="name"
+      >
+        {name}
+      </p>
+    )
+    contents.push(
+      <Slider
+        key={name}
+        min={min}
+        max={max}
+        step={step}
+        value={value}
+        method={method}
+      />
     )
 
-    return this.getButtonContents(buttonData, style)
+        // onChange={onChange}
+        // onClick={onClick}
+        // panel={panel}
+
+    return (
+      <StyledSettingSlider
+        key={name}
+        value={value}
+        width={width}
+        height={height}
+        titleFont={this.titleFont}
+        skin={this.skin}
+        colors={colors}
+      >
+        {contents}      
+      </StyledSettingSlider>
+    )
+  }
+
+
+  customizeSlider(valueName, panelData, panelDimensions, method) {
+    const panelName = panelData.name
+    const sliderData = panelData.optionData[valueName]
+    const value = this.state.values[panelName][valueName]
+    // console.log(
+      // "customizeSlider"
+      // , "sliderData:", sliderData
+      // , "value:", value
+      // , "panelData:", panelData
+      // , "panelDimensions:", panelDimensions
+      // , "method:", method
+      // )
+
+      // { // panelData
+      //   "name":     "Numbers",
+      //   "position": 1,
+      //   "bgColor":  "#039",
+      //   "icon":     <url>,
+      //   "tooltip":  "Rotation speed & Hits required",
+      //   "type":     "value",
+      //   "width":    "15vmin",
+      //   "height":   "calc(calc(100vh - 8vmin)/4)",
+      //   "panel":    true,
+
+      //   "optionData":{ 
+      //     "Rotation speed":{ 
+      //       "name":"Rotation speed",
+      //       "max":60,
+      //       "min":0,
+      //       "step":3,
+      //       "icon":"<url>",
+      //       "tooltip":"Speed at which targets rotate"
+      //     },
+      //     "Number of hits required":{ 
+      //       "name":   "Number of hits required",
+      //       "max":    10,
+      //       "min":    1,
+      //       "step":   3,
+      //       "icon":   <url>,
+      //       "tooltip":"Number of times player needs to tap a target
+      //                  to win a trophy"
+      //     }
+      //   },
+
+      //   "options":[ 
+      //     "Rotation speed",
+      //     "Number of hits required"
+      //   ]
+      // }
+
+      // { // panelDimensions
+      //   "width":506.6
+      // , "height":904.32
+      // , "side":414.165
+      // , "vertical":true
+      // , "spacing":25.33
+    // }
+
+    sliderData.value   = value
+    sliderData.method  = () => method(event, panelName, valueName)
+    sliderData.bgColor = panelData.bgColor
+    sliderData.width   = panelDimensions.side + "px"
+    sliderData.height  = panelDimensions.side + "px"
+
+    return this.getSliderContents(sliderData)
   }
 
 
@@ -328,39 +449,42 @@ class Settings extends Component {
                     )
                   : panelDimensions.height
 
-    const style = {
-      display: "flex"
-    , flexDirection: panelDimensions.vertical ? "column" : "row"
-    , justifyContent: "space-evenly"
-    , alignItems: "center"
-    , width: width + "px"
-    , height: height + "px"
-    }
-
     return (
-      <div
-        className={"selection " + name}
-        style={style}
+      <StyledSettingPanel
+        vertical={panelDimensions.vertical}
+        width={width}
+        height={height}
       >
         {contents}
-      </div>
+      </StyledSettingPanel>
     )
   }
 
 
   getContents(panelData, panelDimensions, method) {
     const { options, name, type } = panelData
-    const contents = options.map( optionName => {
+
+    // if (name !== this.state.panel) {
+    //   return ""
+    // }
+
+    const contents = options.map((optionName, index) => {
       switch (type) {
         case "selection":
           return this.customizeButton(
             optionName
           , panelData
           , panelDimensions
-          , method)
+          , method
+          )
 
         case "value":
-          return ""
+          return this.customizeSlider(
+            optionName
+          , panelData
+          , panelDimensions
+          , method
+          )
       }
     })
 
@@ -386,17 +510,20 @@ class Settings extends Component {
     const panelData = this.panelMap[panelName]
     const { name, bgColor } = panelData
     const checked = name === settings.getPanel()
-
     const contents = this.getPanelContents(panelData)
-    const style = this.getPanelStyle(bgColor, checked)
 
     return (
-      <div
+      <StyledSettingPanelDrawer
         key={name}
-        style={style}
+        height={this.panelHeight}
+        width={this.panelWidth}
+        offset={this.buttonWidth}
+        checked={checked}
+        bgColor={bgColor}
+        time={ this.skin.transitionTime + "ms"}
       >
         {contents}
-      </div>
+      </StyledSettingPanelDrawer>
     )
   }
 
@@ -407,24 +534,14 @@ class Settings extends Component {
     const panelSet  = this.panels.map(this.getSettingsPanel)
 
     return (
-      <div
-        style={{
-          display: "flex"
-        , flexDirection: "column"
-        , height: this.panelHeight
-        }}
+      <StyledSettingsPanelSet
+        height={this.panelHeight}
       >
         {panelSet}
-        <div
-          style={{
-            position: "absolute"
-          , top: Koji.config.text.headerHeight + "vmin"
-          , left: 0
-          }}
-        >
+        <StyledSettingsButtonSet>
           {buttonSet}
-        </div>
-      </div>
+        </StyledSettingsButtonSet>
+      </StyledSettingsPanelSet>
     )
   }
 
@@ -433,13 +550,13 @@ class Settings extends Component {
     const items = this.getItems()
 
     return (
-      <StyledSettings>
+      <StyledSettingsBackground>
         <Header
           text={this.skin.title}
           close={this.setView}
         />
         {items}
-      </StyledSettings>
+      </StyledSettingsBackground>
     )
   }
 }

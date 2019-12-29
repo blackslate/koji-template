@@ -7,7 +7,7 @@ import React, { Component } from 'react'
 import Koji from '@withkoji/vcc'
 import { StyledMenu
        , StyledPlayButton
-       , StyledMenuButtons } from './styles.js'
+       , StyledMenuButtons } from './Styles/styles.js'
 
 
 const Title = () => {

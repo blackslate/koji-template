@@ -6,7 +6,7 @@
 
 import React, { Component } from 'react'
 import GameOverScreen from './GameOver'
-import { StyledGame, StyledButton } from './styles.js'
+import { StyledGame, StyledButton } from './Styles/styles.js'
 import settings from '../../utilities/settings.js'
 import achievement from '../../utilities/achievement.js'
 

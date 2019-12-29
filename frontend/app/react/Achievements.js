@@ -25,7 +25,7 @@ import Koji from '@withkoji/vcc'
 import Header from './Header.js'
 import achievement from '../../utilities/achievement.js'
 import { StyledAchievement
-       , StyledAchievements } from './styles.js'
+       , StyledAchievements } from './Styles/styles.js'
 
 
 

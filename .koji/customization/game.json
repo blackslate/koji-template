@@ -3,14 +3,16 @@
     "title": "Game Title",
     "byLine": "Your Name Here",
     "titleSize": 10,
-    "rules": "Game rules go here.\n\nIt's good to keep them short,\nbut it's also good to make them\neasy to follow.",
+    "rules": "Game rules go here.\n\nIt's good to keep them short.\nIt's also good to make them\neasy to follow.",
     "rulesSize": 6.5,
+
     "buttonText": "Play now",
     "buttonTextSize": 7,
     "buttonTextColor": "#2a2a51",
     "buttonColor": "#ffda5a",
     "buttonHoverColor": "#E8C034",
     "buttonClickColor": "#e0bf50",
+
     "gameOverText": "Game Over"
   },
   "@@editor": [

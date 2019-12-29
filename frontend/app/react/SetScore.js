@@ -8,7 +8,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Koji from '@withkoji/vcc'
 import { SaveToLeaderboard } from 'koji-react-leaderboard'
-import { StyledScore } from './styles.js'
+import { StyledScore } from './Styles/styles.js'
 
 
 class SetScore extends Component {

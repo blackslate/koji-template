@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react'
 import { StyledHeader
-       , StyledCloseButton } from './styles.js'
+       , StyledCloseButton } from './Styles/styles.js'
 
 
 class Header extends Component {

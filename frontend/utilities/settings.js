@@ -95,6 +95,8 @@ class Settings{
     if (array.length > 1 || array.indexOf(item) < 0) {
       return this.toggleSelection(key, item)
     }
+
+    return this.settings.selections // unchanged
   }
 
   // VALUES // VALUES // VALUES // VALUES // VALUES // VALUES //
@@ -109,7 +111,7 @@ class Settings{
 
   setValue(key, item, value) {
     const array = this.settings.values[key]
-               || (this.settings.values[key] = [])
+               || (this.settings.values[key] = {})
 
     array[item] = value
 
@@ -135,6 +137,7 @@ class Settings{
     , display         // icon | text | icon&text
     , buttonWidth     // vmin size
     , buttonFontSize  // vmin size
+    , settingFontSize  // vmin size
     , borderWidth     // vmin size
     , borderRadius    // vmin size
     , itemSpacing     // vmin size
@@ -146,6 +149,7 @@ class Settings{
     , display
     , buttonWidth
     , buttonFontSize
+    , settingFontSize
     , borderWidth
     , borderRadius
     , itemSpacing
@@ -173,13 +177,13 @@ class Settings{
 
     // HELPER FUNCTIONS // HELPER FUNCTIONS // HELPER FUNCTIONS //
 
-    const treatSelectionPanel = (selectionData) => {
-      const name       = selectionData.name
+    const treatSelectionPanel = (panelData) => {
+      const name       = panelData.name
       const selected   = []
-      const mode       = selectionData.mode || "zeroOrMore"
+      const mode       = panelData.mode || "zeroOrMore"
       const options    = []
       const optionData = {}
-      panel = panel || (selectionData.selected ? name : undefined)
+      panel = panel || (panelData.selected ? name : undefined)
 
       if (panels.indexOf(name) < 0) {
         panels.push(name)
@@ -187,7 +191,7 @@ class Settings{
         console.log("Duplicate selection panel name:", name)
       }
 
-      selectionData.options.forEach( option  => {
+      panelData.options.forEach( option  => {
         // { name: <string>
         // , codeName:
         // , icon:
@@ -253,27 +257,28 @@ class Settings{
         selections[name] = selected
       })();
 
-      delete selectionData.selected
-      selectionData.type       = "selection"
-      selectionData.mode       = mode
-      selectionData.position   = selectionData.position || 0
-      selectionData.bgColor    = selectionData.bgColor   || "#000"
-      selectionData.hasMaster  = !!selectionData.hasMaster
-      selectionData.options    = options
-      selectionData.optionData = optionData
+      delete panelData.selected
+      panelData.type       = "selection"
+      panelData.mode       = mode
+      panelData.position   = panelData.position || 0
+      panelData.bgColor    = panelData.bgColor   || "#000"
+      panelData.hasMaster  = !!panelData.hasMaster
+      panelData.options    = options
+      panelData.optionData = optionData
       // name      \
       // tooltip    🡂 optional
       // icon      /
 
-      panelMap[name] = selectionData
+      panelMap[name] = panelData
     }
 
 
-    const treatValuePanel = (valueData) => {
-      const name = valueData.name
-      const values = {}
-      const optionData = {}
-      panel = panel || (valueData.selected ? name : undefined)
+    const treatValuePanel = (panelData) => {
+      const name        = panelData.name
+      const options     = []
+      const optionData  = {}
+      const panelValues = values[name] = {}
+      panel = panel || (panelData.selected ? name : undefined)
 
       if (panels.indexOf(name) < 0) {
         panels.push(name)
@@ -281,7 +286,7 @@ class Settings{
         console.log("Duplicate value panel name:", name)
       }
 
-      valueData.options.forEach( option  => {
+      panelData.options.forEach( option  => {
         // { name
         // , tooltip
         // , min
@@ -293,10 +298,12 @@ class Settings{
         const min = Math.min(option.min, option.max)
         const max = Math.max(option.min, option.max)
         const step = Math.min(option.step, max - min)
-        const value = Math.max(min, Math.min(value, max))
+        const value = Math.max(min, Math.min(option.value, max))
         // Initial value may not be aligned to step
-        values[option.arrayname] = value
+        panelValues[option.name] = value
         delete option.value
+
+        options.push(option.name)
 
         option.min = min
         option.max = max
@@ -305,16 +312,17 @@ class Settings{
         optionData[option.name] = option
       })
 
-      delete valueData.selected
-      valueData.type       = "value"
-      valueData.position   = valueData.position || 0
-      valueData.bgColor    = valueData.bgColor  || "#000"
-      valueData.optionData = optionData
+      delete panelData.selected
+      panelData.type       = "value"
+      panelData.position   = panelData.position || 0
+      panelData.bgColor    = panelData.bgColor  || "#000"
+      panelData.options    = options    // names of options
+      panelData.optionData = optionData // display details
       // name      \
       // tooltip    🡂 optional
       // icon      /
 
-      panelMap[name] = valueData
+      panelMap[name] = panelData
     }
 
 
@@ -324,12 +332,12 @@ class Settings{
 
     // EXECUTION STARTS HERE // EXECUTION STARTS HERE //
 
-    settings.selections.forEach( selectionData => {
-      treatSelectionPanel(selectionData)
+    settings.selections.forEach( panelData => {
+      treatSelectionPanel(panelData)
     })
 
-    settings.values.forEach( valueData => {
-      treatValuePanel(valueData)
+    settings.values.forEach( panelData => {
+      treatValuePanel(panelData)
     })
 
     panels.sort(byPanelPosition)

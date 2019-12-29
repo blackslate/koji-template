@@ -18,6 +18,7 @@ import App from '../app/react/App'
 
 import './index.css'
 import './leaderboardStyles.css'
+import '../app/react/Styles/rangeInput.css'
 
 // Make Koji global, to simplify debugging
 window.Koji = Koji
