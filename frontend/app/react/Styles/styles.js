@@ -103,6 +103,7 @@ export const StyledMenuButtons = styled.div`
     border: 0.5vmin solid ${colors.btnTint};
     border-right-color: ${colors.btnShade};
     border-bottom-color: ${colors.btnShade};
+    cursor: pointer;
   }
 
   & button:hover {
@@ -135,6 +136,7 @@ export const StyledPlayButton = styled.button`
   border: 0.5vmin solid ${colors.playTint};
   border-right-color: ${colors.playShade};
   border-bottom-color: ${colors.playShade};
+  cursor: pointer;
 
   &:hover {
     background-color: ${Koji.config.game.buttonHoverColor};
@@ -294,21 +296,27 @@ export const StyledSettingButton = styled.div`
   border-width:        ${props => props.skin.borderWidth}vmin;
   border-style:        solid;
   box-sizing:          border-box;
+  cursor:              ${props => props.checked
+                                ? props.canUncheck
+                                  ? "pointer"
+                                  : "default"
+                                : "pointer"};
+
   /* CUSTOM COLORS FOR BACKGROUND AND BORDER */
   border-color:        ${props => props.checked
-                               ? props.colors.downShade
-                               : props.colors.restTint};
+                                ? props.colors.downShade
+                                : props.colors.restTint};
   border-right-color:  ${props => props.checked
-                              ? props.colors.downTint
-                              : props.colors.restShade};
+                               ? props.colors.downTint
+                               : props.colors.restShade};
   border-bottom-color: ${props => props.checked
-                              ? props.colors.downTint
-                              : props.colors.restShade};
+                                ? props.colors.downTint
+                                : props.colors.restShade};
   border-radius:       ${props => props.skin.borderRadius}vmin;
   background-color:    ${props => props.checked
-                                  ? props.colors.downBg
-                                  : props.colors.restBg
-                                  };
+                                ? props.colors.downBg
+                                : props.colors.restBg
+                                };
   & img {
     ${props => props.checked || props.panel
              ? ""

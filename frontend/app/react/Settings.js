@@ -89,6 +89,12 @@ class Settings extends Component {
   }
 
 
+  uniqueSelection(key) {
+    const array = this.state.selections[key]
+    return array.length === 1
+  }
+
+
   setValue(setting, item, value) {
     // console.log( "setValue", "event:", event
     //            , "panel:", panel, "item:", item)
@@ -129,6 +135,7 @@ class Settings extends Component {
       , height
       , width
       , panel=false
+      , unique
       }
     , checked
     , ignore
@@ -162,6 +169,7 @@ class Settings extends Component {
         onChange={onChange}
         onClick={onClick}
         checked={checked}
+        canUncheck={!unique}
         width={width}
         height={height}
         titleFont={this.titleFont}
@@ -175,7 +183,7 @@ class Settings extends Component {
   }
 
 
-  getButtonContents(itemData, checked) {
+  getButtonContents(itemData, checked, mode) {
     const ignore = []
 
     switch (this.skin.display) {
@@ -201,7 +209,7 @@ class Settings extends Component {
         }
     }
 
-    return this.getButton(itemData, checked, ignore)
+    return this.getButton(itemData, checked, ignore, mode)
   }
 
 
@@ -282,7 +290,12 @@ class Settings extends Component {
   }
 
 
-  customizeButton(buttonName, panelData, panelDimensions, method) {
+  customizeButton(
+    buttonName
+  , panelData
+  , panelDimensions
+  , method
+  ) {
     const optionData = panelData.optionData[buttonName]
     const checked    = this.itemIsSelected(panelData.name,buttonName)
     const buttonData = checked
@@ -296,6 +309,7 @@ class Settings extends Component {
     buttonData.bgColor = panelData.bgColor
     buttonData.width   = panelDimensions.side + "px"
     buttonData.height  = panelDimensions.side + "px"
+    buttonData.unique  = panelData.unique
 
     return this.getButtonContents(buttonData, checked)
   }
@@ -462,11 +476,7 @@ class Settings extends Component {
 
 
   getContents(panelData, panelDimensions, method) {
-    const { options, name, type } = panelData
-
-    // if (name !== this.state.panel) {
-    //   return ""
-    // }
+    const { options, name, type} = panelData
 
     const contents = options.map((optionName, index) => {
       switch (type) {
@@ -495,12 +505,22 @@ class Settings extends Component {
   getPanelContents(panelData) {
     const count = panelData.options.length
     const panelDimensions = this.getPanelDimensions(count)
-    const methodName = panelData.mode
+    const methodName = panelData.mode // onlyOne|oneOrMore|zeroOrMore|undefined
                      ? "set"
                        + panelData.mode[0].toUpperCase()
                        + panelData.mode.substring(1)
                      : "setValue"
     const method = this[methodName] || function() {} // fail silently
+    switch(panelData.mode) {
+      case "oneOrMore":
+        panelData.unique = this.uniqueSelection(panelData.name)
+      break
+      case "onlyOne":
+        panelData.unique = true
+      break
+      default:
+        panelData.unique = false
+    }
 
     return this.getContents(panelData, panelDimensions, method)
   }
