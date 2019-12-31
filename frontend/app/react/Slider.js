@@ -1,6 +1,6 @@
 /** slider.js **
  *
- * 
+ *
 **/
 
 
@@ -15,7 +15,8 @@ class Slider extends Component {
     constructor(props) {
       super(props)
 
-      this.state = { value: props.value }
+      const value = this._getValueFromNumberDisplay(props.value)
+      this.state = { value }
       // this.method = props.method
       // this.object = props.object
       // this.property = props.property
@@ -31,9 +32,8 @@ class Slider extends Component {
       const type = target.type.toLowerCase()
       const value = (type === "range")
                    ? this._getValueFromSliderDisplay(target.value)
-                   : Math.min(target.value, this.props.max)
+                   : this._getValueFromNumberDisplay(target.value)
 
-      console.log("Slider", target.value, type)
       this.setState({ value })
     }
 
@@ -49,22 +49,28 @@ class Slider extends Component {
         )
       }
 
-      console.log("Display: value", this.state.value, "display", display)
-
       return display
     }
 
 
     _getValueFromSliderDisplay(display) {
-      const value = Math.min(
-        this.props.min + (display * this.props.step)
-      , this.props.max
+      const value = Math.max(
+        this.props.min
+      , Math.min(
+          this.props.min + (display * this.props.step)
+        , this.props.max
+        )
       )
 
-      console.log(this.props.min, this.props.max, this.props.step)
-      console.log("Value: value", value, "display", display)
-
       return value
+    }
+
+
+    _getValueFromNumberDisplay(display) {
+      display -= this.props.min
+      display = Math.round(display / this.props.step)
+
+      return this._getValueFromSliderDisplay(display)
     }
 
 
